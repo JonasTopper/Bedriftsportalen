@@ -11,10 +11,10 @@
 
     <h1> Bedriftsportalen </h1>
 
-    <a href="Create.php"><button type="button" class="btn"> Create</button></a>
-    <a href="Read.php"><button type="button" class="btn"> Read</button></a>
-    <a href="Update.php"><button type="button" class="btn"> Update</button></a>
-    <a href="Delete.php"><button type="button" class="btn"> Delete</button></a>
+    <a href="CRUD/Create.php"><button type="button" class="btn"> Create</button></a>
+    <a href="CRUD/Read.php"><button type="button" class="btn"> Read</button></a>
+    <a href="CRUD/Update.php"><button type="button" class="btn"> Update</button></a>
+    <a href="CRUD/Delete.php"><button type="button" class="btn"> Delete</button></a>
 
 
     <script src="JavaScript/script.js">
