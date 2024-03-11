@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 05. Mar, 2024 11:44 AM
+-- Generation Time: 11. Mar, 2024 11:17 AM
 -- Tjener-versjon: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -46,7 +46,7 @@ CREATE TABLE `ansatte` (
 
 CREATE TABLE `bedrifter` (
   `bedrift_id` bigint(20) UNSIGNED NOT NULL,
-  `navn` int(50) NOT NULL,
+  `navn` varchar(50) NOT NULL,
   `adresse` varchar(40) NOT NULL,
   `postnummer` int(4) NOT NULL,
   `org_form` varchar(20) NOT NULL,
@@ -55,6 +55,13 @@ CREATE TABLE `bedrifter` (
   `beskrivelse` varchar(250) NOT NULL,
   `poststed` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dataark for tabell `bedrifter`
+--
+
+INSERT INTO `bedrifter` (`bedrift_id`, `navn`, `adresse`, `postnummer`, `org_form`, `reg_dato`, `org_nr`, `beskrivelse`, `poststed`) VALUES
+(1, 'Aplia', 'Bjørnlivegen 4', 3720, 'AS', '2024-03-04 10:22:46', 1234532, 'Utvikler bedrift', 'Skien');
 
 -- --------------------------------------------------------
 
@@ -5271,7 +5278,7 @@ ALTER TABLE `ansatte`
 -- AUTO_INCREMENT for table `bedrifter`
 --
 ALTER TABLE `bedrifter`
-  MODIFY `bedrift_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `bedrift_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `bruker`
