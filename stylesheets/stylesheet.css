@@ -149,12 +149,9 @@ p {
     }
 }
 
-img {
-    border-radius: 40px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
+.logo {
+    max-width: 150px;
+    max-height: 150px;
 
 }
 
