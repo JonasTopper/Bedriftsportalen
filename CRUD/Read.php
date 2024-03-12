@@ -2,12 +2,24 @@
 
 include 'connect.php';
 
-
+// Dersom bedrift_id finnes 
 if (isset($_GET['bedrift_id'])) {
+    // Oppretter variabel for bedrift_id => Bruker GET
     $id = $_GET['bedrift_id'];
-    $sql_edit = "SELECT navn, adresse, postnummer, org_form, reg_dato, org_nr, beskrivelse, poststed FROM bedrifter WHERE ID = $id";
+    // Opretter variabel for SELECT setning => Hvor bedrift_id => Ønsket ID
+    $sql_edit = "SELECT navn, adresse, postnummer, org_form, reg_dato, org_nr, beskrivelse, poststed FROM bedrifter WHERE bedrift_id = $id";
+
+    // Leser SQL => Hva skjer er egentlig? \o/
     $result_edit = mysqli_query($conn, $sql_edit);
-    $dyr_og_eier= mysqli_fetch_assoc($result_edit);
+    $bedrifter= mysqli_fetch_assoc($result_edit);
+
+    // Dersom navn på bedrifter eksisterer => Hent => Print ut overskrift.
+    if(isset($bedrifter['navn'])) {
+        $navn = $bedrifter['navn'];
+        ?>
+        <h1> <?php echo $navn ?> </h1>
+        <?php
+    }
 }
 
 mysqli_close($conn);
@@ -24,7 +36,7 @@ mysqli_close($conn);
 <body>
     
 
-    <h1> <?php echo $navn ?> </h1>
+    
 
     <a href="Create.php"><button type="button" class="btn"> Create</button></a>
     <a href="Read.php"><button type="button" class="btn"> Read</button></a>
