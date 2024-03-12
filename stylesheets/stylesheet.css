@@ -217,4 +217,40 @@ section {
 }
 
 
+.create-delete-edit {
+    text-align: center;
+    margin-top: 2vh;
+}
 
+.create-btn, .delete-btn, .edit-btn {
+    display: inline-block; 
+    margin-right: 10px;
+}
+
+.create-btn button, .delete-btn button, .edit-btn button {
+    border: none;
+    min-width: 110px;
+    min-height: 45px;
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: bolder;
+    transition: box-shadow 0.3s ease; 
+}
+
+.create-btn button {
+    background-color: rgb(77, 115, 77); 
+}
+
+.delete-btn button {
+    background-color: rgb(137, 89, 89);
+}
+
+.edit-btn button {
+    background-color: rgb(177, 155, 112);
+}
+
+.create-btn button:hover,
+.delete-btn button:hover,
+.edit-btn button:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.701);
+}
