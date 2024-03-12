@@ -17,5 +17,5 @@ if(!$conn)
   }
 else
   {
-    echo "Databasen er tilkoblet";
+ //   echo "Databasen er tilkoblet";
   }
