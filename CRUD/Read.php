@@ -35,37 +35,45 @@ mysqli_close($conn);
 </head>
 <body>
     
+    <a href="../index.php"><button type="button" class="btn">&#8592 Hjem! </button></a>
 
-    
 
-    <a href="Create.php"><button type="button" class="btn"> Create</button></a>
-    <a href="Read.php"><button type="button" class="btn"> Read</button></a>
-    <a href="Update.php"><button type="button" class="btn"> Update</button></a>
-    <a href="Delete.php"><button type="button" class="btn"> Delete</button></a>
-    <a href="../index.php"><button type="button" class="btn"> Index</button></a>
+    <table class="table">
+    <thead>
+        <tr>
+            <th>Bedrift ID</th>
+            <th>Navn</th>
+            <th>Adresse</th>
+            <th>Postnummer</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        <tr>
 
-    <main>
-        <table>
-            <thead>
-                <tr>
-                    <th>Bedrift ID</th>
-                    <th>Navn</th>
-                    <th>Adresse</th>
-                    <th>Postnummer</th>
-                    <th>Slett</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td><a class="Update">Rediger</a></td>
-                    <td><a class="Delete">Slett</a></td>
-                 </tr>
-            </tbody>
-        </table>
-    </main>
+            <!-- Rediger denne, endre lenken. takk <3 -->
+                
+                <td>1</td>
+
+                <td>Bedrift A</td>
+
+                <td>Gateveien 123</td>
+
+                <td>1234</td>
+
+            <td>
+                <div class="button-group">
+                    <button class="details-btn-table">Detaljer</button>
+                    <button class="edit-btn-table">Rediger</button>
+                    <button class="delete-btn-table">Slett</button>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
 
     <script src="JavaScript/script.js">
 </body>
