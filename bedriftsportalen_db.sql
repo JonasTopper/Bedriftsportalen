@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 18. Mar, 2024 10:31 AM
+-- Generation Time: 19. Mar, 2024 11:17 AM
 -- Tjener-versjon: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -24,28 +24,50 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur for tabell `ansatte`
+-- Tabellstruktur for tabell `ansatte_tb`
 --
 
-CREATE TABLE `ansatte` (
-  `ansatte_id` int(11) NOT NULL,
+CREATE TABLE `ansatte_tb` (
+  `ansatte_id` bigint(20) UNSIGNED NOT NULL,
   `ansatte_etternavn` varchar(30) NOT NULL,
   `ansatte_fornavn` varchar(30) NOT NULL,
   `ansatte_stilling` varchar(40) NOT NULL,
-  `ansatte_kontakt_person` tinyint(4) NOT NULL,
+  `ansatte_kontakt_person` tinyint(1) NOT NULL,
   `ansatte_tlf_nr` varchar(15) NOT NULL,
   `ansatte_epost` varchar(250) NOT NULL,
-  `ansatte_bedrift_id` int(11) NOT NULL
+  `ansatte_bedrifts_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dataark for tabell `ansatte_tb`
+--
+
+INSERT INTO `ansatte_tb` (`ansatte_id`, `ansatte_etternavn`, `ansatte_fornavn`, `ansatte_stilling`, `ansatte_kontakt_person`, `ansatte_tlf_nr`, `ansatte_epost`, `ansatte_bedrifts_id`) VALUES
+(3, 'Fortnite', 'Sjo', 'Driftstekniker', 0, '999995', 'ninja@epost.no', 1),
+(4, 'Topper', 'Jonas', 'Lærling', 0, '94055734', 'Jonas.topper@gmail.com', 1),
+(5, 'Dehnhardt Maehlum', 'Oliver', 'Junior Utvikler', 0, '48474335', 'oliverdehnhardtmaehlum@gmail.com', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Tabellstruktur for tabell `bedrifter_innlogging_tb`
+--
+
+CREATE TABLE `bedrifter_innlogging_tb` (
+  `bedrifter_id` bigint(20) UNSIGNED NOT NULL,
+  `bedrifter_brukernavn` varchar(45) NOT NULL,
+  `bedrifter_passord` varchar(18) NOT NULL,
+  `bedrifter_is_admin` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur for tabell `bedrifter`
+-- Tabellstruktur for tabell `bedrifter_tb`
 --
 
-CREATE TABLE `bedrifter` (
-  `bedrift_id` int(11) NOT NULL,
+CREATE TABLE `bedrifter_tb` (
+  `bedrift_id` bigint(20) UNSIGNED NOT NULL,
   `bedrift_navn` varchar(45) NOT NULL,
   `bedrift_adresse` varchar(45) NOT NULL,
   `bedrift_org_form` varchar(45) NOT NULL,
@@ -56,109 +78,108 @@ CREATE TABLE `bedrifter` (
   `bedrift_post_sted` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
 --
--- Tabellstruktur for tabell `bedrifter_innlogging`
+-- Dataark for tabell `bedrifter_tb`
 --
 
-CREATE TABLE `bedrifter_innlogging` (
-  `bedrifter_id` int(11) NOT NULL,
-  `bedrifter_brukernavn` varchar(45) NOT NULL,
-  `bedrifter_passord` varchar(18) NOT NULL,
-  `bedrifter_is_admin` tinyint(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `bedrifter_tb` (`bedrift_id`, `bedrift_navn`, `bedrift_adresse`, `bedrift_org_form`, `bedrift_reg_dato`, `bedrift_org_nr`, `bedrift_beskrivelse`, `bedrift_post_nr`, `bedrift_post_sted`) VALUES
+(1, 'Aplia', ' Centrumsgården Torggata 8', 'AS', '2023-06-13', '998850371 ', NULL, '3724', 'Skien'),
+(2, 'Edge Branding', 'Dokkvegen 11', 'AS', '2018-03-23', 'AS', NULL, '3920', 'Porsgrunn');
 
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur for tabell `postnummer`
+-- Tabellstruktur for tabell `postinformasjon_tb`
 --
 
-CREATE TABLE `postnummer` (
-  `postnr` varchar(4) NOT NULL,
+CREATE TABLE `postinformasjon_tb` (
+  `postnummer` varchar(4) NOT NULL,
   `poststed` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dataark for tabell `postinformasjon_tb`
+--
+
+INSERT INTO `postinformasjon_tb` (`postnummer`, `poststed`) VALUES
+('3724', 'Skien'),
+('3920', 'Porsgrunn');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `ansatte`
+-- Indexes for table `ansatte_tb`
 --
-ALTER TABLE `ansatte`
+ALTER TABLE `ansatte_tb`
   ADD PRIMARY KEY (`ansatte_id`),
-  ADD UNIQUE KEY `ansatte_id_UNIQUE` (`ansatte_id`),
-  ADD KEY `bedrift_id_idx` (`ansatte_bedrift_id`);
+  ADD KEY `bedriftsid index` (`ansatte_bedrifts_id`);
 
 --
--- Indexes for table `bedrifter`
+-- Indexes for table `bedrifter_innlogging_tb`
 --
-ALTER TABLE `bedrifter`
-  ADD PRIMARY KEY (`bedrift_id`),
-  ADD UNIQUE KEY `bedrift_id_UNIQUE` (`bedrift_id`),
-  ADD UNIQUE KEY `bedrift_navn_UNIQUE` (`bedrift_navn`),
-  ADD KEY `postnr_kobling_idx` (`bedrift_post_nr`);
-
---
--- Indexes for table `bedrifter_innlogging`
---
-ALTER TABLE `bedrifter_innlogging`
+ALTER TABLE `bedrifter_innlogging_tb`
   ADD PRIMARY KEY (`bedrifter_id`),
-  ADD UNIQUE KEY `brukere_id_UNIQUE` (`bedrifter_id`),
-  ADD UNIQUE KEY `bedrifter_brukernavn_UNIQUE` (`bedrifter_brukernavn`);
+  ADD KEY `bedrifter_brukernavn` (`bedrifter_brukernavn`);
 
 --
--- Indexes for table `postnummer`
+-- Indexes for table `bedrifter_tb`
 --
-ALTER TABLE `postnummer`
-  ADD PRIMARY KEY (`postnr`),
-  ADD UNIQUE KEY `postnr_UNIQUE` (`postnr`);
+ALTER TABLE `bedrifter_tb`
+  ADD PRIMARY KEY (`bedrift_id`),
+  ADD KEY `bedrift_post_nr` (`bedrift_post_nr`),
+  ADD KEY `bedrift_navn` (`bedrift_navn`);
+
+--
+-- Indexes for table `postinformasjon_tb`
+--
+ALTER TABLE `postinformasjon_tb`
+  ADD PRIMARY KEY (`postnummer`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `ansatte`
+-- AUTO_INCREMENT for table `ansatte_tb`
 --
-ALTER TABLE `ansatte`
-  MODIFY `ansatte_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `ansatte_tb`
+  MODIFY `ansatte_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `bedrifter`
+-- AUTO_INCREMENT for table `bedrifter_innlogging_tb`
 --
-ALTER TABLE `bedrifter`
-  MODIFY `bedrift_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `bedrifter_innlogging_tb`
+  MODIFY `bedrifter_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `bedrifter_innlogging`
+-- AUTO_INCREMENT for table `bedrifter_tb`
 --
-ALTER TABLE `bedrifter_innlogging`
-  MODIFY `bedrifter_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `bedrifter_tb`
+  MODIFY `bedrift_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Begrensninger for dumpede tabeller
 --
 
 --
--- Begrensninger for tabell `ansatte`
+-- Begrensninger for tabell `ansatte_tb`
 --
-ALTER TABLE `ansatte`
-  ADD CONSTRAINT `bedrift_id` FOREIGN KEY (`ansatte_bedrift_id`) REFERENCES `bedrifter` (`bedrift_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `ansatte_tb`
+  ADD CONSTRAINT `FK_ansatte_bedriftsid` FOREIGN KEY (`ansatte_bedrifts_id`) REFERENCES `bedrifter_tb` (`bedrift_id`);
 
 --
--- Begrensninger for tabell `bedrifter`
+-- Begrensninger for tabell `bedrifter_innlogging_tb`
 --
-ALTER TABLE `bedrifter`
-  ADD CONSTRAINT `postnr_kobling` FOREIGN KEY (`bedrift_post_nr`) REFERENCES `postnummer` (`postnr`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `bedrifter_innlogging_tb`
+  ADD CONSTRAINT `FK_bedrifts_innlogging` FOREIGN KEY (`bedrifter_brukernavn`) REFERENCES `bedrifter_tb` (`bedrift_navn`);
 
 --
--- Begrensninger for tabell `bedrifter_innlogging`
+-- Begrensninger for tabell `bedrifter_tb`
 --
-ALTER TABLE `bedrifter_innlogging`
-  ADD CONSTRAINT `bedrift_navn` FOREIGN KEY (`bedrifter_brukernavn`) REFERENCES `bedrifter` (`bedrift_navn`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `bedrifter_tb`
+  ADD CONSTRAINT `fk_postnr` FOREIGN KEY (`bedrift_post_nr`) REFERENCES `postinformasjon_tb` (`postnummer`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
