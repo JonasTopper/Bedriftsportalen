@@ -200,7 +200,9 @@ td {
 
 .details-btn-table:hover,
 .delete-btn-table:hover,
-.edit-btn-table:hover {
+.edit-btn-table:hover,
+.submit-btn:hover,
+.back-btn:hover {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.701);
 }
 
@@ -237,4 +239,54 @@ td {
 
 .clickable {
     cursor: pointer;
+}
+
+.submit-btn {
+    background-color: rgb(94, 179, 94);
+    text-align: center;
+    margin: auto;
+    min-width: 200px;
+    min-height: 60px;
+    border-radius: 15px;
+    font-weight: bolder;
+    margin-top: 4vh;
+    justify-content: center;
+    margin-left: auto;
+}
+
+.submit-btn-container {
+    text-align: center;
+}
+
+.submit-btn:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.701);
+}
+
+.back-btn {
+    background-color: rgb(223, 69, 69);
+    text-align: center;
+    margin: auto;
+    min-width: 200px;
+    min-height: 60px;
+    border-radius: 15px;
+    font-weight: bolder;
+    margin-top: 4vh;
+    justify-content: center;
+    margin-left: auto;
+}
+
+
+.table2 {
+    width: 70%;
+    border-collapse: collapse;
+    border: 2px solid #ccc; 
+    border-radius: 10px; 
+    margin: auto;
+    width: max-content; 
+    white-space: nowrap;
+    margin-top: 1vh;
+}
+
+.header-ansatte {
+    margin-top: 10vh;
 }
