@@ -10,7 +10,8 @@ if (isset($_GET['bedrift_id'])) {
     
     $sql_edit = "SELECT * FROM bedrifter_tb 
               INNER JOIN ansatte_tb 
-              ON bedrifter_tb.bedrift_id = ansatte_tb.ansatte_bedrifts_id";
+              ON bedrifter_tb.bedrift_id = ansatte_tb.ansatte_bedrifts_id
+              WHERE ansatte_tb.ansatte_bedrifts_id = $id";
     // Leser SQL => Hva skjer er egentlig? \o/
     $result_edit = mysqli_query($conn, $sql_edit);
 
@@ -33,8 +34,9 @@ if (isset($_GET['bedrift_id'])) {
         <body>
 
             <a href="../index.php"><button type="button" class="btn">&#8592 Hjem! </button></a>
-
-            <h1 class="header-bedrift">Bedrift</h1>
+            <?php // Fetch the first row to display bedrift information
+            $first_row = mysqli_fetch_assoc($result_edit); ?>
+            <h1 class="header-bedrift"><?php echo $first_row['bedrift_navn'] ?></h1>
             <table class="table">
                 <thead>
                     <tr>
@@ -47,10 +49,6 @@ if (isset($_GET['bedrift_id'])) {
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    // Fetch the first row to display bedrift information
-                    $first_row = mysqli_fetch_assoc($result_edit);
-                    ?>
                     <tr>
                         <td><?php echo $first_row['bedrift_id'] ?></td>
                         <td><?php echo $first_row['bedrift_navn'] ?></td>
