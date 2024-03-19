@@ -4,7 +4,7 @@ include 'CRUD/connect.php';
 
 
 // Prosedyre for les
-$sql_les = "SELECT bedrift_id, navn FROM bedrifter";
+$sql_les = "SELECT bedrift_id, bedrift_navn FROM bedrifter_tb";
 $resultat_les = mysqli_query($conn, $sql_les);
 $bedrifter = mysqli_fetch_all($resultat_les, MYSQLI_ASSOC);
 
@@ -25,15 +25,11 @@ $bedrifter = mysqli_fetch_all($resultat_les, MYSQLI_ASSOC);
         <div class="create-delete-edit">
 
             <div class="create-btn">
-                <a href="x.php" ><button> + </button></a>
+                <a href="CRUD/Create-bedrift.php" ><button> + </button></a>
             </div>
 
             <div class="delete-btn">
                 <a href="x.php" ><button> Remove </button></a>
-            </div>
-
-            <div class="edit-btn">
-                <a href="x.php" ><button> Edit </button></a>
             </div>
 
         </div>
@@ -45,7 +41,7 @@ $bedrifter = mysqli_fetch_all($resultat_les, MYSQLI_ASSOC);
 
         <?php
         foreach($bedrifter as $bedrift) {
-            $navn = $bedrift['navn'];
+            $navn = $bedrift['bedrift_navn'];
             $bedrift_id = $bedrift['bedrift_id'];
         ?>
         <a href="./CRUD/Read.php?bedrift_id=<?php echo $bedrift_id;?>">
