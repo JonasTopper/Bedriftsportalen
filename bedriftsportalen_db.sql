@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 19. Mar, 2024 11:17 AM
+-- Generation Time: 20. Mar, 2024 11:02 AM
 -- Tjener-versjon: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -71,7 +71,7 @@ CREATE TABLE `bedrifter_tb` (
   `bedrift_navn` varchar(45) NOT NULL,
   `bedrift_adresse` varchar(45) NOT NULL,
   `bedrift_org_form` varchar(45) NOT NULL,
-  `bedrift_reg_dato` date NOT NULL,
+  `bedrift_reg_dato` date DEFAULT NULL,
   `bedrift_org_nr` varchar(45) NOT NULL,
   `bedrift_beskrivelse` varchar(250) DEFAULT NULL,
   `bedrift_post_nr` varchar(4) NOT NULL,
@@ -84,7 +84,8 @@ CREATE TABLE `bedrifter_tb` (
 
 INSERT INTO `bedrifter_tb` (`bedrift_id`, `bedrift_navn`, `bedrift_adresse`, `bedrift_org_form`, `bedrift_reg_dato`, `bedrift_org_nr`, `bedrift_beskrivelse`, `bedrift_post_nr`, `bedrift_post_sted`) VALUES
 (1, 'Aplia', ' Centrumsgården Torggata 8', 'AS', '2023-06-13', '998850371 ', NULL, '3724', 'Skien'),
-(2, 'Edge Branding', 'Dokkvegen 11', 'AS', '2018-03-23', 'AS', NULL, '3920', 'Porsgrunn');
+(2, 'Edge Branding', 'Dokkvegen 11', 'AS', '2018-03-23', 'AS', NULL, '3920', 'Porsgrunn'),
+(9, 'JonasShip', 'Tullevegen 39', 'aS', NULL, '989126377', NULL, '3920', 'Porsgrunn');
 
 -- --------------------------------------------------------
 
@@ -157,7 +158,7 @@ ALTER TABLE `bedrifter_innlogging_tb`
 -- AUTO_INCREMENT for table `bedrifter_tb`
 --
 ALTER TABLE `bedrifter_tb`
-  MODIFY `bedrift_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `bedrift_id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Begrensninger for dumpede tabeller
