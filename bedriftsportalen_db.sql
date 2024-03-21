@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 20. Mar, 2024 11:02 AM
+-- Generation Time: 21. Mar, 2024 09:09 AM
 -- Tjener-versjon: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -168,7 +168,7 @@ ALTER TABLE `bedrifter_tb`
 -- Begrensninger for tabell `ansatte_tb`
 --
 ALTER TABLE `ansatte_tb`
-  ADD CONSTRAINT `FK_ansatte_bedriftsid` FOREIGN KEY (`ansatte_bedrifts_id`) REFERENCES `bedrifter_tb` (`bedrift_id`);
+  ADD CONSTRAINT `FK_ansatte_bedriftsid` FOREIGN KEY (`ansatte_bedrifts_id`) REFERENCES `bedrifter_tb` (`bedrift_id`) ON DELETE CASCADE;
 
 --
 -- Begrensninger for tabell `bedrifter_innlogging_tb`
