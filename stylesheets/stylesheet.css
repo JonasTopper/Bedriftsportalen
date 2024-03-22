@@ -198,6 +198,7 @@ td {
     font-weight: bolder;
 }
 
+
 .details-btn-table:hover,
 .delete-btn-table:hover,
 .edit-btn-table:hover,
@@ -289,4 +290,10 @@ td {
 
 .header-ansatte {
     margin-top: 10vh;
+}
+
+.detaljer_knapp {
+    position: fixed;
+    float: right;
+    margin-left: 100vh;
 }
