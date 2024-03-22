@@ -57,8 +57,9 @@ if (isset($_GET['bedrift_id'])) {
                         <td><?php echo $first_row['bedrift_post_sted'] ?></td>
                         <td>
                             <div class="button-group">
-                                <button class="details-btn-table">Detaljer</button>
-                                <button class="edit-btn-table">Rediger</button>
+                                <a href="Edit-bedrift.php?bedrift_id=<?php echo $id ?>"><button class="edit-btn-table">Rediger</button></a>
+                                <a class="detaljer_kapp" href="Detailed-view-bedrift.php?bedrift_id=<?php echo $id ?>"><button class="details-btn-table">Detaljer</button></a>
+                                <a  href="DELETE ETT ELLER ANNET HER.PHP sikker lol"><button class="delete-btn-table">X</button></a>
                             </div>
                         </td>
                     </tr>
@@ -82,7 +83,10 @@ if (isset($_GET['bedrift_id'])) {
                     // Reset the pointer to the beginning of the result set
                     mysqli_data_seek($result_edit, 0);
                     // Loop through each row fetched from the result set to display ansatte information
+
+                    
                     while ($row = mysqli_fetch_assoc($result_edit)) {
+                        $ansatt_id = $row['ansatte_id'];
                         ?>
                         <tr>
                             <td><?php echo $row['ansatte_id'] ?></td>
@@ -92,7 +96,9 @@ if (isset($_GET['bedrift_id'])) {
                             <td><?php echo $row['ansatte_tlf_nr'] ?></td>
                             <td>
                                 <div class="button-group">
-                                    <button class="edit-btn-table">Rediger</button>
+                                    <a href="Edit-ansatt.php?ansatte_id=<?php echo $ansatt_id ?>"><button class="edit-btn-table">Rediger</button></a>
+                                    <a class="detaljer_kapp" href="Detailed-view-ansatte.php?ansatte_id=<?php echo $row['ansatte_id']?>"><button class="details-btn-table">Detaljer</button></a>
+                                    <a  href="DELETE ETT ELLER ANNET HER.PHP sikker lol"><button class="delete-btn-table">X</button></a>
                                 </div>
                             </td>
                         </tr>
