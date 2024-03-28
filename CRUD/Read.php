@@ -28,12 +28,12 @@ if (isset($_GET['bedrift_id'])) {
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="stylesheet" href="../stylesheets/stylesheet.css">
+            <link rel="stylesheet" href="../stylesheets/stylesheet.css?v=1.0">
             <title> Bedriftsportalen </title>
         </head>
         <body>
-
-            <a href="../index.php"><button type="button" class="btn">&#8592 Hjem! </button></a>
+           <main>
+            <a href="../"><button type="button" class="btn">&#8592 Hjem! </button></a>
             <?php // Fetch the first row to display bedrift information
             $first_row = mysqli_fetch_assoc($result_edit); ?>
             <h1 class="header-bedrift"><?php echo $first_row['bedrift_navn'] ?></h1>
@@ -59,7 +59,7 @@ if (isset($_GET['bedrift_id'])) {
                             <div class="button-group">
                                 <a href="Edit-bedrift.php?bedrift_id=<?php echo $id ?>"><button class="edit-btn-table">Rediger</button></a>
                                 <a class="detaljer_kapp" href="Detailed-view-bedrift.php?bedrift_id=<?php echo $id ?>"><button class="details-btn-table">Detaljer</button></a>
-                                <a  href="DELETE ETT ELLER ANNET HER.PHP sikker lol"><button class="delete-btn-table">X</button></a>
+                                <a  href="confirm_delete.php?bedrift_id=<?php echo $id; ?>"><button class="delete-btn-table">X</button></a>
                             </div>
                         </td>
                     </tr>
@@ -98,7 +98,7 @@ if (isset($_GET['bedrift_id'])) {
                                 <div class="button-group">
                                     <a href="Edit-ansatt.php?ansatte_id=<?php echo $ansatt_id ?>"><button class="edit-btn-table">Rediger</button></a>
                                     <a class="detaljer_kapp" href="Detailed-view-ansatte.php?ansatte_id=<?php echo $row['ansatte_id']?>"><button class="details-btn-table">Detaljer</button></a>
-                                    <a  href="DELETE ETT ELLER ANNET HER.PHP sikker lol"><button class="delete-btn-table">X</button></a>
+                                    <a href="confirm_delete_ansatte.php?ansatte_id=<?php echo $ansatt_id; ?>"><button class="delete-btn-table">X</button></a>
                                 </div>
                             </td>
                         </tr>
@@ -107,13 +107,13 @@ if (isset($_GET['bedrift_id'])) {
                     ?>
                 </tbody>
             </table>
-
+            </main>
         </body>
         </html>
         <?php
     } else {
         // If no rows were returned by the query, display a message
-        echo "No results found.";
+        echo "No results found. Is this bedrift missing ansatte?";
     }
 
     mysqli_close($conn);
