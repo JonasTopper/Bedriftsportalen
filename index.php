@@ -1,7 +1,9 @@
 <?php
 include 'CRUD/connect.php';
 
-
+header("Cache-Control: no-cache, no-store, must-revalidate");
+header("Pragma: no-cache");
+header("Expires: 0");
 
 // Prosedyre for les
 $sql_les = "SELECT bedrift_id, bedrift_navn FROM bedrifter_tb";
@@ -12,49 +14,48 @@ $bedrifter = mysqli_fetch_all($resultat_les, MYSQLI_ASSOC);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="stylesheets/stylesheet.css" type="text/css">
+    <link rel="stylesheet" href="stylesheets/stylesheet.css?v=1.0" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-pwCHXNHXDBp4Zh3fCkGpMeWzHjwUC1n1br5x3IyVBFzbJRsN/l2M+SWdgZfjqxiS" crossorigin="anonymous">
     <title>Bedriftsportalen</title>
 </head>
+
 <body>
     <h1>Bedriftsportalen</h1>
 
-        <div class="create-delete-edit">
+    <div class="create-delete-edit">
 
-            <div class="create-btn">
-                <a href="CRUD/Create-bedrift.php" ><button> + </button></a>
-            </div>
-
-            <div class="delete-btn">
-                <a href="x.php" ><button> Remove </button></a>
-            </div>
-
+        <div class="create-btn">
+            <a href="CRUD/Create-bedrift.php"><button> + </button></a>
         </div>
+
+        <div class="delete-btn">
+            <a href="CRUD/Delete.php"><button> Remove </button></a>
+        </div>
+
+    </div>
     <main>
-
-
-
-
-
-        <?php
-        foreach($bedrifter as $bedrift) {
-            $navn = $bedrift['bedrift_navn'];
-            $bedrift_id = $bedrift['bedrift_id'];
-        ?>
-        <a href="./CRUD/Read.php?bedrift_id=<?php echo $bedrift_id;?>">
-            <div>
-                <?php echo $navn ?>
-                <img class="logo" src="images/logo_<?php echo $bedrift_id?>.png">
+        <div class="slider">
+            <div class="slide">
+                <?php foreach ($bedrifter as $bedrift) : ?>
+                    <div class="bedrift">
+                        <a href="./CRUD/Read.php?bedrift_id=<?php echo $bedrift['bedrift_id']; ?>">
+                            <?php
+                            // Check if the logo exists
+                            $logo_src = file_exists("images/logo_" . $bedrift['bedrift_id'] . ".png") ? "images/logo_" . $bedrift['bedrift_id'] . ".png" : "images/no-image.png";
+                            ?>
+                            <img class="logo" src="<?php echo $logo_src; ?>" alt="Logo">
+                            <p class="bedrift-navn"><?php echo $bedrift['bedrift_navn']; ?></p>
+                        </a>
+                    </div>
+                <?php endforeach; ?>
             </div>
-        </a>
-        <?php
-        }
-        ?>
+        </div>
     </main>
-
-    <script src="JavaScript/script.js"></script>
+    <script src="JavaScript/script.js?=v1.0"></script>
 </body>
+
 </html>

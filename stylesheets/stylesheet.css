@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 body {
-    background-color: rgb(219, 219, 219);
+    background-color: #F5F5F5; /* Light gray background */
     margin-top: 5vh;
     font-family: "Roboto", sans-serif;
 }
@@ -9,27 +9,34 @@ body {
 h1 {
     text-align: center;
     font-size: 10vh;
+    color: #3E92CC; /* Primary color */
 }
 
-
-* {
-    margin: 0;
-    padding: 0;
-}
- 
 main {
-    background-color: rgb(228, 228, 228);
+    background-color: #FFFFFF; /* White background */
     margin-left: 50px;
     margin-right: 50px;
-    padding: 10px;
+    padding: 20px; /* Increased padding for better spacing */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
 }
 
 label {
     margin-left: 20px;
+    color: #3E92CC; /* Primary color */
 }
 
 input {
     font-size: 16px;
+}
+
+.input-field {
+    width: 60%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #CCCCCC; /* Light gray border */
+    border-radius: 5px; /* Slightly rounded corners */
 }
 
 input[type=text] {
@@ -37,89 +44,55 @@ input[type=text] {
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
-  }
+    border: 1px solid #CCCCCC; /* Light gray border */
+    border-radius: 5px; /* Slightly rounded corners */
+}
 
 input[type=submit] {
     font-size: 14px;
     width: 30%;
-    padding: 6px;
+    padding: 10px;
     margin-left: 0%;
     box-sizing: border-box;
-    background-color: lightgreen;
-  }  
+    background-color: #3E92CC; /* Primary color */
+    color: #FFFFFF; /* White text */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
 
+input[type=submit]:hover {
+    background-color: #2975A3; /* Slightly darker shade of primary color */
+}
 
 nav {
-    width:100%;
+    width: 100%;
     height: 110px;
-    background-color: lightblue;
+    background-color: #3E92CC; /* Primary color */
 }
-
-/* ul {
-    margin-left: 50px;
-} */
-
-
-.header {
-	text-shadow: .022em .022em .022em #bcbaba;
-	margin: 10px;
-    &:hover{
-        text-shadow:0.5rem 0.5rem 0.5rem #a0a0a0;
-    }
-}/* 
-
- ul li {
-    margin-top: 5px;
-    width: 120px;
-    list-style: none;
-    display: inline-block;
-    line-height: 100px;
-    border: 1px solid black;
-    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
-}
-
-
-ul li a {
-    text-align: center;
-    display: block;
-    text-decoration: none;
-    font-size: 20px;
-    color: black;
-    padding: 0 20px;
-}
-
-ul li a:hover {
-    color: white;
-    background-color: black;
-    box-shadow: 0 0 50px 15px white;
-}  */
 
 p {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: 50px;
-    margin-right: 50px;
-    color:black;
-    background-color: lightgray;
-    font-size: 20px;
+    margin: 20px 50px; /* Adjusted margin for better spacing */
+    color: #333333; /* Dark gray text */
+    font-size: 18px; /* Increased font size */
     padding: 20px;
+    background-color: #FFFFFF; /* White background */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
 }
 
+a {
+    text-decoration: none;
+}
 
 .logo {
     max-width: 150px;
     max-height: 150px;
-
 }
 
 .create-delete-edit {
     text-align: center;
     margin-top: 2vh;
-}
-
-.create-btn, .delete-btn, .edit-btn {
-    display: inline-block; 
-    margin-right: 10px;
 }
 
 .create-btn button, .delete-btn button, .edit-btn button {
@@ -129,82 +102,89 @@ p {
     border-radius: 20px;
     font-size: 20px;
     font-weight: bolder;
-    transition: box-shadow 0.3s ease; 
+    transition: box-shadow 0.3s ease;
+    cursor: pointer;
 }
 
+
 .create-btn button {
-    background-color: rgb(77, 115, 77); 
+    background-color: #3E92CC; /* Primary color */
+    color: #FFFFFF; /* White text */
+}
+
+.create-btn button:hover {
+    background-color: #2975A3; /* Slightly darker shade of primary color */
 }
 
 .delete-btn button {
-    background-color: rgb(137, 89, 89);
+    background-color: #FF5A5F; /* Secondary color */
+    color: #FFFFFF; /* White text */
+}
+
+.delete-btn button:hover {
+    background-color: #CC4B50; /* Slightly darker shade of secondary color */
 }
 
 .edit-btn button {
-    background-color: rgb(177, 155, 112);
+    background-color: #FF5A5F; /* Secondary color */
+    color: #FFFFFF; /* White text */
 }
 
-.create-btn button:hover,
-.delete-btn button:hover,
 .edit-btn button:hover {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.701);
+    background-color: #CC4B50; /* Slightly darker shade of secondary color */
 }
 
 table {
     width: 70%;
     border-collapse: collapse;
-    border: 2px solid #ccc; 
-    border-radius: 10px; 
+    border: 2px solid #CCCCCC; /* Light gray border */
+    border-radius: 10px;
     margin: auto;
 }
 
 th, td {
-    border: 1px solid #ccc;
-    padding: 8px; 
+    border: 1px solid #CCCCCC; /* Light gray border */
+    padding: 8px;
 }
 
 tr:nth-child(even) {
-    background-color: #f2f2f2; 
+    background-color: #F5F5F5; /* Alternate row background color */
 }
 
-td {
-    min-width: 210px;
+.details-btn-table, .delete-btn-table, .edit-btn-table {
+    min-height: 40px;
+    min-width: 80px;
+    border: none;
+    border-radius: 15px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .details-btn-table {
-    background-color: rgb(77, 115, 77); 
-    min-height: 40px;
-    min-width: 80px;
-    border: none;
-    border-radius: 15px;
-    font-weight: bolder;
+    background-color: #3E92CC; /* Primary color */
+    color: #FFFFFF; /* White text */
+}
+
+.details-btn-table:hover {
+    background-color: #2975A3; /* Slightly darker shade of primary color */
 }
 
 .delete-btn-table {
-    background-color: rgb(137, 89, 89);
-    min-height: 40px;
-    min-width: 80px;
-    border: none;
-    border-radius: 15px;
-    font-weight: bolder;
+    background-color: #FF5A5F; /* Secondary color */
+    color: #FFFFFF; /* White text */
+}
+
+.delete-btn-table:hover {
+    background-color: #CC4B50; /* Slightly darker shade of secondary color */
 }
 
 .edit-btn-table {
-    background-color: rgb(177, 155, 112);
-    min-height: 40px;
-    min-width: 80px;
-    border: none;
-    border-radius: 15px;
-    font-weight: bolder;
+    background-color: #FF5A5F; /* Secondary color */
+    color: #FFFFFF; /* White text */
 }
 
-
-.details-btn-table:hover,
-.delete-btn-table:hover,
-.edit-btn-table:hover,
-.submit-btn:hover,
-.back-btn:hover {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.701);
+.edit-btn-table:hover {
+    background-color: #CC4B50; /* Slightly darker shade of secondary color */
 }
 
 .button-group {
@@ -212,17 +192,18 @@ td {
 }
 
 .button-group button {
-    margin-right: 10px; /* Adjust the value as needed */
+    margin-right: 10px;
 }
 
 .table {
-    width: max-content; /* Adjust the width as needed */
+    width: max-content;
 }
 
-/* Add this rule to ensure the table does not extend beyond the button group */
 .table td:last-child {
     white-space: nowrap;
 }
+
+
 
 .btn {
     min-width: 120px;
@@ -296,4 +277,57 @@ td {
     position: fixed;
     float: right;
     margin-left: 100vh;
+}
+
+.slider {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch; /* Enables momentum scrolling on iOS */
+}
+
+.slide {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.bedrift {
+    width: calc(25% - 20px); /* Adjust the width as needed */
+    margin-bottom: 20px;
+    text-align: center;
+    scroll-snap-align: start;
+    flex-direction: row; /* Ensure horizontal display */
+    padding: 20px; /* Add padding for spacing */
+}
+
+.logo {
+    width: 150px; /* Adjust the size of the logo */
+    height: 150px; /* Adjust the size of the logo */
+    display: block;
+    margin: 0 auto 10px;
+}
+
+
+.bedrift-navn {
+    font-size: 20px; /* Increase font size for better readability */
+    font-weight: bold; /* Add boldness for emphasis */
+    color: #333; /* Dark color for better contrast */
+    text-transform: uppercase; /* Convert text to uppercase for a consistent look */
+    margin-top: 5px; /* Add a small margin on top for spacing */
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+    transition: color 0.3s ease; /* Add a smooth color transition on hover */
+}
+
+.bedrift-navn:hover {
+    color: #555; /* Darken the color slightly on hover for visual feedback */
+}
+
+
+/* Hide scrollbar */
+.slider::-webkit-scrollbar {
+    display: none;
+}
+
+#poststed {
+    pointer-events: none;
 }

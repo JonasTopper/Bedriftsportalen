@@ -65,7 +65,7 @@ mysqli_close($conn);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../stylesheets/stylesheet.css">
+    <link rel="stylesheet" href="../stylesheets/stylesheet.css?v=1.0">
     <title>Bedriftsportalen</title>
 </head>
 <body>
@@ -92,7 +92,11 @@ mysqli_close($conn);
         <input type="text" name="ansatte_epost" value="<?php echo $epost ?>"><br>
 
         <label for="kontakt">Kontakt person:</label>
-        <input type="text" name="ansatte_kontakt_person" value="<?php echo $kontakt ?>"><br>
+        <select name="ansatte_kontakt_person" class="input-field">
+        <option value="1" <?php if ($kontakt == 1) echo "selected"; ?>>Ja</option>
+        <option value="0" <?php if ($kontakt == 0) echo "selected"; ?>>Nei</option>
+        </select><br>
+
 
         <input type="submit" name="submit" value="Submit">
     </form>
