@@ -7,7 +7,6 @@ if(isset($_POST['submit'])) {
     $id = $_POST['ansatte_id'];
 
     // Retrieve updated data from the form
-    $ansatt_bedrift = $_POST['ansatte_bedrifts_id'];
     $fornavn = $_POST['ansatte_fornavn'];
     $etternavn = $_POST['ansatte_etternavn'];
     $stilling = $_POST['ansatte_stilling'];
@@ -15,18 +14,23 @@ if(isset($_POST['submit'])) {
     $epost = $_POST['ansatte_epost'];
     $kontakt = $_POST['ansatte_kontakt_person'];
 
+    // Get the selected bedrift_id from the form
+    $bedrift_id = $_POST['bedrift_id'];
+
     // Update data in the database
     $sql_update = "UPDATE ansatte_tb 
                    SET ansatte_fornavn = '$fornavn', ansatte_etternavn = '$etternavn', 
                        ansatte_stilling = '$stilling', ansatte_tlf_nr = '$telefon',
-                       ansatte_epost = '$epost', ansatte_kontakt_person = '$kontakt'
+                       ansatte_epost = '$epost', ansatte_kontakt_person = '$kontakt',
+                       ansatte_bedrifts_id = '$bedrift_id' 
                    WHERE ansatte_id = $id";
+
     $result_update = mysqli_query($conn, $sql_update);
 
     // Check if the update was successful
     if ($result_update) {
         // Redirect back to read.php with the correct ansatte_bedrifts_id
-        header("Location: read.php?bedrift_id=$ansatt_bedrift");
+        header("Location: read.php?bedrift_id=$bedrift_id");
         exit();
     } else {
         // Handle the case where the update fails
@@ -34,7 +38,7 @@ if(isset($_POST['submit'])) {
     }
 }
 
-// If form is not submitted or update fails, fetch current data for display
+// Fetch current data for display
 if(isset($_GET['ansatte_id'])) {
     $id = $_GET['ansatte_id'];
     $sql_ansatte = "SELECT * FROM ansatte_tb WHERE ansatte_id = $id";
@@ -49,7 +53,6 @@ if(isset($_GET['ansatte_id'])) {
         $telefon = $row['ansatte_tlf_nr'];
         $epost = $row['ansatte_epost'];
         $kontakt = $row['ansatte_kontakt_person'];
-        $ansatte_bedrifts_id = $row['ansatte_bedrifts_id']; // Added to retrieve the ansatte_bedrifts_id
     } else {
         echo "Error: " . mysqli_error($conn);
     }
@@ -66,6 +69,7 @@ mysqli_close($conn);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../stylesheets/stylesheet.css?v=1.0">
+    <link rel="stylesheet" href="../stylesheets/ansatt_bedrift_edit.css?v=1.0">
     <title>Bedriftsportalen</title>
 </head>
 <body>
@@ -97,10 +101,20 @@ mysqli_close($conn);
         <option value="0" <?php if ($kontakt == 0) echo "selected"; ?>>Nei</option>
         </select><br>
 
+        <label for="bedrift_id">Bedrift</label>
+        <div class="autocomplete">
+            <input type="text" id="bedrift_search" name="bedrift_search" class="autocomplete" placeholder="Søk">
+            <div class="autocomplete-items" id="bedrift_suggestions"></div>
+            <span class="clear-btn" onclick="clearSearch()">Clear</span>
+        </div>
+        <!-- Hidden input field to store the selected bedrift_id -->
+        <input type="hidden" id="bedrift_id" name="bedrift_id"> <br>
 
         <input type="submit" name="submit" value="Submit">
     </form>
 </main>
 
+<script src="../JavaScript/bedrift_search.js?v=1.0"></script>
+<script src="../JavaScript/bedrift_suggestion.js?v=1.0"></script>
 </body>
 </html>
