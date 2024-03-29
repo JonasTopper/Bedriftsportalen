@@ -8,7 +8,7 @@ function CreateSQLRow($conn, $fornavn, $etternavn, $stilling, $kontakt_person, $
     $run_query = mysqli_query($conn, $sql);
 
     if($run_query) {
-        header("Location: ../ "); //redirect
+        header("Location: Read.php?bedrift_id=$bedrifts_id"); //redirect
         exit();
     } else {
         echo "Error: " . mysqli_error($conn);
@@ -43,28 +43,39 @@ if (isset($_POST['submit'])) {
             <table>
                 <thead>
                     <tr>
-                        <th>Navn</th>
-                        <td><input type="text" name="navn"></td>
+                        <th>Fornavn</th>
+                        <td><input type="text" name="fornavn"></td>
                     </tr>
                     <tr>
-                        <th>Adresse</th>
-                        <td><input type="text" name="adresse"></td>
+                        <th>Etternavn</th>
+                        <td><input type="text" name="etternavn"></td>
                     </tr>
                     <tr>
-                        <th>Postnummer</th>
-                        <td><input type="text" name="postnummer" id="postnummer" maxlength="4"></td>
+                        <th>Stilling</th>
+                        <td><input type="text" name="stilling"></td>
                     </tr>
                     <tr>
-                        <th>Poststed</th>
-                        <td><input type="text" name="poststed" id="poststed"></td>
+                        <?php
+                        $kontakt_person = isset($_POST['kontakt_person']) ? $_POST['kontakt_person'] : 0;
+                        ?>
+                        <th>Kontaktperson</th>
+                        <td>
+                        <select name="kontakt_person" class="input-field">
+                        <option value="1" <?php if ($kontakt_person == 1) echo "selected"; ?>>Ja</option>
+                        <option value="0" <?php if ($kontakt_person == 0) echo "selected"; ?>>Nei</option>
+                        </td>
                     </tr>
                     <tr>
-                        <th>Org-form</th>
-                        <td><input type="text" name="orgform"></td>
+                        <th>Telefonnummer</th>
+                        <td><input type="text" name="tlf_nr"></td>
                     </tr>
                     <tr>
-                        <th>Org-nummer</th>
-                        <td><input type="text" name="orgnummer"></td>
+                        <th>Epost</th>
+                        <td><input type="text" name="epost"></td>
+                    </tr>
+                    <tr>
+                        <th>Bedriftid</th>
+                        <td><input type="text" name="bedrift_id" value="<?php echo $_POST["bedrift_id"] ?>" readonly></td>
                     </tr>
                 </thead>
             </table>
