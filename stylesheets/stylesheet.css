@@ -110,6 +110,7 @@ a {
 .create-btn button {
     background-color: #3E92CC; /* Primary color */
     color: #FFFFFF; /* White text */
+    margin-bottom: 2%;
 }
 
 .create-btn button:hover {

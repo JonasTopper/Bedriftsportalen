@@ -31,11 +31,6 @@ $bedrifter = mysqli_fetch_all($resultat_les, MYSQLI_ASSOC);
         <div class="create-btn">
             <a href="CRUD/Create-bedrift.php"><button> + </button></a>
         </div>
-
-        <div class="delete-btn">
-            <a href="CRUD/Delete.php"><button> Remove </button></a>
-        </div>
-
     </div>
     <main>
         <div class="slider">
