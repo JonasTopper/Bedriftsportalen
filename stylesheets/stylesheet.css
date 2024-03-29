@@ -327,3 +327,7 @@ tr:nth-child(even) {
 .slider::-webkit-scrollbar {
     display: none;
 }
+
+#poststed {
+    pointer-events: none;
+}

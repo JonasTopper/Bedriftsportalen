@@ -1,37 +1,30 @@
-<?php 
+<?php
 include 'connect.php';
 
-function CreateSQLRow($conn, $navn, $adresse, $orgform, $orgnummer, $postnummer, $poststed) {
-    
-    $sql = "INSERT INTO bedrifter_tb (bedrift_navn, bedrift_adresse, bedrift_org_form, bedrift_org_nr, bedrift_post_nr, bedrift_post_sted) VALUES ('$navn', '$adresse', '$orgform', '$orgnummer', '$postnummer', '$poststed')";
-    
+function CreateSQLRow($conn, $fornavn, $etternavn, $stilling, $kontakt_person, $tlf_nr, $epost, $bedrifts_id) {
+    $sql = "INSERT INTO ansatte_tb (ansatte_fornavn, ansatte_etternavn, ansatte_stilling, ansatte_kontakt_person, ansatte_tlf_nr, ansatte_epost, ansatte_bedrifts_id) 
+    VALUES ('$fornavn', '$etternavn', '$stilling', '$kontakt_person', '$tlf_nr', '$epost', '$bedrifts_id')";
+
     $run_query = mysqli_query($conn, $sql);
 
     if($run_query) {
-        header("Location: ../ "); //http://localhost/Bedriftsportalen/index.php
+        header("Location: ../ "); //redirect
         exit();
     } else {
-        echo "Error: " . mysqli_error($conn); 
+        echo "Error: " . mysqli_error($conn);
     }
 }
 
-if(isset($_POST['submit'])) {
-    $navn = $_POST['navn'];
-    $adresse = $_POST['adresse'];
-    $postnummer = $_POST['postnummer'];
-    // Fetch corresponding poststed from database based on postnummer
-    $sql = "SELECT poststed FROM postinformasjon_tb WHERE postnummer = '$postnummer'";
-    $result = mysqli_query($conn, $sql);
-    if ($result && mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
-        $poststed = $row['bedrift_post_sted'];
-    } else {
-        $poststed = ""; // Set default value or handle error
-    }
-    $orgform = $_POST['orgform'];
-    $orgnummer = $_POST['orgnummer'];
-    
-    CreateSQLRow($conn, $navn, $adresse, $orgform, $orgnummer, $postnummer, $poststed);
+if (isset($_POST['submit'])) {
+    $fornavn = $_POST['fornavn'];
+    $etternavn = $_POST['etternavn'];
+    $stilling = $_POST['stilling'];
+    $kontakt_person = isset($_POST['kontakt_person']) ? 1 : 0; 
+    $tlf_nr = $_POST['tlf_nr'];
+    $epost = $_POST['epost'];
+    $bedrifts_id = $_POST['bedrift_id'];
+
+    CreateSQLRow($conn, $fornavn, $etternavn, $stilling, $kontakt_person, $tlf_nr, $epost, $bedrifts_id);
 }
 ?>
 
@@ -44,9 +37,9 @@ if(isset($_POST['submit'])) {
     <title>Bedriftsportalen</title>
 </head>
 <body>
-    <h1> Legg til bedrifter </h1>
+    <h1> Create ansatte </h1>
     <main>
-        <form id="bedriftForm" method="POST" action="Create-bedrift.php">
+        <form id="bedriftForm" method="POST" action="Create-ansatte.php">
             <table>
                 <thead>
                     <tr>

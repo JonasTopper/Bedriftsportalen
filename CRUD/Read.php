@@ -22,7 +22,8 @@ if (isset($_GET['bedrift_id'])) {
 
     // Check if there are any rows returned by the query
     if (mysqli_num_rows($result_edit) > 0) {
-        ?>
+        // Fetch the first row to display bedrift information
+        $first_row = mysqli_fetch_assoc($result_edit); ?>
         <!DOCTYPE html>
         <html lang="en">
         <head>
@@ -34,8 +35,6 @@ if (isset($_GET['bedrift_id'])) {
         <body>
            <main>
             <a href="../"><button type="button" class="btn">&#8592 Hjem! </button></a>
-            <?php // Fetch the first row to display bedrift information
-            $first_row = mysqli_fetch_assoc($result_edit); ?>
             <h1 class="header-bedrift"><?php echo $first_row['bedrift_navn'] ?></h1>
             <table class="table">
                 <thead>
@@ -83,8 +82,6 @@ if (isset($_GET['bedrift_id'])) {
                     // Reset the pointer to the beginning of the result set
                     mysqli_data_seek($result_edit, 0);
                     // Loop through each row fetched from the result set to display ansatte information
-
-                    
                     while ($row = mysqli_fetch_assoc($result_edit)) {
                         $ansatt_id = $row['ansatte_id'];
                         ?>
@@ -112,8 +109,57 @@ if (isset($_GET['bedrift_id'])) {
         </html>
         <?php
     } else {
-        // If no rows were returned by the query, display a message
-        echo "No results found. Is this bedrift missing ansatte?";
+        // If no rows were returned by the query, display only the bedrift information
+        $bedrift_query = "SELECT * FROM bedrifter_tb WHERE bedrift_id = $id";
+        $bedrift_result = mysqli_query($conn, $bedrift_query);
+        $bedrift_row = mysqli_fetch_assoc($bedrift_result);
+
+        ?>
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="../stylesheets/stylesheet.css?v=1.0">
+            <title> Bedriftsportalen </title>
+        </head>
+        <body>
+           <main>
+            <a href="../"><button type="button" class="btn">&#8592 Hjem! </button></a>
+            <h1 class="header-bedrift"><?php echo $bedrift_row['bedrift_navn'] ?></h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Bedrift ID</th>
+                        <th>Navn</th>
+                        <th>Adresse</th>
+                        <th>Postnummer</th>
+                        <th>Poststed</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><?php echo $bedrift_row['bedrift_id'] ?></td>
+                        <td><?php echo $bedrift_row['bedrift_navn'] ?></td>
+                        <td><?php echo $bedrift_row['bedrift_adresse'] ?></td>
+                        <td><?php echo $bedrift_row['bedrift_post_nr'] ?></td>
+                        <td><?php echo $bedrift_row['bedrift_post_sted'] ?></td>
+                        <td>
+                            <div class="button-group">
+                                <a href="Edit-bedrift.php?bedrift_id=<?php echo $id ?>"><button class="edit-btn-table">Rediger</button></a>
+                                <a class="detaljer_kapp" href="Detailed-view-bedrift.php?bedrift_id=<?php echo $id ?>"><button class="details-btn-table">Detaljer</button></a>
+                                <a  href="confirm_delete.php?bedrift_id=<?php echo $id; ?>"><button class="delete-btn-table">X</button></a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>No ansatte found for this bedrift.</p>
+            </main>
+        </body>
+        </html>
+        <?php
     }
 
     mysqli_close($conn);
