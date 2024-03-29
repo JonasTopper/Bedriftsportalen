@@ -108,6 +108,14 @@ if (isset($_GET['bedrift_id'])) {
                         <?php
                     }
                     ?>
+                    <tr>
+                        <td colspan="6">
+                            <form action="Create-ansatte.php" method="post">
+                                <button type="submit" class="bsc-btn">+</button>
+                                <input type="hidden" name="bedrift_id" value="<?php echo $id ?>">
+                            </form>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             </main>
@@ -160,6 +168,7 @@ if (isset($_GET['bedrift_id'])) {
                         </td>
                     </tr>
                 </tbody>
+
             </table>
 
             <h1 class="header-ansatte">Ansatte</h1>
@@ -169,6 +178,11 @@ if (isset($_GET['bedrift_id'])) {
                 </thead>
                 <tbody>
                 <td colspan="6">
+                </table>
+                <table>
+                <tbody>
+                    <tr>
+                        <td colspan="6">
                             <form action="Create-ansatte.php" method="post">
                                 <button type="submit" class="bsc-btn">+</button>
                                 <input type="hidden" name="bedrift_id" value="<?php echo $id ?>">
@@ -176,7 +190,9 @@ if (isset($_GET['bedrift_id'])) {
                         </td>
                 </tbody>
             </table>
-
+                    </tr>
+                </tbody>
+                </table>
             </main>
         </body>
         </html>

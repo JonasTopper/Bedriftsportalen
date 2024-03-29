@@ -110,6 +110,7 @@ a {
 .create-btn button {
     background-color: #3E92CC; /* Primary color */
     color: #FFFFFF; /* White text */
+    margin-bottom: 2%;
 }
 
 .create-btn button:hover {
@@ -330,4 +331,13 @@ tr:nth-child(even) {
 
 #poststed {
     pointer-events: none;
+}
+
+.bsc-btn button {
+    background-color: #3E92CC; /* Primary color */
+    color: #FFFFFF; /* White text */
+}
+
+.bsc-btn button:hover {
+    background-color: #2975A3; /* Slightly darker shade of primary color */
 }
