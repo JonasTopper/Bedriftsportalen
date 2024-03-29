@@ -99,15 +99,15 @@ if (isset($_GET['bedrift_id'])) {
                                 </div>
                             </td>
                         </tr>
-                        <td colspan="6">
+                        <?php
+                    }
+                    ?>
+                         <td colspan="6">
                             <form action="Create-ansatte.php" method="post">
                                 <button type="submit" class="bsc-btn">+</button>
                                 <input type="hidden" name="bedrift_id" value="<?php echo $id ?>">
                             </form>
                         </td>
-                        <?php
-                    }
-                    ?>
                 </tbody>
             </table>
             </main>
