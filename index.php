@@ -24,8 +24,9 @@ $bedrifter = mysqli_fetch_all($resultat_les, MYSQLI_ASSOC);
 </head>
 
 <body>
-    <h1>Bedriftsportalen</h1>
-
+    <div class="logo-main-con">
+    <img class="logo-main" src="images/logo.png">
+</div>
     <div class="create-delete-edit">
 
         <div class="create-btn">
