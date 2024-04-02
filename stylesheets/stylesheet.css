@@ -211,9 +211,10 @@ tr:nth-child(even) {
     min-height: 50px;
     margin-left: 5vh;
     font-weight: bolder;
-    background-color: rgb(77, 115, 77);
+    background-color: #3E92CC;
     border: none;
     border-radius: 20px;
+    color: white;
 }
 
 .btn:hover {

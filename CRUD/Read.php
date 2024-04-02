@@ -34,7 +34,7 @@ if (isset($_GET['bedrift_id'])) {
         </head>
         <body>
            <main>
-            <a href="../"><button type="button" class="btn">&#8592 Hjem! </button></a>
+            <a href="../"><button type="button" class="btn">Hjem </button></a>
             <h1 class="header-bedrift"><?php echo $first_row['bedrift_navn'] ?></h1>
             <table class="table">
                 <thead>
@@ -131,7 +131,7 @@ if (isset($_GET['bedrift_id'])) {
         </head>
         <body>
            <main>
-            <a href="../"><button type="button" class="btn">&#8592 Hjem! </button></a>
+            <a href="../"><button type="button" class="btn">Hjem </button></a>
             <h1 class="header-bedrift"><?php echo $bedrift_row['bedrift_navn'] ?></h1>
             <table class="table">
                 <thead>
