@@ -268,6 +268,7 @@ tr:nth-child(even) {
     width: max-content; 
     white-space: nowrap;
     margin-top: 1vh;
+    align-content: center;
 }
 
 .header-ansatte {
@@ -333,11 +334,20 @@ tr:nth-child(even) {
     pointer-events: none;
 }
 
-.bsc-btn button {
-    background-color: #3E92CC; /* Primary color */
-    color: #FFFFFF; /* White text */
-}
-
-.bsc-btn button:hover {
+.bsc-btn:hover {
     background-color: #2975A3; /* Slightly darker shade of primary color */
 }
+
+.bsc-btn {
+    background-color: #3E92CC; /* Primary color */
+    color: #FFFFFF; /* White text */
+    border: none;
+    min-width: 100%;
+    min-height: 120%;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bolder;
+    cursor: pointer;
+
+}
+

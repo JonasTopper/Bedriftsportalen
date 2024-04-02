@@ -168,15 +168,15 @@ if (isset($_GET['bedrift_id'])) {
                 <thead>
                 <p>No ansatte found for this bedrift.</p>
                 </thead>
-                <tbody>
-                <td colspan="6">
-                </table>
-                <table>
+            </table>
+            <table>
                 <tbody>
                     <tr>
                         <td colspan="6">
                             <form action="Create-ansatte.php" method="post">
-                                <button type="submit" class="bsc-btn">+</button>
+                              
+                                    <button type="submit" class="bsc-btn">+</button>
+                                
                                 <input type="hidden" name="bedrift_id" value="<?php echo $id ?>">
                             </form>
                         </td>
