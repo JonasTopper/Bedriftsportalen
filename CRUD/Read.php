@@ -35,7 +35,7 @@ if (isset($_GET['bedrift_id'])) {
         </head>
         <body>
            <main>
-            <a href="../"><button type="button" class="btn">&#8592 Hjem! </button></a>
+            <a href="../"><button type="button" class="btn">Hjem </button></a>
             <h1 class="header-bedrift"><?php echo $first_row['bedrift_navn'] ?></h1>
             <table class="table">
                 <thead>
@@ -132,7 +132,7 @@ if (isset($_GET['bedrift_id'])) {
         </head>
         <body>
            <main>
-            <a href="../"><button type="button" class="btn">&#8592 Hjem! </button></a>
+            <a href="../"><button type="button" class="btn">Hjem </button></a>
             <h1 class="header-bedrift"><?php echo $bedrift_row['bedrift_navn'] ?></h1>
             <table class="table">
                 <thead>
@@ -169,15 +169,15 @@ if (isset($_GET['bedrift_id'])) {
                 <thead>
                 <p>No ansatte found for this bedrift.</p>
                 </thead>
-                <tbody>
-                <td colspan="6">
-                </table>
-                <table>
+            </table>
+            <table>
                 <tbody>
                     <tr>
                         <td colspan="6">
                             <form action="Create-ansatte.php" method="post">
-                                <button type="submit" class="bsc-btn">+</button>
+                              
+                                    <button type="submit" class="bsc-btn">+</button>
+                                
                                 <input type="hidden" name="bedrift_id" value="<?php echo $id ?>">
                             </form>
                         </td>

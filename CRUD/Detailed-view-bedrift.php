@@ -31,7 +31,7 @@ if (isset($_GET['bedrift_id'])) {
 </head>
 <body>
     
-<button type="button" class="btn" onclick="goBack()">&#8592 HJEM! </button>
+<button type="button" class="btn" onclick="goBack()">Hjem </button>
     <script>
     function goBack() {
     window.history.back();

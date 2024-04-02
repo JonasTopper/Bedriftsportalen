@@ -90,7 +90,8 @@ mysqli_close($conn);
         <label for="org_nr">Org-nummer:</label>
         <input type="text" name="bedrift_org_nr" value="<?php echo $org_nr ?>"><br>
 
-        <input type="submit" name="submit" value="Submit">
+        /** Exit knapp her plz*/
+        <input type="submit" name="submit" value="Oppdater">
     </form>
 </main>
 
