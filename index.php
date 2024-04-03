@@ -56,5 +56,4 @@ $bedrifter = mysqli_fetch_all($resultat_les, MYSQLI_ASSOC);
     </main>
     <script src="JavaScript/script.js?=v1.0"></script>
 </body>
-
 </html>

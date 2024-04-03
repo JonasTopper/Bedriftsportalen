@@ -195,18 +195,4 @@ if (isset($_GET['bedrift_id'])) {
     mysqli_close($conn);
 }
 ?>
-<script>
-function confirmDeleteBedrift(bedriftnavn, id) {
-    var confirmation = confirm(`Vil du slette ${bedriftnavn} med ID ${id}?`);
-    if (confirmation) {
-        window.location.href = `confirmdelete.php?bedriftid=${id}`;
-    }
-}
-
-function confirmDeleteAnsatte(ansattfnavn, ansattenavn, id) {
-    var confirmation = confirm(`Vil du slette ${ansattfnavn} ${ansattenavn} med ID ${id}?`);
-    if (confirmation) {
-        window.location.href = `confirmdelete.php?ansattid=${id}`;
-    }
-}
-</script>
+<script src="../JavaScript/delete_confirmation.js"></script>
