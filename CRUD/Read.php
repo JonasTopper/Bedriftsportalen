@@ -59,7 +59,7 @@ if (isset($_GET['bedrift_id'])) {
                             <div class="button-group">
                                 <a href="Edit-bedrift.php?bedrift_id=<?php echo $id ?>"><button class="edit-btn-table">Rediger</button></a>
                                 <a class="detaljer_kapp" href="Detailed-view-bedrift.php?bedrift_id=<?php echo $id ?>"><button class="details-btn-table">Detaljer</button></a>
-                                <a  href="confirm_delete.php?bedrift_id=<?php echo $id; ?>"><button class="delete-btn-table">X</button></a>
+                                <button class="delete-btn-table" onclick="confirmDeleteBedrift('<?php echo htmlspecialchars($first_row['bedrift_navn'])?>', '<?php echo htmlspecialchars($first_row['bedrift_id'])?>')">X</button>
                             </div>
                         </td>
                     </tr>
@@ -96,7 +96,7 @@ if (isset($_GET['bedrift_id'])) {
                                 <div class="button-group">
                                     <a href="Edit-ansatt.php?ansatte_id=<?php echo $ansatt_id ?>"><button class="edit-btn-table">Rediger</button></a>
                                     <a class="detaljer_kapp" href="Detailed-view-ansatte.php?ansatte_id=<?php echo $row['ansatte_id']?>"><button class="details-btn-table">Detaljer</button></a>
-                                    <a href="confirm_delete_ansatte.php?ansatte_id=<?php echo $ansatt_id; ?>"><button class="delete-btn-table">X</button></a>
+                                    <button class="delete-btn-table" onclick="confirmDeleteAnsatte('<?php echo htmlspecialchars($row['ansatte_fornavn'])?>', '<?php echo htmlspecialchars($row['ansatte_etternavn'])?>', '<?php echo $row['ansatte_id'] ?>')">X</button>
                                 </div>
                             </td>
                         </tr>
@@ -156,7 +156,7 @@ if (isset($_GET['bedrift_id'])) {
                             <div class="button-group">
                                 <a href="Edit-bedrift.php?bedrift_id=<?php echo $id ?>"><button class="edit-btn-table">Rediger</button></a>
                                 <a class="detaljer_kapp" href="Detailed-view-bedrift.php?bedrift_id=<?php echo $id ?>"><button class="details-btn-table">Detaljer</button></a>
-                                <a  href="confirm_delete.php?bedrift_id=<?php echo $id; ?>"><button class="delete-btn-table">X</button></a>
+                                <button class="delete-btn-table" onclick="confirmDeleteBedrift('<?php echo htmlspecialchars($bedrift_row['bedrift_navn'])?>', '<?php echo htmlspecialchars($bedrift_row['bedrift_id'])?>')">X</button>
                             </div>
                         </td>
                     </tr>
@@ -195,3 +195,4 @@ if (isset($_GET['bedrift_id'])) {
     mysqli_close($conn);
 }
 ?>
+<script src="../JavaScript/delete_confirmation.js"></script>
