@@ -106,10 +106,15 @@ mysqli_close($conn);
         <label for="logo">Logo</label>
         <input type="file" name="logo"><br>
 
-        /** Exit knapp her plz*/
+        <input type="button" name="exit" value="Tilbake" onclick=goBack() class="back-btn">
+
         <input type="submit" name="submit" value="Oppdater">
     </form>
 </main>
-
+    <script>
+        function goBack() {
+        window.history.back();
+    }
+    </script>
 </body>
 </html>
