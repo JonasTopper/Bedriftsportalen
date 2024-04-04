@@ -102,6 +102,18 @@ a {
     text-align: center;
 }
 
+.logo-alle_ansatte {
+    max-width: 450px;
+    max-height: 200px;
+    margin: auto;
+    margin-bottom: 5vh;
+}
+
+.logo-alle_ansatte-con {
+    text-align: center;
+    text-align: center;
+}
+
 .main-pg-btn {
     text-align: center;
     margin-bottom: 5vh;
@@ -314,7 +326,7 @@ tr:nth-child(even) {
 }
 
 .bedrift {
-    width: calc(25% - 20px); /* Adjust the width as needed */
+    width: calc(20% - 10px); /* Adjust the width as needed */
     margin-bottom: 20px;
     text-align: center;
     scroll-snap-align: start;
@@ -379,4 +391,32 @@ tr:nth-child(even) {
 
 .terms_of_service {
     margin-left: 50px;
+}
+
+.alle-ansatte a {
+    color: #FF5A5F; 
+}
+
+.alle-ansatte a:hover {
+    color: #CC4B50;
+}
+
+.ansatte-search-box {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.reset-btn {
+  display: incline-block;
+  padding: 6px 12px;
+  margin-left: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #808080;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
 }
