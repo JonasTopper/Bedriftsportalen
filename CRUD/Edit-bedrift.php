@@ -78,6 +78,11 @@ mysqli_close($conn);
     <link rel="stylesheet" href="../stylesheets/stylesheet.css?v=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-pwCHXNHXDBp4Zh3fCkGpMeWzHjwUC1n1br5x3IyVBFzbJRsN/l2M+SWdgZfjqxiS" crossorigin="anonymous">
     <title>Bedriftsportalen</title>
+    <style>
+        #search {
+            width:500px;
+        }
+    </style>
 </head>
 <body>
 
@@ -85,30 +90,44 @@ mysqli_close($conn);
     <form method="POST" action="" enctype="multipart/form-data">
         <input type="hidden" name="bedrift_id" value="<?php echo $id ?>">
 
+        <div class="edit-input-container">
         <label for="navn">Navn:</label>
-        <input type="text" name="bedrift_navn" value="<?php echo $navn ?>"><br>
+        <input type="text" id="search" name="bedrift_navn" value="<?php echo $navn ?>"><br>
+        </div>
 
+        <div class="edit-input-container">
         <label for="adresse">Adresse:</label>
-        <input type="text" name="bedrift_adresse" value="<?php echo $adresse ?>"><br>
+        <input type="text" id="search" name="bedrift_adresse" value="<?php echo $adresse ?>"><br>
+        </div>
 
+        <div class="edit-input-container">        
         <label for="post_nr">Postnummer:</label>
-        <input type="text" name="bedrift_post_nr" value="<?php echo $post_nr ?>"><br>
+        <input type="text" id="search" name="bedrift_post_nr" value="<?php echo $post_nr ?>"><br>
+        </div>
 
+        <div class="edit-input-container">
         <label for="post_sted">Poststed:</label>
-        <input type="text" name="bedrift_post_sted" value="<?php echo $post_sted ?>"><br>
+        <input type="text" id="search" name="bedrift_post_sted" value="<?php echo $post_sted ?>"><br>
+        </div>
 
+        <div class="edit-input-container">
         <label for="org_form">Org-form:</label>
-        <input type="text" name="bedrift_org_form" value="<?php echo $org_form ?>"><br>
+        <input type="text" id="search" name="bedrift_org_form" value="<?php echo $org_form ?>"><br>
+        </div>
 
+        <div class="edit-input-container">
         <label for="org_nr">Org-nummer:</label>
-        <input type="text" name="bedrift_org_nr" value="<?php echo $org_nr ?>"><br>
+        <input type="text" id="search" name="bedrift_org_nr" value="<?php echo $org_nr ?>"><br>
+        </div>
 
+        <div class="edit-input-container">
         <label for="logo">Logo</label>
         <input type="file" name="logo"><br>
+        </div>
 
         <input type="button" name="exit" value="Tilbake" onclick=goBack() class="back-btn">
 
-        <input type="submit" name="submit" value="Oppdater">
+        <input class="btn" type="submit" name="submit" value="Oppdater">
     </form>
 </main>
     <script>

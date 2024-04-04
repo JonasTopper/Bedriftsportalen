@@ -81,37 +81,52 @@ mysqli_close($conn);
         <!-- Add a hidden input field to store ansatte_bedrifts_id -->
         <input type="hidden" name="ansatte_bedrifts_id" value="<?php echo $ansatte_bedrifts_id ?>">
 
+         <div class="edit-input-container">
         <label for="fornavn">Fornavn:</label>
         <input type="text" name="ansatte_fornavn" value="<?php echo $fornavn ?>"><br>
+         </div>
 
+         <div class="edit-input-container">
         <label for="etternavn">Etternavn:</label>
         <input type="text" name="ansatte_etternavn" value="<?php echo $etternavn ?>"><br>
+        </div>
 
+         <div class="edit-input-container">
         <label for="stilling">Stilling:</label>
         <input type="text" name="ansatte_stilling" value="<?php echo $stilling ?>"><br>
+        </div>
 
+         <div class="edit-input-container">
         <label for="telefon">Telefonnummer:</label>
         <input type="text" name="ansatte_tlf_nr" value="<?php echo $telefon ?>"><br>
+        </div>
 
+        <div class="edit-input-container">
         <label for="epost">E-post:</label>
         <input type="text" name="ansatte_epost" value="<?php echo $epost ?>"><br>
+        </div>
 
+        <div class="edit-input-container">
         <label for="kontakt">Kontakt person:</label>
         <select name="ansatte_kontakt_person" class="input-field">
         <option value="1" <?php if ($kontakt == 1) echo "selected"; ?>>Ja</option>
         <option value="0" <?php if ($kontakt == 0) echo "selected"; ?>>Nei</option>
         </select><br>
+        </div>
 
+        <div class="edit-input-container">
         <label for="bedrift_id">Bedrift</label>
         <div class="autocomplete">
             <input type="text" id="bedrift_search" name="bedrift_search" class="autocomplete" placeholder="Søk">
             <div class="autocomplete-items" id="bedrift_suggestions"></div>
             <span class="clear-btn" onclick="clearSearch()">Clear</span>
         </div>
+        </div>
         <!-- Hidden input field to store the selected bedrift_id -->
         <input type="hidden" id="bedrift_id" name="bedrift_id"> <br>
-
-        <input type="submit" name="submit" value="Submit">
+     
+        <input class="btn" type="submit" name="submit" value="Submit">
+        
     </form>
 </main>
 
