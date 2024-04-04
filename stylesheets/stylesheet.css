@@ -420,3 +420,15 @@ tr:nth-child(even) {
   cursor: pointer;
   text-decoration: none;
 }
+
+.edit-input-container {
+    display: flex;
+    align-items: center;
+}
+
+.edit-input-container label {
+    width: 150px;
+    text-align: right;
+    margin-right: 5px;
+    font-weight: bold;
+}
