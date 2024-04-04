@@ -23,6 +23,19 @@ if(isset($_POST['submit'])) {
 
     // Check if the update was successful
     if ($result_update) {
+        if (isset($_FILES["logo"]) && $_FILES["logo"]["error"] == UPLOAD_ERR_OK) {
+            $bedrift_name = $navn; 
+            $upload_dir = "../images/";
+            $logo_name = "logo_" . strtolower(str_replace(" ", "_", $bedrift_name));
+            $file_extension = pathinfo($_FILES["logo"]["name"], PATHINFO_EXTENSION);
+            $upload_path = $upload_dir . $logo_name . "." . $file_extension;
+            
+            if (move_uploaded_file($_FILES["logo"]["tmp_name"], $upload_path)) {
+                echo "Logo uploaded successfully.";
+            } else {
+                echo "Error uploading logo.";
+            }
+        }
         // Redirect back to read.php with the correct bedrift_id
         header("Location: read.php?bedrift_id=$id");
         exit();
@@ -69,7 +82,7 @@ mysqli_close($conn);
 <body>
 
 <main>
-    <form method="POST" action="">
+    <form method="POST" action="" enctype="multipart/form-data">
         <input type="hidden" name="bedrift_id" value="<?php echo $id ?>">
 
         <label for="navn">Navn:</label>
@@ -89,6 +102,9 @@ mysqli_close($conn);
 
         <label for="org_nr">Org-nummer:</label>
         <input type="text" name="bedrift_org_nr" value="<?php echo $org_nr ?>"><br>
+
+        <label for="logo">Logo</label>
+        <input type="file" name="logo"><br>
 
         /** Exit knapp her plz*/
         <input type="submit" name="submit" value="Oppdater">
