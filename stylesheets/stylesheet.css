@@ -94,18 +94,23 @@ a {
     max-width: 600px;
     max-height: 450px;
     margin: auto;
+    margin-bottom: 5vh;
 }
 
 .logo-main-con {
     text-align: center;
-    margin-bottom: -10vh;
-    margin-top: -10vh;
+    text-align: center;
+}
+
+.main-pg-btn {
+    text-align: center;
+    margin-bottom: 5vh;
 }
 
 .create-delete-edit {
     text-align: center;
-    margin-top: 2vh;
 }
+
 
 .create-btn button, .delete-btn button, .edit-btn button {
     border: none;
@@ -119,10 +124,11 @@ a {
 }
 
 
+
+
 .create-btn button {
     background-color: #3E92CC; /* Primary color */
     color: #FFFFFF; /* White text */
-    margin-bottom: 2%;
 }
 
 .create-btn button:hover {
@@ -216,7 +222,10 @@ tr:nth-child(even) {
     white-space: nowrap;
 }
 
-
+.alle-view-btn {
+    min-height: 15px;
+    min-width: 60px;
+}
 
 .btn {
     min-width: 120px;
@@ -273,16 +282,16 @@ tr:nth-child(even) {
 
 
 .table2 {
-    width: 70%;
-    border-collapse: collapse;
+    width: 50%;
     border: 2px solid #ccc; 
     border-radius: 10px; 
     margin: auto;
-    width: max-content; 
     white-space: nowrap;
     margin-top: 1vh;
     align-content: center;
+    text-align: center;
 }
+
 
 .header-ansatte {
     margin-top: 10vh;
@@ -295,10 +304,8 @@ tr:nth-child(even) {
 }
 
 .slider {
-    display: flex;
+    margin-top: 5vh;
     overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch; /* Enables momentum scrolling on iOS */
 }
 
 .slide {
@@ -364,3 +371,12 @@ tr:nth-child(even) {
 
 }
 
+.tilbake_fra_terms {
+    min-height: 30px;
+    min-width: 150px;
+    background-color:rgb(94, 179, 94)
+}
+
+.terms_of_service {
+    margin-left: 50px;
+}
