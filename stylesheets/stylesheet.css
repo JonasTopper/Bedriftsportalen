@@ -223,7 +223,10 @@ tr:nth-child(even) {
     white-space: nowrap;
 }
 
-
+.alle-view-btn {
+    min-height: 15px;
+    min-width: 60px;
+}
 
 .btn {
     min-width: 120px;

@@ -23,6 +23,12 @@ $bedrifter = mysqli_fetch_all($resultat_les, MYSQLI_ASSOC);
 </head>
 
 <body>
+
+    <a href="CRUD/alle_ansatte.php"><button class="alle-view-btn" type="button" href="alle_ansatte">Alle ansatte</button></a>
+    <a href="CRUD/alle_bedrifter.php"><button class="alle-view-btn" type="button" href="alle_bedrifter">Alle bedrifter</button></a>
+
+
+
     <div class="logo-main-con">
     <img class="logo-main" src="images/logo_no_slogan.png">
 </div>
