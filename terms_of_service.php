@@ -13,7 +13,7 @@
 
 <b>MIT License</b><br><br>
 <br>
-Copyright (c) 2024 Arielmfh & JonasTopper<br><br>
+Copyright (c) 2024 Arielmfh, JonasTopper & MajorGeneralCommand<br><br>
 <br>
 Permission is hereby granted, free of charge, to any person obtaining a copy<br>
 of this software and associated documentation files (the "Software"), to deal<br>
@@ -39,7 +39,7 @@ SOFTWARE.<br>
 <br>
 <b>Terms of use for Bedriftsportalen</b><br>
 <br>
-<b>Date of last update: 20/03/2024</b><br>
+<b>Date of last update: 04/04/2024</b><br>
 <br>
 These terms of use govern your access to and use of the Company Portal offered by us. Please read these terms carefully before using the Service.<br>
 <br>
