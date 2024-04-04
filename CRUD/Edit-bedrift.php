@@ -90,10 +90,14 @@ mysqli_close($conn);
         <label for="org_nr">Org-nummer:</label>
         <input type="text" name="bedrift_org_nr" value="<?php echo $org_nr ?>"><br>
 
-        /** Exit knapp her plz*/
+        <input type="button" name="exit" value="Tilbake" onclick=goBack() class="back-btn">
         <input type="submit" name="submit" value="Oppdater">
     </form>
 </main>
-
+    <script>
+        function goBack() {
+        window.history.back();
+    }
+    </script>
 </body>
 </html>

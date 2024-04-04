@@ -24,12 +24,12 @@ $bedrifter = mysqli_fetch_all($resultat_les, MYSQLI_ASSOC);
 
 <body>
     <div class="logo-main-con">
-    <img class="logo-main" src="images/logo.png">
+    <img class="logo-main" src="images/logo_no_slogan.png">
 </div>
     <div class="create-delete-edit">
 
         <div class="create-btn">
-            <a href="CRUD/Create-bedrift.php"><button> + </button></a>
+            <a href="CRUD/Create-bedrift.php"><button class="main-pg-btn"> + </button></a>
         </div>
     </div>
     <main>
