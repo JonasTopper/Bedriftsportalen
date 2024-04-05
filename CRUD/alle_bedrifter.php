@@ -23,6 +23,9 @@ $result = mysqli_query($conn, $sql);
     <title>All Ansatte</title>
 </head>
 <body>
+
+    <a href="../"><button type="button" class="btn">Hjem </button></a>
+    
     <div class="logo-alle_ansatte-con">
         <img class="logo-alle_ansatte" src="../images/logo_no_slogan.png">
     </div>
