@@ -490,3 +490,14 @@ tr:nth-child(even) {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.701);
 }
 
+.sort-arrow {
+    margin-left: 5px;
+    }   
+
+    .sort-arrow.asc::after {
+        content:"⬆";
+    }
+
+    .sort-arrow.desc::after {
+        content:"⬇";
+    }

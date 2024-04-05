@@ -53,14 +53,14 @@ $result = mysqli_query($conn, $sql);
     <table class="all-view-table">
         <thead>
             <tr class="alle-ansatte">
-                <th><a href="?sort=ansatte_id&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Ansatte ID</a></th>
-                <th><a href="?sort=ansatte_etternavn&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Etternavn</a></th>
-                <th><a href="?sort=ansatte_fornavn&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Fornavn</a></th>
-                <th><a href="?sort=ansatte_stilling&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Stilling</a></th>
-                <th><a href="?sort=ansatte_kontakt_person&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Kontakt Person</a></th>
-                <th><a href="?sort=ansatte_tlf_nr&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Telefonnummer</a></th>
-                <th><a href="?sort=ansatte_epost&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Epost</a></th>
-                <th><a href="?sort=bedrift_navn&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Bedrift</a></th>
+            <th><a href="?sort=ansatte_id&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Ansatte ID<span class="sort-arrow <?php echo $order == 'ASC' && $sort == 'ansatte_id' ? 'asc' : ($order == 'DESC' && $sort == 'ansatte_id' ? 'desc' : ''); ?>"></span></a></th>
+                <th><a href="?sort=ansatte_etternavn&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Etternavn<span class="sort-arrow <?php echo $order == 'ASC' && $sort == 'ansatte_etternavn' ? 'asc' : ($order == 'DESC' && $sort == 'ansatte_etternavn' ? 'desc' : ''); ?>"></span></a></th>
+                <th><a href="?sort=ansatte_fornavn&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Fornavn<span class="sort-arrow <?php echo $order == 'ASC' && $sort == 'ansatte_fornavn' ? 'asc' : ($order == 'DESC' && $sort == 'ansatte_fornavn' ? 'desc' : ''); ?>"></span></a></th>
+                <th><a href="?sort=ansatte_stilling&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Stilling<span class="sort-arrow <?php echo $order == 'ASC' && $sort == 'ansatte_stilling' ? 'asc' : ($order == 'DESC' && $sort == 'ansatte_stilling' ? 'desc' : ''); ?>"></span></a></th>
+                <th><a href="?sort=ansatte_kontakt_person&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Kontakt Person<span class="sort-arrow <?php echo $order == 'ASC' && $sort == 'ansatte_kontakt_person' ? 'asc' : ($order == 'DESC' && $sort == 'ansatte_kontakt_person' ? 'desc' : ''); ?>"></span></a></th>
+                <th><a href="?sort=ansatte_tlf_nr&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Telefonnummer<span class="sort-arrow <?php echo $order == 'ASC' && $sort == 'ansatte_tlf_nr' ? 'asc' : ($order == 'DESC' && $sort == 'ansatte_tlf_nr' ? 'desc' : ''); ?>"></span></a></th>
+                <th><a href="?sort=ansatte_epost&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Epost<span class="sort-arrow <?php echo $order == 'ASC' && $sort == 'ansatte_epost' ? 'asc' : ($order == 'DESC' && $sort == 'ansatte_epost' ? 'desc' : ''); ?>"></span></a></th>
+                <th><a href="?sort=bedrift_navn&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Bedrift<span class="sort-arrow <?php echo $order == 'ASC' && $sort == 'bedrift_navn' ? 'asc' : ($order == 'DESC' && $sort == 'bedrift_navn' ? 'desc' : ''); ?>"></span></a></th>
             </tr>
         </thead>
         <tbody>
