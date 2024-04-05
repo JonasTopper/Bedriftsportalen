@@ -1,8 +1,9 @@
 <?php 
 include 'connect.php';
 
-function CreateSQLRow($conn, $navn, $adresse, $orgform, $orgnummer, $postnummer, $poststed) {
-    $sql = "INSERT INTO bedrifter_tb (bedrift_navn, bedrift_adresse, bedrift_org_form, bedrift_org_nr, bedrift_post_nr, bedrift_post_sted) VALUES ('$navn', '$adresse', '$orgform', '$orgnummer', '$postnummer', '$poststed')";
+function CreateSQLRow($conn, $navn, $adresse, $orgform, $orgnummer, $postnummer, $poststed, $logo_path) {
+    $sql = "INSERT INTO bedrifter_tb (bedrift_navn, bedrift_adresse, bedrift_org_form, bedrift_org_nr, bedrift_post_nr, bedrift_post_sted, bedrift_logo_filepath) 
+            VALUES ('$navn', '$adresse', '$orgform', '$orgnummer', '$postnummer', '$poststed', '$logo_path')";
     
     $run_query = mysqli_query($conn, $sql);
 
@@ -29,21 +30,26 @@ if(isset($_POST['submit'])) {
     $orgform = $_POST['orgform'];
     $orgnummer = $_POST['orgnummer'];
     
-    if(CreateSQLRow($conn, $navn, $adresse, $orgform, $orgnummer, $postnummer, $poststed)) {
-        if (isset($_FILES["logo"]) && $_FILES["logo"]["error"] == UPLOAD_ERR_OK) {
-            $bedrift_name = $_POST["navn"]; 
-            $upload_dir = "../images/";
-            $logo_name = "logo_" . strtolower(str_replace(" ", "_", $bedrift_name));
-            $file_extension = pathinfo($_FILES["logo"]["name"], PATHINFO_EXTENSION);
-            $upload_path = $upload_dir . $logo_name . "." . $file_extension;
-            
-            if (move_uploaded_file($_FILES["logo"]["tmp_name"], $upload_path)) {
-                echo "Logo uploaded successfully.";
-            } else {
-                echo "Error uploading logo.";
-            }
-        }
+    
+    $upload_path = ""; 
+    if (isset($_FILES["logo"]) && $_FILES["logo"]["error"] == UPLOAD_ERR_OK) {
+        $bedrift_name = $_POST["navn"]; 
+        $upload_dir = "images/";
+        $logo_name = "logo_" . strtolower(str_replace(" ", "_", $bedrift_name));
+        $file_extension = pathinfo($_FILES["logo"]["name"], PATHINFO_EXTENSION);
+        $upload_path = $upload_dir . $logo_name . "." . $file_extension;
+        $upload_path_temp = "../" . $upload_dir . $logo_name . "." . $file_extension;
         
+        if (move_uploaded_file($_FILES["logo"]["tmp_name"], $upload_path_temp)) {
+            echo "Logo uploaded successfully.";
+        } else {
+            echo "Error uploading logo.";
+            exit(); 
+        }
+    }
+    
+    
+    if(CreateSQLRow($conn, $navn, $adresse, $orgform, $orgnummer, $postnummer, $poststed, $upload_path)) {
         header("Location: ../");
         exit();
     } else {
@@ -51,6 +57,7 @@ if(isset($_POST['submit'])) {
     }
 }
 ?>
+
 
 
 <!DOCTYPE html>
