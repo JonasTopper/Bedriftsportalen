@@ -15,7 +15,7 @@ header("Pragma: no-cache");
 header("Expires: 0");
 
 // Prosedyre for les
-$sql_les = "SELECT bedrift_id, bedrift_navn FROM bedrifter_tb";
+$sql_les = "SELECT bedrift_id, bedrift_navn, bedrift_logo_filepath FROM bedrifter_tb";
 $resultat_les = mysqli_query($conn, $sql_les);
 $bedrifter = mysqli_fetch_all($resultat_les, MYSQLI_ASSOC);
 ?>
@@ -122,10 +122,7 @@ $bedrifter = mysqli_fetch_all($resultat_les, MYSQLI_ASSOC);
                             <?php
                             $bedrift_id = $bedrift['bedrift_id'];
                             $bedrift_navn = $bedrift['bedrift_navn'];
-                            $logo_src_png = "images/logo_" . strtolower(str_replace(" ", "_", $bedrift_navn)) . ".png";
-                            $logo_src_jpg = "images/logo_" . strtolower(str_replace(" ", "_", $bedrift_navn)) . ".jpg";
-
-                            $logo_src = (file_exists($logo_src_png)) ? $logo_src_png : (file_exists($logo_src_jpg) ? $logo_src_jpg : "images/no-image.png");
+                            $logo_src = $bedrift["bedrift_logo_filepath"];
                             ?>
                             <img class="logo" src="<?php echo $logo_src; ?>" alt="Logo">
                             <p class="bedrift-navn"><?php echo $bedrift['bedrift_navn']; ?></p>
