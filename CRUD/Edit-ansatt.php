@@ -123,8 +123,10 @@ mysqli_close($conn);
         </div>
         </div>
         <!-- Hidden input field to store the selected bedrift_id -->
+
+        
         <input type="hidden" id="bedrift_id" name="bedrift_id"> <br>
-     
+        <input type="button" name="exit" value="Tilbake" onclick=goBack() class="back-btn">
         <input class="btn" type="submit" name="submit" value="Submit">
         
     </form>

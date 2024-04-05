@@ -131,10 +131,10 @@ if (isset($_GET['bedrift_id'])) {
             <title> Bedriftsportalen </title>
         </head>
         <body>
-           <main>
+           <main class="read-main">
             <a href="../"><button type="button" class="btn">Hjem </button></a>
             <h1 class="header-bedrift"><?php echo $bedrift_row['bedrift_navn'] ?></h1>
-            <table class="table">
+            <table class="table-read">
                 <thead>
                     <tr>
                         <th>Bedrift ID</th>
