@@ -38,7 +38,7 @@ if (isset($_POST['submit'])) {
     <title>Bedriftsportalen</title>
 </head>
 <body>
-    <h1> Create ansatte </h1>
+    <h1> Opprett Ansatte </h1>
     <main>
         <form id="bedriftForm" method="POST" action="Create-ansatte.php">
             <table>
@@ -81,7 +81,7 @@ if (isset($_POST['submit'])) {
                 </thead>
             </table>
             <div class="submit-btn-container">
-                <a href="../"><button type="button" class="back-btn">Exit</button></a>
+            <a onclick=goBack()><button type="button" class="back-btn-create-bedrift">Exit</button></a>
                 <input type="submit" name="submit" class="submit-btn">
             </div>
         </form>
@@ -89,3 +89,9 @@ if (isset($_POST['submit'])) {
     <script src="../JavaScript/post.js?v1.0"></script>
 </body>
 </html>
+ 
+<script>
+        function goBack() {
+        window.history.back();
+    }
+</script>

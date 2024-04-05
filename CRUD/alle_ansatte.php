@@ -40,7 +40,7 @@ $result = mysqli_query($conn, $sql);
         <img class="logo-alle_ansatte" src="../images/logo_no_slogan.png">
     </div>
 
-    <h1>View All Ansatte</h1>
+    <h1>Se Alle Ansatte</h1>
 
     <div class="ansatte-search-box">
     <form action="alle_ansatte.php" method="GET">

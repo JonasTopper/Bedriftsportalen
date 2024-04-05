@@ -20,7 +20,7 @@ $result = mysqli_query($conn, $sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../stylesheets/stylesheet.css">
-    <title>All Ansatte</title>
+    <title>Se Alle Bedrifter</title>
 </head>
 <body>
 
