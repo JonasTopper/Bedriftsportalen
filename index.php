@@ -100,6 +100,7 @@ $bedrifter = mysqli_fetch_all($resultat_les, MYSQLI_ASSOC);
         </div>
     <?php endif; ?>
 
+
     <!-- Rest of your HTML content -->
     <a href="CRUD/alle_ansatte.php"><button class="alle-view-btn" type="button" href="alle_ansatte">Alle ansatte</button></a>
     <a href="CRUD/alle_bedrifter.php"><button class="alle-view-btn" type="button" href="alle_bedrifter">Alle bedrifter</button></a>
@@ -107,7 +108,7 @@ $bedrifter = mysqli_fetch_all($resultat_les, MYSQLI_ASSOC);
     <div class="logo-main-con">
         <img class="logo-main" src="images/logo_no_slogan.png">
     </div>
-    
+
     <div class="create-delete-edit">
         <div class="create-btn">
             <a href="CRUD/Create-bedrift.php"><button class="main-pg-btn"> + </button></a>
@@ -131,8 +132,29 @@ $bedrifter = mysqli_fetch_all($resultat_les, MYSQLI_ASSOC);
                 <?php endforeach; ?>
             </div>
         </div>
+    <?php
+    if(isset($_GET['deletion']) && $_GET['deletion'] == 'true') {
+    ?>
+    <div class="popup-overlay" id="deletealert">
+        <div class="popup-content">
+            <p>Slettet suksessfullt!</p>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            setTimeout(function() {
+                var deleteAlert = document.getElementById('deletealert');
+                if (deleteAlert) {
+                    deleteAlert.style.display = 'none';
+                }
+            }, 2000);
+        };
+    </script>
+
+    <?php }?>
     </main>
-    <script src="JavaScript/script.js?=v1.0"></script>
+    <script src="JavaScript/script.js?v=1.0"></script>
     <script>
         // JavaScript function to handle accepting terms
         function acceptTerms() {
@@ -150,6 +172,7 @@ $bedrifter = mysqli_fetch_all($resultat_les, MYSQLI_ASSOC);
             // Enable/disable the accept button based on checkbox state
             document.getElementById("accept-button").disabled = !this.checked;
         });
+
     </script>
 </body>
 

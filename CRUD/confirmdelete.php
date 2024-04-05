@@ -19,7 +19,7 @@ if (isset($_GET["bedriftid"]) || isset($_GET["ansattid"])) {
         
         $sql = "DELETE FROM bedrifter_tb WHERE bedrift_id = $id";
         if(mysqli_query($conn, $sql)) {
-            header("Location: ../index.php");
+            header("Location: ../index.php?deletion=true");
             exit();
         } else {
             echo "Error: " . mysqli_error($conn);
