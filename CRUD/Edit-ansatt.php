@@ -1,12 +1,12 @@
 <?php
 include 'connect.php';
 
-// Check if form is submitted
+
 if(isset($_POST['submit'])) {
-    // Get the ansatte_id from the form
+    
     $id = $_POST['ansatte_id'];
 
-    // Retrieve updated data from the form
+    
     $fornavn = $_POST['ansatte_fornavn'];
     $etternavn = $_POST['ansatte_etternavn'];
     $stilling = $_POST['ansatte_stilling'];
@@ -14,10 +14,26 @@ if(isset($_POST['submit'])) {
     $epost = $_POST['ansatte_epost'];
     $kontakt = $_POST['ansatte_kontakt_person'];
 
-    // Get the selected bedrift_id from the form
+    
     $bedrift_id = $_POST['bedrift_id'];
 
-    // Update data in the database
+    
+    if(empty($bedrift_id)) {
+        
+        $sql_current_bedrift = "SELECT ansatte_bedrifts_id FROM ansatte_tb WHERE ansatte_id = $id";
+        $result_current_bedrift = mysqli_query($conn, $sql_current_bedrift);
+
+        if ($result_current_bedrift && mysqli_num_rows($result_current_bedrift) > 0) {
+            $row_current_bedrift = mysqli_fetch_assoc($result_current_bedrift);
+            $bedrift_id = $row_current_bedrift['ansatte_bedrifts_id'];
+        } else {
+            
+            echo "Error: Unable to retrieve current bedrifts_id.";
+            exit();
+        }
+    }
+
+    
     $sql_update = "UPDATE ansatte_tb 
                    SET ansatte_fornavn = '$fornavn', ansatte_etternavn = '$etternavn', 
                        ansatte_stilling = '$stilling', ansatte_tlf_nr = '$telefon',
@@ -27,18 +43,18 @@ if(isset($_POST['submit'])) {
 
     $result_update = mysqli_query($conn, $sql_update);
 
-    // Check if the update was successful
+   
     if ($result_update) {
-        // Redirect back to read.php with the correct ansatte_bedrifts_id
+        
         header("Location: read.php?bedrift_id=$bedrift_id");
         exit();
     } else {
-        // Handle the case where the update fails
+        
         echo "Error updating record: " . mysqli_error($conn);
     }
 }
 
-// Fetch current data for display
+
 if(isset($_GET['ansatte_id'])) {
     $id = $_GET['ansatte_id'];
     $sql_ansatte = "SELECT * FROM ansatte_tb WHERE ansatte_id = $id";
@@ -53,6 +69,9 @@ if(isset($_GET['ansatte_id'])) {
         $telefon = $row['ansatte_tlf_nr'];
         $epost = $row['ansatte_epost'];
         $kontakt = $row['ansatte_kontakt_person'];
+
+        
+        $ansatte_bedrifts_id = $row['ansatte_bedrifts_id'];
     } else {
         echo "Error: " . mysqli_error($conn);
     }
@@ -62,6 +81,7 @@ if(isset($_GET['ansatte_id'])) {
 
 mysqli_close($conn);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
