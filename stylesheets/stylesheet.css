@@ -485,3 +485,8 @@ tr:nth-child(even) {
     min-height: 60px;
     font-size: 15px;
 }
+
+.back-btn-create-bedrift:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.701);
+}
+

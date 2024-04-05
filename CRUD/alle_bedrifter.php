@@ -31,7 +31,7 @@ $result = mysqli_query($conn, $sql);
     </div>
 
     <h1>View All Bedrifter</h1>
-    <table>
+    <table class="all-view-table">
         <thead>
             <tr class="alle-ansatte">
                 <th><a href="?sort=bedrift_id&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Bedrift ID</a></th>

@@ -30,7 +30,7 @@ if (isset($_GET['bedrift_id'])) {
     <title>Detaljer</title>
 </head>
 <body>
-    
+    <main>
 <button type="button" class="btn" onclick="goBack()">Hjem </button>
     <script>
     function goBack() {
@@ -40,7 +40,7 @@ if (isset($_GET['bedrift_id'])) {
 
     
     <h1 class="header-bedrift"> Bedriftdetaljer</h1>
-    <table class="table">
+    <table>
         <thead>
             <tr>
                 <th>Bedrift ID</th>
@@ -89,7 +89,8 @@ if (isset($_GET['bedrift_id'])) {
             ?>
         </tbody>
     </table>
-
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        </main>
 </body>
 </html>
 
