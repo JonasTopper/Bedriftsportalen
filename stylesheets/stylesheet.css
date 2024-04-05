@@ -507,3 +507,8 @@ tr:nth-child(even) {
     .sort-arrow.desc::after {
         content:"⬇";
     }
+
+#noansatte {
+    margin-left: 26.5vh;
+    margin-right: 26.5vh;
+}
