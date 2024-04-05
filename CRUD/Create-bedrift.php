@@ -66,6 +66,7 @@ if(isset($_POST['submit'])) {
     <h1> Legg til bedrifter </h1>
     <main>
     <form id="bedriftForm" method="POST" action="Create-bedrift.php" enctype="multipart/form-data">
+        
     <table>
         <thead>
             <tr>
@@ -94,12 +95,12 @@ if(isset($_POST['submit'])) {
             </tr>
             <tr>
                 <th>Logo</th>
-                <td><input type="file" name="logo"></td> <!-- File upload input field -->
+                <td height="59.5px"><input type="file" name="logo"></td>
             </tr>
         </thead>
     </table>
     <div class="submit-btn-container">
-        <a href="../"><button type="button" class="back-btn">Exit</button></a>
+        <a href="../"><button type="button" class="back-btn-create-bedrift">Exit</button></a>
         <input type="submit" name="submit" class="submit-btn">
     </div>
 </form>

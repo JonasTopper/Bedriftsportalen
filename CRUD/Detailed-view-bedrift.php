@@ -39,7 +39,7 @@ if (isset($_GET['bedrift_id'])) {
     </script>
 
     
-    <h1 class="header-bedrift"></h1>
+    <h1 class="header-bedrift"> Bedriftdetaljer</h1>
     <table class="table">
         <thead>
             <tr>

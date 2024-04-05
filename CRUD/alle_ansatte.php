@@ -46,11 +46,11 @@ $result = mysqli_query($conn, $sql);
     <form action="alle_ansatte.php" method="GET">
         <input type="text" id="search" name="search" placeholder="Search...">
         <button type="submit" class="btn">Search</button>
-        <a href="alle_ansatte.php" class="reset-btn">Reset</a>
+        <a href="alle_ansatte.php" ><button class="reset-btn">Reset</button></a>
     </form>
     </div>
 
-    <table>
+    <table class="all-view-table">
         <thead>
             <tr class="alle-ansatte">
                 <th><a href="?sort=ansatte_id&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Ansatte ID</a></th>

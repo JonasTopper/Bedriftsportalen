@@ -422,18 +422,20 @@ tr:nth-child(even) {
 }
 
 .reset-btn {
-  display: incline-block;
-  padding: 6px 12px;
-  margin-left: 10px;
-  font-size: 14px;
-  font-weight: bold;
-  color: #fff;
-  background-color: #808080;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  text-decoration: none;
+    min-height: 50px;
+    min-width: 120px;
+    margin-left: 10px;
+    font-weight: bolder;
+    background-color: #525658;
+    border: none;
+    border-radius: 15px;
+    color: white;
 }
+
+.reset-btn:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.701);
+}
+
 
 .edit-input-container {
     display: flex;
@@ -460,4 +462,26 @@ tr:nth-child(even) {
 
 .alle-view-btn:hover {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.701);
+}
+
+.all-view-table {
+    margin-bottom: 100px;
+}
+
+.back-btn-create-bedrift {
+    background-color: rgb(223, 69, 69);
+    text-align: center;
+    margin: auto;
+    min-width: 200px;
+    min-height: 60px;
+    border-radius: 5px;
+    font-weight: bolder;
+    margin-top: 4vh;
+    justify-content: center;
+    margin-left: auto;
+    border: none;
+    color: white;
+    min-width: 180px;
+    min-height: 60px;
+    font-size: 15px;
 }
