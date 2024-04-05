@@ -60,6 +60,7 @@ if(isset($_GET['bedrift_id'])) {
         $post_sted = $row['bedrift_post_sted'];
         $org_form = $row['bedrift_org_form'];
         $org_nr = $row['bedrift_org_nr'];
+        $logo_src = $row["bedrift_logo_filepath"];
     } else {
         echo "Error: " . mysqli_error($conn);
     }
@@ -119,11 +120,29 @@ mysqli_close($conn);
         <label for="org_nr">Org-nummer:</label>
         <input type="text" id="search" name="bedrift_org_nr" value="<?php echo $org_nr ?>"><br>
         </div>
-
         <div class="edit-input-container">
         <label for="logo">Logo</label>
-        <input type="file" name="logo"><br>
+        <input type="file" name="logo" id="logoInput" onchange="previewLogo(event)"><br>
         </div>
+
+        <div class="edit-input-container">
+        <img id="logoPreview" src="<?php echo "../" . $logo_src . '?' . uniqid(); ?>" alt="Logo">
+        </div>
+
+        <script>
+        function previewLogo(event) {
+            const input = event.target;
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const logoPreview = document.getElementById('logoPreview');
+                    logoPreview.src = e.target.result;
+            };
+                reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
 
         <input type="button" name="exit" value="Tilbake" onclick=goBack() class="back-btn">
 

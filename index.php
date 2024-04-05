@@ -125,7 +125,7 @@ $bedrifter = mysqli_fetch_all($resultat_les, MYSQLI_ASSOC);
                             $bedrift_navn = $bedrift['bedrift_navn'];
                             $logo_src = $bedrift["bedrift_logo_filepath"];
                             ?>
-                            <img class="logo" src="<?php echo $logo_src; ?>" alt="Logo">
+                            <img class="logo" src="<?php echo $logo_src . "?" . uniqid(); ?>" alt="Logo">
                             <p class="bedrift-navn"><?php echo $bedrift['bedrift_navn']; ?></p>
                         </a>
                     </div>
