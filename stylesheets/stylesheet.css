@@ -103,8 +103,10 @@ a {
 }
 
 .logo-alle_ansatte {
-    max-width: 450px;
-    max-height: 200px;
+    max-width: 600px;
+    max-height: 450px;
+    /* max-width: 450px;
+    max-height: 200px; */
     margin: auto;
     margin-bottom: 5vh;
 }
@@ -165,6 +167,7 @@ a {
     background-color: #CC4B50; /* Slightly darker shade of secondary color */
 }
 
+
 table {
     width: 70%;
     border-collapse: collapse;
@@ -172,6 +175,7 @@ table {
     border-radius: 10px;
     margin: auto;
 }
+
 
 th, td {
     border: 1px solid #CCCCCC; /* Light gray border */
@@ -246,7 +250,7 @@ tr:nth-child(even) {
     font-weight: bolder;
     background-color: #3E92CC;
     border: none;
-    border-radius: 20px;
+    border-radius: 15px;
     color: white;
 }
 
@@ -290,6 +294,16 @@ tr:nth-child(even) {
     margin-top: 4vh;
     justify-content: center;
     margin-left: auto;
+    border: none;
+    color: white;
+    min-width: 180px;
+    min-height: 50px;
+    font-size: 15px;
+}
+
+.back-btn:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.701);
+    cursor: pointer;
 }
 
 
@@ -431,4 +445,19 @@ tr:nth-child(even) {
     text-align: right;
     margin-right: 5px;
     font-weight: bold;
+}
+
+
+.alle-view-btn {
+    border: none;
+    min-width: 100px;
+    min-height: 50px;
+    color: white;
+    border-radius: 15px;
+    background-color: #3E92CC;
+    
+}
+
+.alle-view-btn:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.701);
 }
