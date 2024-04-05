@@ -496,3 +496,14 @@ tr:nth-child(even) {
     margin-left: 18.50vh;
     margin-top: 2vh;
 }
+.sort-arrow {
+    margin-left: 5px;
+    }   
+
+    .sort-arrow.asc::after {
+        content:"⬆";
+    }
+
+    .sort-arrow.desc::after {
+        content:"⬇";
+    }
