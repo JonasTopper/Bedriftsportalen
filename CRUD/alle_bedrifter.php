@@ -34,14 +34,14 @@ $result = mysqli_query($conn, $sql);
     <table class="all-view-table">
         <thead>
             <tr class="alle-ansatte">
-                <th><a href="?sort=bedrift_id&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Bedrift ID</a></th>
-                <th><a href="?sort=bedrift_navn&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Navn</a></th>
-                <th><a href="?sort=bedrift_org_form&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Org. form</a></th>
-                <th><a href="?sort=bedrift_reg_dato&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Reg. dato</a></th>
-                <th><a href="?sort=bedrift_post_nr&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Postnr</a></th>
-                <th><a href="?sort=bedrift_post_sted&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Poststed</a></th>
-                <th><a href="?sort=bedrift_beskrivelse&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Beskrivelse</a></th>
-                <th>Antall Ansatte</th>
+            <th><a href="?sort=bedrift_id&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Bedrift ID<span class="sort-arrow <?php echo $order == 'ASC' && $sort == 'bedrift_id' ? 'asc' : ($order == 'DESC' && $sort == 'bedrift_id' ? 'desc' : ''); ?>"></span></a></th>
+                <th><a href="?sort=bedrift_navn&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Navn<span class="sort-arrow <?php echo $order == 'ASC' && $sort == 'bedrift_navn' ? 'asc' : ($order == 'DESC' && $sort == 'bedrift_navn' ? 'desc' : ''); ?>"></span></a></th>
+                <th><a href="?sort=bedrift_org_form&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Org. form<span class="sort-arrow <?php echo $order == 'ASC' && $sort == 'bedrift_org_form' ? 'asc' : ($order == 'DESC' && $sort == 'bedrift_org_form' ? 'desc' : ''); ?>"></span></a></th>
+                <th><a href="?sort=bedrift_reg_dato&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Reg. dato<span class="sort-arrow <?php echo $order == 'ASC' && $sort == 'bedrift_reg_dato' ? 'asc' : ($order == 'DESC' && $sort == 'bedrift_reg_dato' ? 'desc' : ''); ?>"></span></a></th>
+                <th><a href="?sort=bedrift_post_nr&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Postnr<span class="sort-arrow <?php echo $order == 'ASC' && $sort == 'bedrift_post_nr' ? 'asc' : ($order == 'DESC' && $sort == 'bedrift_post_nr' ? 'desc' : ''); ?>"></span></a></th>
+                <th><a href="?sort=bedrift_post_sted&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Poststed<span class="sort-arrow <?php echo $order == 'ASC' && $sort == 'bedrift_post_sted' ? 'asc' : ($order == 'DESC' && $sort == 'bedrift_post_sted' ? 'desc' : ''); ?>"></span></a></th>
+                <th><a href="?sort=bedrift_beskrivelse&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Beskrivelse<span class="sort-arrow <?php echo $order == 'ASC' && $sort == 'bedrift_beskrivelse' ? 'asc' : ($order == 'DESC' && $sort == 'bedrift_beskrivelse' ? 'desc' : ''); ?>"></span></a></th>
+                <th><a href="?sort=ansatte_count&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Antall Ansatte<span class="sort-arrow <?php echo $order == 'ASC' && $sort == 'ansatte_count' ? 'asc' : ($order == 'DESC' && $sort == 'ansatte_count' ? 'desc' : ''); ?>"></span></a></th>
             </tr>
         </thead>
         <tbody>
