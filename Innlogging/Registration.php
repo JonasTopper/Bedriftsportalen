@@ -1,14 +1,10 @@
-<?php
-
-?>
-
 <!DOCTYPE html>
 <html lang="nb">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../stylesheets/Registration.css" type="text/css">
+    <link rel="stylesheet" href="../stylesheets/Registration.css?v=1.0" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-pwCHXNHXDBp4Zh3fCkGpMeWzHjwUC1n1br5x3IyVBFzbJRsN/l2M+SWdgZfjqxiS" crossorigin="anonymous">
 </head>
 <title>Registrer Deg</title>

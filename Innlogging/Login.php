@@ -1,5 +1,4 @@
 <?php
-
 include '../CRUD/connect.php';
 
 $username_err = $password_err = "";
@@ -117,7 +116,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
        <div class="signin">
         <div class="content">
-            <h2>Registration</h2>
+            <h2>Log in</h2>
             <div class="form">
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                 <div class="inputBox">

@@ -1,5 +1,4 @@
 <?php
-
 include '../CRUD/connect.php';
 
 // Initialize variables
@@ -93,5 +92,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Close connection
     mysqli_close($conn);
 }
-
-?>
