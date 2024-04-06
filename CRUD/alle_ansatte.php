@@ -66,8 +66,8 @@ $result = mysqli_query($conn, $sql);
         <tbody>
             <?php while ($row = mysqli_fetch_assoc($result)) : ?>
                 <tr>
-                    <td><?php echo $row['ansatte_id']; ?></td>
-                    <td><?php echo $row['ansatte_etternavn']; ?></td>
+                    <td><a href="Detailed-view-ansatte.php?ansatte_id=<?php echo $row['ansatte_id']; ?>"><?php echo $row['ansatte_id']; ?></a></td>
+                    <td><a href="Edit-ansatt.php?ansatte_id=<?php echo $row['ansatte_id']; ?>"><?php echo $row['ansatte_etternavn']; ?></a></td>
                     <td><?php echo $row['ansatte_fornavn']; ?></td>
                     <td><?php echo $row['ansatte_stilling']; ?></td>
                     <td><?php echo $row['ansatte_kontakt_person'] ? 'Yes' : 'No'; ?></td>

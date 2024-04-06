@@ -37,11 +37,20 @@ if (!$result) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../stylesheets/stylesheet.css">
+    <link rel="stylesheet" href="../stylesheets/stylesheet.css?v=1.0">
+    <link rel="icon" href="../images/logo_no_slogan.png">
     <title>Se Alle Bedrifter</title>
     <style>
         #search {
             width:300px;
+        }
+
+        .kunde-yes {
+            background-color: #FF5A5F;
+        }
+
+        .kunde-no {
+            background-color: #3E92CC;
         }
     </style>
 </head>
@@ -79,7 +88,8 @@ if (!$result) {
         </thead>
         <tbody>
             <?php while ($row = mysqli_fetch_assoc($result)) : ?>
-                <tr>
+                <?php $kundeClass = $row['bedrift_er_kunde'] == 1 ? 'kunde-yes' : 'kunde-no'; ?> 
+                <tr class="<?php echo $kundeClass; ?>">
                     <td><?php echo $row['bedrift_id']; ?></td>
                     <td><a href="Read.php?bedrift_id=<?php echo $row['bedrift_id']; ?>"><?php echo $row['bedrift_navn']; ?> </a></td>
                     <td><?php echo $row['bedrift_org_form']; ?></td>

@@ -45,31 +45,31 @@ if (isset($_POST['submit'])) {
                 <thead>
                     <tr>
                         <th>Fornavn</th>
-                        <td><input type="text" name="fornavn"></td>
+                        <td><input type="text" name="fornavn" required></td>
                     </tr>
                     <tr>
                         <th>Etternavn</th>
-                        <td><input type="text" name="etternavn"></td>
+                        <td><input type="text" name="etternavn" required></td>
                     </tr>
                     <tr>
                         <th>Stilling</th>
-                        <td><input type="text" name="stilling"></td>
+                        <td><input type="text" name="stilling" required></td>
                     </tr>
                     <tr>
                         <th>Kontaktperson</th>
                         <td>
-                        <select name="kontakt_person" class="input-field">
+                        <select name="kontakt_person" class="input-field" required>
                         <option value="1">Ja</option>
                         <option value="0">Nei</option>
                         </td>
                     </tr>
                     <tr>
                         <th>Telefonnummer</th>
-                        <td><input type="text" name="tlf_nr"></td>
+                        <td><input type="text" name="tlf_nr" required></td>
                     </tr>
                     <tr>
                         <th>Epost</th>
-                        <td><input type="text" name="epost"></td>
+                        <td><input type="text" name="epost" required></td>
                     </tr>
                     <tr>
                         <th>Bedriftid</th>

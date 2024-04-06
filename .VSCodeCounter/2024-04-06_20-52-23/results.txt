@@ -1,0 +1,67 @@
+Date : 2024-04-06 20:52:23
+Directory : c:\xampp\htdocs\Bedriftsportalen
+Total : 34 files,  2457 codes, 238 comments, 425 blanks, all 3120 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| PHP        |         24 |      1,621 |        142 |        276 |      2,039 |
+| CSS        |          3 |        622 |          8 |        100 |        730 |
+| JavaScript |          5 |         94 |         13 |         10 |        117 |
+| SQL        |          1 |         82 |         75 |         37 |        194 |
+| HTML       |          1 |         38 |          0 |          2 |         40 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                 | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                    |         34 |      2,457 |        238 |        425 |      3,120 |
+| . (Files)                                                            |          6 |        402 |         90 |         80 |        572 |
+| CRUD                                                                 |         15 |      1,080 |         88 |        181 |      1,349 |
+| Innlogging                                                           |          5 |        259 |         39 |         54 |        352 |
+| JavaScript                                                           |          5 |         94 |         13 |         10 |        117 |
+| stylesheets                                                          |          3 |        622 |          8 |        100 |        730 |
++----------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                             | language   | code       | comment    | blank      | total      |
++----------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\xampp\htdocs\Bedriftsportalen\CRUD\Create-ansatte.php             | PHP        |         87 |          0 |          7 |         94 |
+| c:\xampp\htdocs\Bedriftsportalen\CRUD\Create-bedrift.php             | PHP        |        129 |          4 |         17 |        150 |
+| c:\xampp\htdocs\Bedriftsportalen\CRUD\Detailed-view-ansatte.php      | PHP        |         83 |         11 |         13 |        107 |
+| c:\xampp\htdocs\Bedriftsportalen\CRUD\Detailed-view-bedrift.php      | PHP        |         80 |         11 |         10 |        101 |
+| c:\xampp\htdocs\Bedriftsportalen\CRUD\Edit-ansatt.php                | PHP        |        123 |          0 |         40 |        163 |
+| c:\xampp\htdocs\Bedriftsportalen\CRUD\Edit-bedrift.php               | PHP        |        111 |          8 |         21 |        140 |
+| c:\xampp\htdocs\Bedriftsportalen\CRUD\Read.php                       | PHP        |        176 |         10 |         12 |        198 |
+| c:\xampp\htdocs\Bedriftsportalen\CRUD\Update.php                     | PHP        |         20 |          0 |          4 |         24 |
+| c:\xampp\htdocs\Bedriftsportalen\CRUD\alle_ansatte.php               | PHP        |         70 |          0 |         12 |         82 |
+| c:\xampp\htdocs\Bedriftsportalen\CRUD\alle_bedrifter.php             | PHP        |         88 |          4 |         15 |        107 |
+| c:\xampp\htdocs\Bedriftsportalen\CRUD\confirmdelete.php              | PHP        |         39 |          0 |          4 |         43 |
+| c:\xampp\htdocs\Bedriftsportalen\CRUD\connect.php                    | PHP        |         13 |          4 |          4 |         21 |
+| c:\xampp\htdocs\Bedriftsportalen\CRUD\getBedriftSuggestions.php      | PHP        |         24 |         16 |         11 |         51 |
+| c:\xampp\htdocs\Bedriftsportalen\CRUD\getPoststed.php                | PHP        |         16 |          8 |          4 |         28 |
+| c:\xampp\htdocs\Bedriftsportalen\CRUD\searchBedrift.php              | PHP        |         21 |         12 |          7 |         40 |
+| c:\xampp\htdocs\Bedriftsportalen\Innlogging\Login.php                | PHP        |        104 |         17 |         20 |        141 |
+| c:\xampp\htdocs\Bedriftsportalen\Innlogging\Registration.php         | PHP        |         67 |          0 |         10 |         77 |
+| c:\xampp\htdocs\Bedriftsportalen\Innlogging\logout.php               | PHP        |          6 |          0 |          5 |         11 |
+| c:\xampp\htdocs\Bedriftsportalen\Innlogging\signup.php               | PHP        |         59 |         19 |         16 |         94 |
+| c:\xampp\htdocs\Bedriftsportalen\Innlogging\welcome.php              | PHP        |         23 |          3 |          3 |         29 |
+| c:\xampp\htdocs\Bedriftsportalen\JavaScript\bedrift_search.js        | JavaScript |         24 |          5 |          3 |         32 |
+| c:\xampp\htdocs\Bedriftsportalen\JavaScript\bedrift_suggestion.js    | JavaScript |         37 |          6 |          5 |         48 |
+| c:\xampp\htdocs\Bedriftsportalen\JavaScript\delete_confirmation.js   | JavaScript |         12 |          0 |          1 |         13 |
+| c:\xampp\htdocs\Bedriftsportalen\JavaScript\post.js                  | JavaScript |         15 |          2 |          1 |         18 |
+| c:\xampp\htdocs\Bedriftsportalen\JavaScript\script.js                | JavaScript |          6 |          0 |          0 |          6 |
+| c:\xampp\htdocs\Bedriftsportalen\bedriftsportalen_db.sql             | SQL        |         82 |         75 |         37 |        194 |
+| c:\xampp\htdocs\Bedriftsportalen\footer.php                          | PHP        |         15 |          1 |          3 |         19 |
+| c:\xampp\htdocs\Bedriftsportalen\index.php                           | PHP        |        161 |         13 |         28 |        202 |
+| c:\xampp\htdocs\Bedriftsportalen\navbar.php                          | PHP        |         23 |          1 |          3 |         27 |
+| c:\xampp\htdocs\Bedriftsportalen\stylesheets\Registration.css        | CSS        |        181 |          0 |          2 |        183 |
+| c:\xampp\htdocs\Bedriftsportalen\stylesheets\ansatt_bedrift_edit.css | CSS        |         34 |          5 |          5 |         44 |
+| c:\xampp\htdocs\Bedriftsportalen\stylesheets\stylesheet.css          | CSS        |        407 |          3 |         93 |        503 |
+| c:\xampp\htdocs\Bedriftsportalen\terms_of_service.html               | HTML       |         38 |          0 |          2 |         40 |
+| c:\xampp\htdocs\Bedriftsportalen\terms_of_service.php                | PHP        |         83 |          0 |          7 |         90 |
+| Total                                                                |            |      2,457 |        238 |        425 |      3,120 |
++----------------------------------------------------------------------+------------+------------+------------+------------+------------+

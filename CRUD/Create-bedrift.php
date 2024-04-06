@@ -102,31 +102,31 @@ if(isset($_POST['submit'])) {
                 <thead>
                     <tr>
                         <th>Navn</th>
-                        <td><input type="text" name="navn"></td>
+                        <td><input type="text" name="navn" required></td>
                     </tr>
                     <tr>
                         <th>Adresse</th>
-                        <td><input type="text" name="adresse"></td>
+                        <td><input type="text" name="adresse" required></td>
                     </tr>
                     <tr>
                         <th>Postnummer</th>
-                        <td><input type="text" name="postnummer" id="postnummer" maxlength="4"></td>
+                        <td><input type="text" name="postnummer" id="postnummer" maxlength="4" required></td>
                     </tr>
                     <tr>
                         <th>Poststed</th>
-                        <td><input type="text" name="poststed" id="poststed"></td>
+                        <td><input type="text" name="poststed" id="poststed" required></td>
                     </tr>
                     <tr>
                         <th>Org-form</th>
-                        <td><input type="text" name="orgform"></td>
+                        <td><input type="text" name="orgform" required></td>
                     </tr>
                     <tr>
                         <th>Org-nummer</th>
-                        <td><input type="text" name="orgnummer"></td>
+                        <td><input type="text" name="orgnummer" required></td>
                     </tr>
                     <tr>
                         <th>Er kunde</th>
-                        <td><input type="checkbox" name="er_kunde"></td>
+                        <td><input type="checkbox" name="er_kunde" required></td>
                     </tr>
                     <tr>
                         <th>Beskrivelse</th>
