@@ -18,6 +18,14 @@ header("Expires: 0");
 $sql_les = "SELECT bedrift_id, bedrift_navn, bedrift_logo_filepath FROM bedrifter_tb";
 $resultat_les = mysqli_query($conn, $sql_les);
 $bedrifter = mysqli_fetch_all($resultat_les, MYSQLI_ASSOC);
+
+// Søke funksjonalitet
+$searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
+if (!empty($searchQuery)) {
+    $sql = "SELECT bedrift_id, bedrift_navn, bedrift_logo_filepath FROM bedrifter_tb WHERE bedrift_navn LIKE '%$searchQuery%'";
+    $result = mysqli_query($conn, $sql);
+    $bedrifter = mysqli_fetch_all($result, MYSQLI_ASSOC);
+}
 ?>
 
 <!DOCTYPE html>
@@ -82,6 +90,34 @@ $bedrifter = mysqli_fetch_all($resultat_les, MYSQLI_ASSOC);
         }
 
 
+        /* Search bar style */
+
+        .search-container {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .search-container input[type="text"] {
+            width: 300px;
+            height: 30px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .search-container button {
+            height: 40px;
+            padding: 5px 15px;
+            background-color: #3E92CC;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .search-container button:hover {
+            background-color: #357ea8;
+        }
+        
     </style>
 </head>
 
@@ -114,6 +150,15 @@ $bedrifter = mysqli_fetch_all($resultat_les, MYSQLI_ASSOC);
         </div>
     </div>
     <main>
+
+ <!-- #region  -->
+        <div class="search-container">
+            <form action="" method="get">
+                <input type="text" id="bedrift-search" placeholder="Search by bedrift name..." value="<?php echo htmlspecialchars($searchQuery); ?>">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+
         <div class="slider">
             <div class="slide">
                 <?php foreach ($bedrifter as $bedrift) : ?>
