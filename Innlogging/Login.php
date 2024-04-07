@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $password = trim($_POST["password"]);
         
         // Prepare a select statement
-        $sql = "SELECT bedrifter_id, bedrifter_brukernavn, bedrifter_passord FROM bedrifter_innlogging_tb WHERE bedrifter_brukernavn = ?";
+        $sql = "SELECT bedrifter_id, bedrifter_brukernavn, bedrifter_passord, bedrifter_is_admin FROM bedrifter_innlogging_tb WHERE bedrifter_brukernavn = ?";
         
         if($stmt = mysqli_prepare($conn, $sql)){
             // Bind variables to the prepared statement as parameters
@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Check if username exists, if yes then verify password
                 if(mysqli_stmt_num_rows($stmt) == 1){                    
                     // Bind result variables
-                    mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password);
+                    mysqli_stmt_bind_result($stmt, $id, $username, $hashed_password, $bedrifter_is_admin);
                     if(mysqli_stmt_fetch($stmt)){
                         if(password_verify($password, $hashed_password)){
                             // Password is correct, start a new session
@@ -52,7 +52,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
-                            $_SESSION["username"] = $username;                            
+                            $_SESSION["username"] = $username;        
+                            $_SESSION["is_admin"] = $bedrifter_is_admin;                    
                             
                             // Redirect user to welcome page
                             header("location: welcome.php");

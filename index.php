@@ -1,6 +1,24 @@
 <?php
 include 'CRUD/connect.php';
 
+session_start();
+
+if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+    header("Location: Login.php");
+    exit;
+}
+
+$user_id = $_SESSION["id"];
+$user_name = $_SESSION["username"];
+$user_admin = $_SESSION["is_admin"];
+
+if ($user_admin == 1) {
+    
+} else {
+    header("Location: CRUD/Read.php?bedrift_id=" . $user_id);
+    exit;
+}
+
 // Check if the user has already accepted the terms
 $termsAccepted = isset($_COOKIE['terms_accepted']);
 
@@ -140,6 +158,7 @@ if (!empty($searchQuery)) {
     <!-- Rest of your HTML content -->
     <a href="CRUD/alle_ansatte.php"><button class="alle-view-btn" type="button" href="alle_ansatte">Alle ansatte</button></a>
     <a href="CRUD/alle_bedrifter.php"><button class="alle-view-btn" type="button" href="alle_bedrifter">Alle bedrifter</button></a>
+    <a href="Innlogging/logout.php"><button class="alle-view-btn" type="button" href="alle_bedrifter">Logg ut</button></a>        
 
     <div class="logo-main-con">
         <img class="logo-main" src="images/logo_no_slogan.png">
@@ -183,12 +202,7 @@ if (!empty($searchQuery)) {
     </main>
 
     <footer class="footer">
-    <div class="waves">
-      <div class="wave" id="wave1"></div>
-      <div class="wave" id="wave2"></div>
-      <div class="wave" id="wave3"></div>
-      <div class="wave" id="wave4"></div>
-    </div>
+   
     <ul class="menu">
       <li class="menu__item"><a class="menu__link" href="#">Home</a></li>
       <li class="menu__item"><a class="menu__link" href="#">About</a></li>
@@ -196,7 +210,6 @@ if (!empty($searchQuery)) {
       <li class="menu__item"><a class="menu__link" href="#">Team</a></li>
       <li class="menu__item"><a class="menu__link" href="#">Contact Us</a></li>
     </ul>
-    <p class="footer-p">2024 Bedriftsportalen | All Rights Reserved</p>
   </footer>
 
     <script src="JavaScript/script.js?=v1.0"></script>
