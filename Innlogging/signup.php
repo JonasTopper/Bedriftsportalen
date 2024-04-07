@@ -1,6 +1,13 @@
 <?php
 include '../CRUD/connect.php';
 
+// Verify CSRF token
+/* session_start();
+if (!isset($_SESSION['csrf_token']) || empty($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+    // Invalid CSRF token, handle the error (e.g., redirect, display error message)
+    die('CSRF token validation failed.');
+} */
+
 // Initialize variables
 $username_err = $password_err = $confirm_password_err = "";
 

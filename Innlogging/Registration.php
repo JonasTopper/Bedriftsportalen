@@ -1,3 +1,12 @@
+ <?php
+//CSRF
+/* session_start();
+
+if (!isset($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32)); 
+} */
+?> 
+
 <!DOCTYPE html>
 <html lang="nb">
 
@@ -64,6 +73,9 @@
                 </div>
                 <br>
                 <div class="links"> <br> <a href="Login.php">Log in</a> </div>
+
+                <!-- <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>"> -->
+
                 <div class="inputBox"> <input type="submit" value="Register"> </div>
                 </form>
             </div>

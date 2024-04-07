@@ -1,6 +1,13 @@
 <?php
 include '../CRUD/connect.php';
 
+//CSRF Token Creation
+/* session_start();
+
+if (!isset($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32)); 
+} */
+
 $username_err = $password_err = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -42,6 +49,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;                            
                             
+                            //Token
+                          //  $_SESSION["csrf_token"] = $_POST['csrf_token'];
+
                             // Redirect user to welcome page
                             header("location: welcome.php");
                         } else{
@@ -119,6 +129,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <h2>Log in</h2>
             <div class="form">
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+
+                <!-- <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>"> -->
+
                 <div class="inputBox">
                     <input type="text" name="username" required> <i>Username</i>
                     <p class="help-block"><?php echo $username_err; ?></p>

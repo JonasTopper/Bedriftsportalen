@@ -1,6 +1,10 @@
 <?php
-// Initialize the session
-session_start();
+// Verify CSRF token
+/* session_start();
+if (!isset($_SESSION['csrf_token']) || empty($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+    // Invalid CSRF token, handle the error (e.g., redirect, display error message)
+    die('CSRF token validation failed.');
+} */
 
 // Check if the user is logged in, if not then redirect them to the login page
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
