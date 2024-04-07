@@ -1,12 +1,18 @@
 <?php
 include '../CRUD/connect.php';
 
-//CSRF Token Creation
-/* session_start();
+session_start();
 
-if (!isset($_SESSION['csrf_token'])) {
-    $_SESSION['csrf_token'] = bin2hex(random_bytes(32)); 
-} */
+// Check if the user is already logged in and verified
+if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true && isset($_SESSION['is_verified']) && $_SESSION['is_verified']) {
+    header("Location: welcome.php"); // Redirect to the welcome page
+    exit();
+}
+
+if (!isset($_SESSION['is_verified']) || !$_SESSION['is_verified']) {
+    header("Location: ../Verification.php"); // Redirect to the verification page
+    exit();
+}
 
 $username_err = $password_err = "";
 
@@ -42,18 +48,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     if(mysqli_stmt_fetch($stmt)){
                         if(password_verify($password, $hashed_password)){
                             // Password is correct, start a new session
-                            session_start();
                             
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;                            
                             
-                            //Token
-                          //  $_SESSION["csrf_token"] = $_POST['csrf_token'];
-
                             // Redirect user to welcome page
                             header("location: welcome.php");
+                            exit(); // Ensure script stops here
                         } else{
                             // Display an error message if password is not valid
                             $password_err = "The password you entered was not valid.";
@@ -61,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     }
                 } else{
                     // Display an error message if username doesn't exist
-                    $username_err = "No account found with that username.";
+                    $username_err = "No bedrift account found with that username.";
                 }
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
@@ -76,6 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     mysqli_close($conn);
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="nb">

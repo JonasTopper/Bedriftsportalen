@@ -18,7 +18,6 @@
           return;
       }
 
-      // Make an AJAX request to fetch suggestions
       var xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
           if (xhr.readyState === 4 && xhr.status === 200) {
@@ -39,7 +38,7 @@
       xhr.open('GET', 'getBedriftSuggestions.php?query=' + input, true);
       xhr.send();
   }
-
+  
   // Event listener for input event
   searchInput.addEventListener('input', function() {
       autocomplete();

@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if (isset($_SESSION['is_verified']) && $_SESSION['is_verified']) {
+    header("Location: Innlogging/Login.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="nb">
 
