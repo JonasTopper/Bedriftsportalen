@@ -35,6 +35,7 @@ if (!empty($searchQuery)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="stylesheets/stylesheet.css?v=1.0" type="text/css">
+    <link rel="stylesheet" href="stylesheets/footer.css?v=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-pwCHXNHXDBp4Zh3fCkGpMeWzHjwUC1n1br5x3IyVBFzbJRsN/l2M+SWdgZfjqxiS" crossorigin="anonymous">
     <title>Bedriftsportalen</title>
     <style>
@@ -168,6 +169,9 @@ if (!empty($searchQuery)) {
                             $bedrift_id = $bedrift['bedrift_id'];
                             $bedrift_navn = $bedrift['bedrift_navn'];
                             $logo_src = $bedrift["bedrift_logo_filepath"];
+                             if (empty($logo_src) || !file_exists($logo_src)) {
+                                $logo_src = "Images/no-image.png";
+                             }
                             ?>
                             <img class="logo" src="<?php echo $logo_src; ?>" alt="Logo">
                             <p class="bedrift-navn"><?php echo $bedrift['bedrift_navn']; ?></p>
@@ -177,6 +181,24 @@ if (!empty($searchQuery)) {
             </div>
         </div>
     </main>
+
+    <footer class="footer">
+    <div class="waves">
+      <div class="wave" id="wave1"></div>
+      <div class="wave" id="wave2"></div>
+      <div class="wave" id="wave3"></div>
+      <div class="wave" id="wave4"></div>
+    </div>
+    <ul class="menu">
+      <li class="menu__item"><a class="menu__link" href="#">Home</a></li>
+      <li class="menu__item"><a class="menu__link" href="#">About</a></li>
+      <li class="menu__item"><a class="menu__link" href="#">Services</a></li>
+      <li class="menu__item"><a class="menu__link" href="#">Team</a></li>
+      <li class="menu__item"><a class="menu__link" href="#">Contact Us</a></li>
+    </ul>
+    <p class="footer-p">2024 Bedriftsportalen | All Rights Reserved</p>
+  </footer>
+
     <script src="JavaScript/script.js?=v1.0"></script>
     <script>
         // JavaScript function to handle accepting terms
@@ -197,5 +219,4 @@ if (!empty($searchQuery)) {
         });
     </script>
 </body>
-
 </html>
