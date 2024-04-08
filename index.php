@@ -3,6 +3,8 @@ include 'CRUD/connect.php';
 
 session_start();
 
+$newSearchQuery = ''; // For search functionality
+
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("Location: Innlogging/Login.php");
     exit;
@@ -12,9 +14,7 @@ $user_id = $_SESSION["id"];
 $user_name = $_SESSION["username"];
 $user_admin = $_SESSION["is_admin"];
 
-if ($user_admin == 1) {
-    
-} else {
+if ($user_admin != 1) {
     header("Location: CRUD/Read_User.php?bedrift_id=" . $user_id);
     exit;
 }
@@ -38,11 +38,12 @@ $resultat_les = mysqli_query($conn, $sql_les);
 $bedrifter = mysqli_fetch_all($resultat_les, MYSQLI_ASSOC);
 
 // Søke funksjonalitet
-$searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
-if (!empty($searchQuery)) {
-    $sql = "SELECT bedrift_id, bedrift_navn, bedrift_logo_filepath FROM bedrifter_tb WHERE bedrift_navn LIKE '%$searchQuery%'";
-    $result = mysqli_query($conn, $sql);
-    $bedrifter = mysqli_fetch_all($result, MYSQLI_ASSOC);
+$newSearchQuery = isset($_GET['search']) ? $_GET['search'] : '';
+if (!empty($newSearchQuery)) {
+    // Modify the SQL query to fetch data based on the search criteria
+    $sql_les = "SELECT bedrift_id, bedrift_navn, bedrift_logo_filepath FROM bedrifter_tb WHERE bedrift_navn LIKE '%$newSearchQuery%' OR bedrift_id LIKE '%$newSearchQuery%'";
+    $resultat_les = mysqli_query($conn, $sql_les);
+    $bedrifter = mysqli_fetch_all($resultat_les, MYSQLI_ASSOC);
 }
 ?>
 
@@ -155,9 +156,9 @@ if (!empty($searchQuery)) {
     <?php endif; ?>
 
     <!-- Rest of your HTML content -->
-    <a href="CRUD/alle_ansatte.php"><button class="alle-view-btn" type="button" href="alle_ansatte">Alle ansatte</button></a>
-    <a href="CRUD/alle_bedrifter.php"><button class="alle-view-btn" type="button" href="alle_bedrifter">Alle bedrifter</button></a>
-    <a href="Innlogging/logout.php"><button class="alle-view-btn" type="button" href="alle_bedrifter">Logg ut</button></a>        
+    <a href="CRUD/alle_ansatte.php"><button class="alle-view-btn" type="button">Alle ansatte</button></a>
+    <a href="CRUD/alle_bedrifter.php"><button class="alle-view-btn" type="button">Alle bedrifter</button></a>
+    <a href="Innlogging/logout.php"><button class="alle-view-btn" type="button">Logg ut</button></a>        
 
     <div class="logo-main-con">
         <img class="logo-main" src="images/logo_no_slogan.png">
@@ -172,10 +173,11 @@ if (!empty($searchQuery)) {
 
  <!-- #region  -->
         <div class="search-container">
-            <form action="" method="get">
-                <input type="text" id="bedrift-search" placeholder="Search by bedrift name...🔍" value="<?php echo htmlspecialchars($searchQuery); ?>">
-                <button type="submit">Search</button>
-            </form>
+        <form action="index.php" method="get">
+        <input type="text" id="bedrift-search" name="search" placeholder="Search by bedrift name...🔍" value="<?php echo htmlspecialchars($newSearchQuery); ?>">
+        <button type="submit">Search</button>
+        </form>
+
         </div>
 
         <div class="slider">

@@ -30,6 +30,13 @@ $result = mysqli_query($conn, $sql);
         #search {
             width:500px;
         }
+        .konktat_person_yes {
+            border-radius: 50%;
+        }
+
+        .kontakt_person_no {
+            background-color: #3E92CC;
+        }
     </style>
 </head>
 <body>
@@ -64,7 +71,8 @@ $result = mysqli_query($conn, $sql);
         </thead>
         <tbody>
             <?php while ($row = mysqli_fetch_assoc($result)) : ?>
-                <tr>
+                <?php $ansattClass = $row['ansatte_kontakt_person'] == 1 ? 'kontakt_person_yes' : 'kontakt_person_no'; ?> 
+                <tr class="<?php echo $ansattClass; ?>">
                     <td><a href="Detailed-view-ansatte.php?ansatte_id=<?php echo $row['ansatte_id']; ?>"><?php echo $row['ansatte_id']; ?></a></td>
                     <td><a href="Edit-ansatt.php?ansatte_id=<?php echo $row['ansatte_id']; ?>"><?php echo $row['ansatte_etternavn']; ?></a></td>
                     <td><?php echo $row['ansatte_fornavn']; ?></td>

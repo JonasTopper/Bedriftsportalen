@@ -142,6 +142,7 @@ if (isset($_GET['bedrift_id'])) {
         </div>
     <?php endif; ?>
            <main>
+           <a href="../Innlogging/logout.php"><button class="alle-view-btn" type="button">Logg ut</button></a> 
             <h1 class="header-bedrift"><?php echo $first_row['bedrift_navn'] ?></h1>
             <table class="table">
                 <thead>
@@ -240,6 +241,7 @@ if (isset($_GET['bedrift_id'])) {
         </head>
         <body>
            <main class="read-main">
+           <a href="../Innlogging/logout.php"><button class="alle-view-btn" type="button">Logg ut</button></a> 
             <h1 class="header-bedrift"><?php echo $bedrift_row['bedrift_navn'] ?></h1>
             <table class="table-read">
                 <thead>
