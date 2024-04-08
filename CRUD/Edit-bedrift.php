@@ -42,6 +42,7 @@ if (isset($_GET['bedrift_id'])) {
     // Fetch current data from the database based on bedrift_id
     $sql_bedrifter = "SELECT * FROM bedrifter_tb WHERE bedrift_id = $id";
     $result = mysqli_query($conn, $sql_bedrifter);
+    $row = mysqli_fetch_assoc($result);
 
     // Check if data retrieval is successful
     if ($result) {
