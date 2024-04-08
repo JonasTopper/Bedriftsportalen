@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+// Redirects to Login if user is Verified
 if (isset($_SESSION['is_verified']) && $_SESSION['is_verified']) {
     header("Location: Innlogging/Login.php");
     exit();

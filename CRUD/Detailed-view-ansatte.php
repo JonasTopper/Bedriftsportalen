@@ -1,13 +1,13 @@
 <?php
-include 'connect.php';
+include 'connect.php'; // Include database connection
 
 // Initialize $result_bedrifter to null
 $result_bedrifter = null;
 
-// Check if bedrift_id is set in the URL
+// Check if ansatte_id is set in the URL
 if (isset($_GET['ansatte_id'])) {
     $id = $_GET['ansatte_id'];
-    // SQL query to retrieve everything from the bedrifter_tb table where bedrift_id matches $id
+    // SQL query to retrieve everything from the ansatte_tb table where ansatte_id matches $id
     $sql_bedrifter = "SELECT * FROM ansatte_tb WHERE ansatte_id = $id";
 
     // Execute the query
@@ -40,7 +40,6 @@ if (isset($_GET['ansatte_id'])) {
             }
         </script>
 
-
         <h1 class="header-bedrift">Ansatte detaljer</h1>
         <table>
             <thead>
@@ -60,14 +59,11 @@ if (isset($_GET['ansatte_id'])) {
                 if ($result_bedrifter !== null) {
                     // Check if there are any rows returned by the query
                     if (mysqli_num_rows($result_bedrifter) > 0) {
-                        // Loop through each row fetched from the result set to display bedrifter information
+                        // Loop through each row fetched from the result set to display ansatte information
                         while ($row = mysqli_fetch_assoc($result_bedrifter)) {
 
-                            if ($row['ansatte_kontakt_person']) {
-                                $kontakt = "Ja";
-                            } else {
-                                $kontakt = "Nei";
-                            }
+                            // Determine if the person is a contact person
+                            $kontakt = $row['ansatte_kontakt_person'] ? "Ja" : "Nei";
                 ?>
                             <tr>
                                 <td><?php echo $row['ansatte_id'] ?></td>
@@ -87,12 +83,13 @@ if (isset($_GET['ansatte_id'])) {
                     }
                 } else {
                     // If $result_bedrifter is null, display an error message
-                    echo "<tr><td colspan='5'>No bedrift ID provided.</td></tr>";
+                    echo "<tr><td colspan='5'>No ansatte ID provided.</td></tr>";
                 }
                 ?>
             </tbody>
         </table>
 
+        <!-- Extra line breaks for spacing -->
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
     </main>

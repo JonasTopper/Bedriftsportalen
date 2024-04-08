@@ -1,5 +1,5 @@
 <?php
-include 'connect.php';
+include 'connect.php'; // Include database connection
 
 // Initialize $result_bedrifter to null
 $result_bedrifter = null;
@@ -40,7 +40,6 @@ if (isset($_GET['bedrift_id'])) {
             }
         </script>
 
-
         <h1 class="header-bedrift"> Bedriftdetaljer</h1>
         <table>
             <thead>
@@ -54,7 +53,6 @@ if (isset($_GET['bedrift_id'])) {
                     <th>Org nr</th>
                     <th>Reg dato</th>
                     <th>Beskrivelse</th>
-
                 </tr>
             </thead>
             <tbody>
@@ -82,15 +80,16 @@ if (isset($_GET['bedrift_id'])) {
                         }
                     } else {
                         // If no rows were returned by the query, display a message
-                        echo "<tr><td colspan='5'>No results found.</td></tr>";
+                        echo "<tr><td colspan='9'>No results found.</td></tr>";
                     }
                 } else {
                     // If $result_bedrifter is null, display an error message
-                    echo "<tr><td colspan='5'>No bedrift ID provided.</td></tr>";
+                    echo "<tr><td colspan='9'>No bedrift ID provided.</td></tr>";
                 }
                 ?>
             </tbody>
         </table>
+        <!-- Extra line breaks for spacing -->
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </main>
 </body>

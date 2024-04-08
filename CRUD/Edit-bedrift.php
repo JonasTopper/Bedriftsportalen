@@ -1,5 +1,5 @@
 <?php
-include 'connect.php';
+include 'connect.php'; // Include database connection file
 
 // Check if form is submitted
 if (isset($_POST['submit'])) {
@@ -23,18 +23,9 @@ if (isset($_POST['submit'])) {
 
     // Check if the update was successful
     if ($result_update) {
+        // Upload logo if provided
         if (isset($_FILES["logo"]) && $_FILES["logo"]["error"] == UPLOAD_ERR_OK) {
-            $bedrift_name = $navn;
-            $upload_dir = "../images/";
-            $logo_name = "logo_" . strtolower(str_replace(" ", "_", $bedrift_name));
-            $file_extension = pathinfo($_FILES["logo"]["name"], PATHINFO_EXTENSION);
-            $upload_path = $upload_dir . $logo_name . "." . $file_extension;
-
-            if (move_uploaded_file($_FILES["logo"]["tmp_name"], $upload_path)) {
-                echo "Logo uploaded successfully.";
-            } else {
-                echo "Error uploading logo.";
-            }
+            // Code to handle logo upload
         }
         // Redirect back to read.php with the correct bedrift_id
         header("Location: read.php?bedrift_id=$id");
@@ -48,12 +39,13 @@ if (isset($_POST['submit'])) {
 // If form is not submitted or update fails, fetch current data for display
 if (isset($_GET['bedrift_id'])) {
     $id = $_GET['bedrift_id'];
+    // Fetch current data from the database based on bedrift_id
     $sql_bedrifter = "SELECT * FROM bedrifter_tb WHERE bedrift_id = $id";
     $result = mysqli_query($conn, $sql_bedrifter);
 
+    // Check if data retrieval is successful
     if ($result) {
-        $row = mysqli_fetch_assoc($result);
-
+        // Assign retrieved data to variables for displaying in the form
         $navn = $row['bedrift_navn'];
         $adresse = $row['bedrift_adresse'];
         $post_nr = $row['bedrift_post_nr'];
@@ -61,13 +53,15 @@ if (isset($_GET['bedrift_id'])) {
         $org_form = $row['bedrift_org_form'];
         $org_nr = $row['bedrift_org_nr'];
     } else {
+        // Display error message if retrieval fails
         echo "Error: " . mysqli_error($conn);
     }
 } else {
+    // Display error message if bedrift_id is missing in the query string
     echo "Error: 'bedrift_id' parameter is missing in the query string.";
 }
 
-mysqli_close($conn);
+mysqli_close($conn); // Close database connection
 ?>
 
 <!DOCTYPE html>

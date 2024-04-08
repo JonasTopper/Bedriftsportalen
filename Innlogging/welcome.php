@@ -1,13 +1,7 @@
 <?php
 
 session_start();
-// Check if the user is logged in, if not then redirect them to the login page
-/* if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-    header("location: ../Verification.php");
-    exit;
-} */
 
-// Display welcome message with user's username
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,6 +1,7 @@
 <?php
-include 'connect.php';
+include 'connect.php'; // Include database connection
 
+// Function to create a new row in the 'ansatte_tb' table
 function CreateSQLRow($conn, $fornavn, $etternavn, $stilling, $kontakt_person, $tlf_nr, $epost, $bedrifts_id)
 {
     $sql = "INSERT INTO ansatte_tb (ansatte_fornavn, ansatte_etternavn, ansatte_stilling, ansatte_kontakt_person, ansatte_tlf_nr, ansatte_epost, ansatte_bedrifts_id) 
@@ -9,14 +10,16 @@ function CreateSQLRow($conn, $fornavn, $etternavn, $stilling, $kontakt_person, $
     $run_query = mysqli_query($conn, $sql);
 
     if ($run_query) {
-        header("Location: Read.php?bedrift_id=$bedrifts_id"); //redirect
+        header("Location: Read.php?bedrift_id=$bedrifts_id"); // Redirect to the read page after successful creation
         exit();
     } else {
-        echo "Error: " . mysqli_error($conn);
+        echo "Error: " . mysqli_error($conn); // Print error message if query fails
     }
 }
 
+// Check if form is submitted
 if (isset($_POST['submit'])) {
+    // Retrieve form data
     $fornavn = $_POST['fornavn'];
     $etternavn = $_POST['etternavn'];
     $stilling = $_POST['stilling'];
@@ -25,10 +28,10 @@ if (isset($_POST['submit'])) {
     $epost = $_POST['epost'];
     $bedrifts_id = $_POST['bedrift_id'];
 
+    // Call function to create SQL row
     CreateSQLRow($conn, $fornavn, $etternavn, $stilling, $kontakt_person, $tlf_nr, $epost, $bedrifts_id);
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -64,6 +67,7 @@ if (isset($_POST['submit'])) {
                             <select name="kontakt_person" class="input-field" required>
                                 <option value="1">Ja</option>
                                 <option value="0">Nei</option>
+                            </select>
                         </td>
                     </tr>
                     <tr>
@@ -93,6 +97,6 @@ if (isset($_POST['submit'])) {
 
 <script>
     function goBack() {
-        window.history.back();
+        window.history.back(); // JavaScript function to go back to the previous page
     }
 </script>

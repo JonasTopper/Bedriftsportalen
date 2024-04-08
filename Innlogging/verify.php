@@ -16,8 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Concatenate the verification codes
     $verification_code = $verification_code_1 . $verification_code_2 . $verification_code_3 . $verification_code_4 . $verification_code_5;
 
-    // You can replace this with your actual verification code
-    $actual_verification_code = "12345"; // Example verification code
+    $actual_verification_code = "44839"; 
 
     // Check if the entered verification code matches the actual verification code
     if ($verification_code == $actual_verification_code) {

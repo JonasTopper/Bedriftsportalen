@@ -3,17 +3,21 @@ include 'CRUD/connect.php';
 
 session_start();
 
-$newSearchQuery = ''; // For search functionality
+// Variable for search functionality
+$newSearchQuery = '';
 
+// Redirect to login page if user is not logged in
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("Location: Innlogging/Login.php");
     exit;
 }
 
+// Get user details from session
 $user_id = $_SESSION["id"];
 $user_name = $_SESSION["username"];
 $user_admin = $_SESSION["is_admin"];
 
+// Redirect non-admin users to their profile page
 if ($user_admin != 1) {
     header("Location: CRUD/Read_User.php?bedrift_id=" . $user_id);
     exit;
@@ -22,22 +26,23 @@ if ($user_admin != 1) {
 // Check if the user has already accepted the terms
 $termsAccepted = isset($_COOKIE['terms_accepted']);
 
+// Set terms accepted cookie when form is submitted
 if (!$termsAccepted && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accept_terms'])) {
-    // User has accepted the terms, set a cookie to remember the choice for a period of time
     setcookie('terms_accepted', 'true', time() + (365 * 24 * 60 * 60), '/'); // Cookie lasts for 1 year
     $termsAccepted = true;
 }
 
+// Prevent caching of the page
 header("Cache-Control: no-cache, no-store, must-revalidate");
 header("Pragma: no-cache");
 header("Expires: 0");
 
-// Prosedyre for les
+// Fetch all bedrifter for display
 $sql_les = "SELECT bedrift_id, bedrift_navn, bedrift_logo_filepath FROM bedrifter_tb";
 $resultat_les = mysqli_query($conn, $sql_les);
 $bedrifter = mysqli_fetch_all($resultat_les, MYSQLI_ASSOC);
 
-// Søke funksjonalitet
+// Search functionality
 $newSearchQuery = isset($_GET['search']) ? $_GET['search'] : '';
 if (!empty($newSearchQuery)) {
     // Modify the SQL query to fetch data based on the search criteria

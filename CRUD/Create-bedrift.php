@@ -1,6 +1,7 @@
 <?php
-include 'connect.php';
+include 'connect.php'; // Include database connection
 
+// Function to get the smallest available bedrift_id
 function getSmallestAvailableBedriftId($conn)
 {
     $smallest_id = 1;
@@ -18,7 +19,7 @@ function getSmallestAvailableBedriftId($conn)
     return $smallest_id;
 }
 
-
+// Function to create a new row in the 'bedrifter_tb' table
 function CreateSQLRow($conn, $navn, $adresse, $orgform, $orgnummer, $postnummer, $poststed, $logo_path, $er_kunde, $beskrivelse)
 {
     // Get the smallest available bedrift_id
@@ -30,37 +31,47 @@ function CreateSQLRow($conn, $navn, $adresse, $orgform, $orgnummer, $postnummer,
     // Convert boolean value to 1 or 0 for database insertion
     $er_kunde = $er_kunde ? 1 : 0;
 
+    // Construct SQL query
     $sql = "INSERT INTO bedrifter_tb (bedrift_id, bedrift_navn, bedrift_adresse, bedrift_org_form, bedrift_org_nr, bedrift_post_nr, bedrift_post_sted, bedrift_logo_filepath, bedrift_reg_dato, bedrift_er_kunde, bedrift_beskrivelse) 
             VALUES ('$bedrift_id', '$navn', '$adresse', '$orgform', '$orgnummer', '$postnummer', '$poststed', '$logo_path', '$reg_date', '$er_kunde', '$beskrivelse')";
 
+    // Run the SQL query
     $run_query = mysqli_query($conn, $sql);
 
+    // Check if the query was successful
     if ($run_query) {
-        return true;
+        return true; // Return true if successful
     } else {
-        echo "Error: " . mysqli_error($conn);
-        return false;
+        echo "Error: " . mysqli_error($conn); // Print error message if query fails
+        return false; // Return false if unsuccessful
     }
 }
 
+// Check if the form is submitted
 if (isset($_POST['submit'])) {
+    // Retrieve form data
     $navn = $_POST['navn'];
     $adresse = $_POST['adresse'];
     $postnummer = $_POST['postnummer'];
+
+    // Query to retrieve poststed based on postnummer
     $sql = "SELECT poststed FROM postinformasjon_tb WHERE postnummer = '$postnummer'";
     $result = mysqli_query($conn, $sql);
+
+    // Check if poststed was found
     if ($result && mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
         $poststed = $row['poststed'];
     } else {
         $poststed = "";
     }
+
     $orgform = $_POST['orgform'];
     $orgnummer = $_POST['orgnummer'];
     $er_kunde = isset($_POST['er_kunde']) ? true : false; // Check if checkbox is checked
     $beskrivelse = $_POST['beskrivelse'];
 
-
+    // Handle logo upload
     $upload_path = "";
     if (isset($_FILES["logo"]) && $_FILES["logo"]["error"] == UPLOAD_ERR_OK) {
         $bedrift_name = $_POST["navn"];
@@ -70,6 +81,7 @@ if (isset($_POST['submit'])) {
         $upload_path = $upload_dir . $logo_name . "." . $file_extension;
         $upload_path_temp = "../" . $upload_dir . $logo_name . "." . $file_extension;
 
+        // Move uploaded file to destination
         if (move_uploaded_file($_FILES["logo"]["tmp_name"], $upload_path_temp)) {
             echo "Logo uploaded successfully.";
         } else {
@@ -78,9 +90,9 @@ if (isset($_POST['submit'])) {
         }
     }
 
-
+    // Create SQL row for the new company
     if (CreateSQLRow($conn, $navn, $adresse, $orgform, $orgnummer, $postnummer, $poststed, $upload_path, $er_kunde, $beskrivelse)) {
-        header("Location: ../");
+        header("Location: ../"); // Redirect to homepage after successful insertion
         exit();
     } else {
         echo "Error inserting data into database.";

@@ -1,8 +1,11 @@
 <?php
 include 'connect.php';
 
-$searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
+session_start();
 
+$searchQuery = isset($_GET['search']) ? $_GET['search'] : ''; // Getting search query from the URL
+
+// Construct SQL query to fetch data from 'ansatte_tb' table with optional search filter
 $sql = "SELECT a.*, b.bedrift_navn  
         FROM ansatte_tb a
         LEFT JOIN bedrifter_tb b ON a.ansatte_bedrifts_id = b.bedrift_id";

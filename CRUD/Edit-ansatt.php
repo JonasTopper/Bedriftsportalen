@@ -1,12 +1,13 @@
 <?php
-include 'connect.php';
+include 'connect.php'; // Include database connection file
 
-
+// Check if the form is submitted
 if (isset($_POST['submit'])) {
 
+    // Retrieve employee ID from the form
     $id = $_POST['ansatte_id'];
 
-
+    // Retrieve employee details from the form
     $fornavn = $_POST['ansatte_fornavn'];
     $etternavn = $_POST['ansatte_etternavn'];
     $stilling = $_POST['ansatte_stilling'];
@@ -14,72 +15,74 @@ if (isset($_POST['submit'])) {
     $epost = $_POST['ansatte_epost'];
     $kontakt = $_POST['ansatte_kontakt_person'];
 
-
+    // Retrieve bedrift ID from the form
     $bedrift_id = $_POST['bedrift_id'];
 
-
+    // If bedrift ID is not provided, retrieve it from the database based on employee ID
     if (empty($bedrift_id)) {
-
+        // SQL query to get bedrift ID associated with the employee
         $sql_current_bedrift = "SELECT ansatte_bedrifts_id FROM ansatte_tb WHERE ansatte_id = $id";
         $result_current_bedrift = mysqli_query($conn, $sql_current_bedrift);
 
+        // Check if the query executed successfully
         if ($result_current_bedrift && mysqli_num_rows($result_current_bedrift) > 0) {
             $row_current_bedrift = mysqli_fetch_assoc($result_current_bedrift);
             $bedrift_id = $row_current_bedrift['ansatte_bedrifts_id'];
         } else {
-
+            // Display error message if unable to retrieve bedrift ID
             echo "Error: Unable to retrieve current bedrifts_id.";
             exit();
         }
     }
 
-
+    // Update employee details in the database
     $sql_update = "UPDATE ansatte_tb 
                    SET ansatte_fornavn = '$fornavn', ansatte_etternavn = '$etternavn', 
                        ansatte_stilling = '$stilling', ansatte_tlf_nr = '$telefon',
                        ansatte_epost = '$epost', ansatte_kontakt_person = '$kontakt',
                        ansatte_bedrifts_id = '$bedrift_id' 
                    WHERE ansatte_id = $id";
-
     $result_update = mysqli_query($conn, $sql_update);
 
-
+    // Check if the update was successful
     if ($result_update) {
-
+        // Redirect to the employee details page
         header("Location: read.php?bedrift_id=$bedrift_id");
         exit();
     } else {
-
+        // Display error message if update fails
         echo "Error updating record: " . mysqli_error($conn);
     }
 }
 
-
+// Retrieve employee details for editing
 if (isset($_GET['ansatte_id'])) {
     $id = $_GET['ansatte_id'];
     $sql_ansatte = "SELECT * FROM ansatte_tb WHERE ansatte_id = $id";
     $result = mysqli_query($conn, $sql_ansatte);
 
+    // Check if employee details are retrieved successfully
     if ($result) {
         $row = mysqli_fetch_assoc($result);
 
+        // Assign retrieved employee details to variables
         $fornavn = $row['ansatte_fornavn'];
         $etternavn = $row['ansatte_etternavn'];
         $stilling = $row['ansatte_stilling'];
         $telefon = $row['ansatte_tlf_nr'];
         $epost = $row['ansatte_epost'];
         $kontakt = $row['ansatte_kontakt_person'];
-
-
         $ansatte_bedrifts_id = $row['ansatte_bedrifts_id'];
     } else {
+        // Display error message if retrieval fails
         echo "Error: " . mysqli_error($conn);
     }
 } else {
+    // Display error message if employee ID is missing
     echo "Error: 'ansatte_id' parameter is missing in the query string.";
 }
 
-mysqli_close($conn);
+mysqli_close($conn); // Close database connection
 ?>
 
 

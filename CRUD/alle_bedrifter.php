@@ -1,11 +1,13 @@
 <?php
-include 'connect.php';
+include 'connect.php'; // Include database connection
 
-$searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
+session_start();
+
+$searchQuery = isset($_GET['search']) ? $_GET['search'] : ''; // Get search query from URL
 
 $sql = "SELECT b.*, COUNT(a.ansatte_id) AS ansatte_count
         FROM bedrifter_tb b
-        LEFT JOIN ansatte_tb a ON b.bedrift_id = a.ansatte_bedrifts_id";
+        LEFT JOIN ansatte_tb a ON b.bedrift_id = a.ansatte_bedrifts_id"; // Select data from 'bedrifter_tb' table with left join on 'ansatte_tb'
 
 if (!empty($searchQuery)) {
     // Check if the initial query already contains a WHERE clause
@@ -18,12 +20,12 @@ if (!empty($searchQuery)) {
     }
 }
 
-$sort = isset($_GET['sort']) ? $_GET['sort'] : 'bedrift_id';
-$order = isset($_GET['order']) && $_GET['order'] == 'desc' ? 'DESC' : 'ASC';
+$sort = isset($_GET['sort']) ? $_GET['sort'] : 'bedrift_id'; // Get sorting column from URL, default to 'bedrift_id'
+$order = isset($_GET['order']) && $_GET['order'] == 'desc' ? 'DESC' : 'ASC'; // Get sorting order from URL, default to ascending
 
-$sql .= " GROUP BY b.bedrift_id ORDER BY $sort $order";
+$sql .= " GROUP BY b.bedrift_id ORDER BY $sort $order"; // Group by 'bedrift_id' and apply sorting
 
-$result = mysqli_query($conn, $sql);
+$result = mysqli_query($conn, $sql); // Execute SQL query
 
 if (!$result) {
     // Handle the SQL error
