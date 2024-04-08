@@ -165,11 +165,7 @@ if (isset($_GET['bedrift_id'])) {
             </table>
 
             <h1 class="header-ansatte">Ansatte</h1>
-            <table class="table2">
-                <thead class="table2head">
-                <p>No ansatte found for this bedrift.</p>
-                </thead>
-            </table>
+            <p id="noansatte">No ansatte found at this bedrift.</p>
             <table>
                 <tbody>
                     <tr>

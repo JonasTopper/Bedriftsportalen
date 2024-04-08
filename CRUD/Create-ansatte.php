@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
     $fornavn = $_POST['fornavn'];
     $etternavn = $_POST['etternavn'];
     $stilling = $_POST['stilling'];
-    $kontakt_person = isset($_POST['kontakt_person']) ? 1 : 0; 
+    $kontakt_person = $_POST['kontakt_person'];
     $tlf_nr = $_POST['tlf_nr'];
     $epost = $_POST['epost'];
     $bedrifts_id = $_POST['bedrift_id'];
@@ -56,14 +56,11 @@ if (isset($_POST['submit'])) {
                         <td><input type="text" name="stilling"></td>
                     </tr>
                     <tr>
-                        <?php
-                        $kontakt_person = isset($_POST['kontakt_person']) ? $_POST['kontakt_person'] : 0;
-                        ?>
                         <th>Kontaktperson</th>
                         <td>
                         <select name="kontakt_person" class="input-field">
-                        <option value="1" <?php if ($kontakt_person == 1) echo "selected"; ?>>Ja</option>
-                        <option value="0" <?php if ($kontakt_person == 0) echo "selected"; ?>>Nei</option>
+                        <option value="1">Ja</option>
+                        <option value="0">Nei</option>
                         </td>
                     </tr>
                     <tr>
