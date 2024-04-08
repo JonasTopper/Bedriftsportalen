@@ -126,7 +126,7 @@ if(isset($_POST['submit'])) {
                     </tr>
                     <tr>
                         <th>Er kunde</th>
-                        <td><input type="checkbox" name="er_kunde" required></td>
+                        <td><input type="checkbox" name="er_kunde"></td>
                     </tr>
                     <tr>
                         <th>Beskrivelse</th>

@@ -4,7 +4,7 @@ include 'CRUD/connect.php';
 session_start();
 
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
-    header("Location: Login.php");
+    header("Location: Innlogging/Login.php");
     exit;
 }
 
@@ -15,7 +15,7 @@ $user_admin = $_SESSION["is_admin"];
 if ($user_admin == 1) {
     
 } else {
-    header("Location: CRUD/Read.php?bedrift_id=" . $user_id);
+    header("Location: CRUD/Read_User.php?bedrift_id=" . $user_id);
     exit;
 }
 
