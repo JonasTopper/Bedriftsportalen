@@ -115,7 +115,7 @@ $bedrifter = mysqli_fetch_all($resultat_les, MYSQLI_ASSOC);
         </div>
     </div>
     <main>
-        <div class="slider">
+    <div class="slider">
             <div class="slide">
                 <?php foreach ($bedrifter as $bedrift) : ?>
                     <div class="bedrift">
@@ -124,8 +124,11 @@ $bedrifter = mysqli_fetch_all($resultat_les, MYSQLI_ASSOC);
                             $bedrift_id = $bedrift['bedrift_id'];
                             $bedrift_navn = $bedrift['bedrift_navn'];
                             $logo_src = $bedrift["bedrift_logo_filepath"];
+                             if (empty($logo_src) || !file_exists($logo_src)) {
+                                $logo_src = "Images/no-image.png";
+                             }
                             ?>
-                            <img class="logo" src="<?php echo $logo_src . "?" . uniqid(); ?>" alt="Logo">
+                            <img class="logo" src="<?php echo $logo_src; ?>" alt="Logo">
                             <p class="bedrift-navn"><?php echo $bedrift['bedrift_navn']; ?></p>
                         </a>
                     </div>
