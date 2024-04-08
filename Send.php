@@ -6,6 +6,8 @@ require 'PHPmailer/src/Exception.php';
 require 'PHPmailer/src/PHPMailer.php';
 require 'PHPmailer/src/SMTP.php';
 
+require 'Innlogging/verify.php';
+
 if(isset($_POST["send"])) {
     $mail = new PHPMailer(true);
 
@@ -27,7 +29,7 @@ if(isset($_POST["send"])) {
     $mail->Body = "
     <p>Velkommen til Bedriftsportalen!
     <br> <br>
-    Din verifiseringskode er: 0408f32
+    Din verifiseringskode er: $actual_verification_code
     <br> <br>
     Med vennlig hilsen,
     Bedriftsportalen Developers</p>

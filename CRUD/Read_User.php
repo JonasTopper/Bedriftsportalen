@@ -30,7 +30,6 @@ if (isset($_GET['bedrift_id'])) {
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <link rel="stylesheet" href="../stylesheets/stylesheet.css?v=1.0">
-            <link href="../AOSLib/aos/aos.css" rel="stylesheet">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-pwCHXNHXDBp4Zh3fCkGpMeWzHjwUC1n1br5x3IyVBFzbJRsN/l2M+SWdgZfjqxiS" crossorigin="anonymous">
             <title>Bedriftsportalen</title>
         </head>
@@ -130,7 +129,6 @@ if (isset($_GET['bedrift_id'])) {
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <link rel="stylesheet" href="../stylesheets/stylesheet.css?v=1.0">
             <link href="../stylesheets/stylesheet.css" rel="stylesheet">
-            <link href="../AOSLib/aos/aos.css" rel="stylesheet">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-pwCHXNHXDBp4Zh3fCkGpMeWzHjwUC1n1br5x3IyVBFzbJRsN/l2M+SWdgZfjqxiS" crossorigin="anonymous">
             <title> Bedriftsportalen </title>
         </head>
@@ -198,5 +196,4 @@ if (isset($_GET['bedrift_id'])) {
     mysqli_close($conn);
 }
 ?>
-<script src="../JavaScript/delete_confirmation.js"></script>
-<script src="../AosLib/aos/aos.js"></script>
+<script src="../JavaScript/delete_confirmation.js"></script

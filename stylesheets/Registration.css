@@ -363,3 +363,13 @@ background: radial-gradient(circle, #FF5A5F 0%, #3E92CC 100%);
 .btn-16:active {
   top: 2px;
 }
+
+.verifys .inputmails input {
+  background: #ecf0f3;
+  padding: 10px;
+  padding-left: 20px;
+  height: 50px;
+  font-size: 14px;
+  border-radius: 50px;
+  box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
+}
