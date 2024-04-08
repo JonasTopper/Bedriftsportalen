@@ -174,7 +174,7 @@ if (!empty($searchQuery)) {
  <!-- #region  -->
         <div class="search-container">
             <form action="" method="get">
-                <input type="text" id="bedrift-search" placeholder="Search by bedrift name..." value="<?php echo htmlspecialchars($searchQuery); ?>">
+                <input type="text" id="bedrift-search" placeholder="Search by bedrift name...🔍" value="<?php echo htmlspecialchars($searchQuery); ?>">
                 <button type="submit">Search</button>
             </form>
         </div>

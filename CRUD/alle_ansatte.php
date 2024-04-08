@@ -33,7 +33,6 @@ $result = mysqli_query($conn, $sql);
     </style>
 </head>
 <body>
-
     <a href="../"><button type="button" class="btn">Hjem </button></a>
 
     <div class="logo-alle_ansatte-con">
@@ -44,7 +43,7 @@ $result = mysqli_query($conn, $sql);
 
     <div class="ansatte-search-box">
     <form action="alle_ansatte.php" method="GET">
-        <input type="text" id="search" name="search" placeholder="Search...">
+        <input type="text" id="search" name="search" placeholder="Search...🔍"> 
         <button type="submit" class="btn">Search</button>
         <a href="alle_ansatte.php" ><button class="reset-btn">Reset</button></a>
     </form>
