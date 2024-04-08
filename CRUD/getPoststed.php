@@ -3,7 +3,7 @@
 include 'connect.php';
 
 // Check if the postnummer parameter is set in the request
-if(isset($_GET['postnummer'])) {
+if (isset($_GET['postnummer'])) {
     // Sanitize the input
     $postnummer = mysqli_real_escape_string($conn, $_GET['postnummer']);
 

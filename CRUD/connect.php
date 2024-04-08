@@ -1,21 +1,18 @@
 <?php
 
-// Parametere til databasen
+// Parameters
 $host = 'localhost';
 $brukernavn = 'root';
 $passord = '';
 $database = 'bedriftsportalen_db';
 
-// Lag en forindelses-streng
+// Creating connection
 $conn = mysqli_connect($host, $brukernavn, $passord, $database);
 
-// Sjekk Forbindelse
+// Checking connection
 
-if(!$conn)
-  {
-    die('Feil med forbindelsen'. mysqli_connect_error());
-  }
-else
-  {
- //   echo "Databasen er tilkoblet";
-  }
+if (!$conn) {
+  die('Feil med forbindelsen' . mysqli_connect_error());
+} else {
+  //   echo "Databasen er tilkoblet";
+}

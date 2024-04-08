@@ -490,12 +490,6 @@ tr:nth-child(even) {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.701);
 }
 
-#logoPreview {
-    max-height: 150px;
-    max-width: 150px;
-    margin-left: 18.50vh;
-    margin-top: 2vh;
-}
 .sort-arrow {
     margin-left: 5px;
     }   
@@ -506,9 +500,4 @@ tr:nth-child(even) {
 
     .sort-arrow.desc::after {
         content:"⬇";
-    }
-
-#noansatte {
-    margin-left: 26.5vh;
-    margin-right: 26.5vh;
-}
+    } 

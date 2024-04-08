@@ -1,8 +1,11 @@
 <?php
 include 'connect.php';
 
-$searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
+session_start();
 
+$searchQuery = isset($_GET['search']) ? $_GET['search'] : ''; // Getting search query from the URL
+
+// Construct SQL query to fetch data from 'ansatte_tb' table with optional search filter
 $sql = "SELECT a.*, b.bedrift_navn  
         FROM ansatte_tb a
         LEFT JOIN bedrifter_tb b ON a.ansatte_bedrifts_id = b.bedrift_id";
@@ -21,6 +24,7 @@ $result = mysqli_query($conn, $sql);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,12 +32,20 @@ $result = mysqli_query($conn, $sql);
     <title>All Ansatte</title>
     <style>
         #search {
-            width:500px;
+            width: 500px;
+        }
+
+        .konktat_person_yes {
+            border-radius: 50%;
+        }
+
+        .kontakt_person_no {
+            background-color: #3E92CC;
         }
     </style>
 </head>
-<body>
 
+<body>
     <a href="../"><button type="button" class="btn">Hjem </button></a>
 
     <div class="logo-alle_ansatte-con">
@@ -43,17 +55,17 @@ $result = mysqli_query($conn, $sql);
     <h1>Se Alle Ansatte</h1>
 
     <div class="ansatte-search-box">
-    <form action="alle_ansatte.php" method="GET">
-        <input type="text" id="search" name="search" placeholder="Search...">
-        <button type="submit" class="btn">Search</button>
-        <a href="alle_ansatte.php" ><button class="reset-btn">Reset</button></a>
-    </form>
+        <form action="alle_ansatte.php" method="GET">
+            <input type="text" id="search" name="search" placeholder="Search...🔍">
+            <button type="submit" class="btn">Search</button>
+            <a href="alle_ansatte.php"><button class="reset-btn">Reset</button></a>
+        </form>
     </div>
 
     <table class="all-view-table">
         <thead>
             <tr class="alle-ansatte">
-            <th><a href="?sort=ansatte_id&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Ansatte ID<span class="sort-arrow <?php echo $order == 'ASC' && $sort == 'ansatte_id' ? 'asc' : ($order == 'DESC' && $sort == 'ansatte_id' ? 'desc' : ''); ?>"></span></a></th>
+                <th><a href="?sort=ansatte_id&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Ansatte ID<span class="sort-arrow <?php echo $order == 'ASC' && $sort == 'ansatte_id' ? 'asc' : ($order == 'DESC' && $sort == 'ansatte_id' ? 'desc' : ''); ?>"></span></a></th>
                 <th><a href="?sort=ansatte_etternavn&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Etternavn<span class="sort-arrow <?php echo $order == 'ASC' && $sort == 'ansatte_etternavn' ? 'asc' : ($order == 'DESC' && $sort == 'ansatte_etternavn' ? 'desc' : ''); ?>"></span></a></th>
                 <th><a href="?sort=ansatte_fornavn&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Fornavn<span class="sort-arrow <?php echo $order == 'ASC' && $sort == 'ansatte_fornavn' ? 'asc' : ($order == 'DESC' && $sort == 'ansatte_fornavn' ? 'desc' : ''); ?>"></span></a></th>
                 <th><a href="?sort=ansatte_stilling&order=<?php echo $order == 'ASC' ? 'desc' : 'asc'; ?>">Stilling<span class="sort-arrow <?php echo $order == 'ASC' && $sort == 'ansatte_stilling' ? 'asc' : ($order == 'DESC' && $sort == 'ansatte_stilling' ? 'desc' : ''); ?>"></span></a></th>
@@ -65,9 +77,10 @@ $result = mysqli_query($conn, $sql);
         </thead>
         <tbody>
             <?php while ($row = mysqli_fetch_assoc($result)) : ?>
-                <tr>
-                    <td><?php echo $row['ansatte_id']; ?></td>
-                    <td><?php echo $row['ansatte_etternavn']; ?></td>
+                <?php $ansattClass = $row['ansatte_kontakt_person'] == 1 ? 'kontakt_person_yes' : 'kontakt_person_no'; ?>
+                <tr class="<?php echo $ansattClass; ?>">
+                    <td><a href="Detailed-view-ansatte.php?ansatte_id=<?php echo $row['ansatte_id']; ?>"><?php echo $row['ansatte_id']; ?></a></td>
+                    <td><a href="Edit-ansatt.php?ansatte_id=<?php echo $row['ansatte_id']; ?>"><?php echo $row['ansatte_etternavn']; ?></a></td>
                     <td><?php echo $row['ansatte_fornavn']; ?></td>
                     <td><?php echo $row['ansatte_stilling']; ?></td>
                     <td><?php echo $row['ansatte_kontakt_person'] ? 'Yes' : 'No'; ?></td>
@@ -76,7 +89,8 @@ $result = mysqli_query($conn, $sql);
                     <td><?php echo $row['bedrift_navn']; ?></td>
                 </tr>
         </tbody>
-        <?php endwhile; ?>
+    <?php endwhile; ?>
     </table>
 </body>
+
 </html>
