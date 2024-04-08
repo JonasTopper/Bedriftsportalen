@@ -3,6 +3,10 @@ function confirmDeleteBedrift(bedriftnavn, id) {
     // Display confirmation dialog with bedrift's name and ID
     var confirmation = confirm(`Vil du slette ${bedriftnavn} med ID ${id}?`);
     // If user confirms deletion, redirect to confirmdelete.php with bedrift ID
+
+function confirmDeleteBedrift(bedriftnavn, id, ansattenummer) {
+    var confirmation = confirm(`Vil du slette ${bedriftnavn} med ID ${id} med ${ansattenummer} ansatte?`);
+
     if (confirmation) {
         window.location.href = `confirmdelete.php?bedriftid=${id}`;
     }

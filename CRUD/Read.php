@@ -12,7 +12,6 @@ if (isset($_GET['bedrift_id'])) {
               INNER JOIN ansatte_tb 
               ON bedrifter_tb.bedrift_id = ansatte_tb.ansatte_bedrifts_id
               WHERE ansatte_tb.ansatte_bedrifts_id = $id";
-    // Leser SQL => Hva skjer er egentlig? \o/
     $result_edit = mysqli_query($conn, $sql_edit);
 
     if (!$result_edit) {
