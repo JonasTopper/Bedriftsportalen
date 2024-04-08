@@ -1,23 +1,55 @@
 <?php
 include 'CRUD/connect.php';
 
+session_start();
+
+// Variable for search functionality
+$newSearchQuery = '';
+
+// Redirect to login page if user is not logged in
+if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+    header("Location: Innlogging/Login.php");
+    exit;
+}
+
+// Get user details from session
+$user_id = $_SESSION["id"];
+$user_name = $_SESSION["username"];
+$user_admin = $_SESSION["is_admin"];
+
+// Redirect non-admin users to their profile page
+if ($user_admin != 1) {
+    header("Location: CRUD/Read_User.php?bedrift_id=" . $user_id);
+    exit;
+}
+
 // Check if the user has already accepted the terms
 $termsAccepted = isset($_COOKIE['terms_accepted']);
 
+// Set terms accepted cookie when form is submitted
 if (!$termsAccepted && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accept_terms'])) {
-    // User has accepted the terms, set a cookie to remember the choice for a period of time
     setcookie('terms_accepted', 'true', time() + (365 * 24 * 60 * 60), '/'); // Cookie lasts for 1 year
     $termsAccepted = true;
 }
 
+// Prevent caching of the page
 header("Cache-Control: no-cache, no-store, must-revalidate");
 header("Pragma: no-cache");
 header("Expires: 0");
 
-// Prosedyre for les
+// Fetch all bedrifter for display
 $sql_les = "SELECT bedrift_id, bedrift_navn, bedrift_logo_filepath FROM bedrifter_tb";
 $resultat_les = mysqli_query($conn, $sql_les);
 $bedrifter = mysqli_fetch_all($resultat_les, MYSQLI_ASSOC);
+
+// Search functionality
+$newSearchQuery = isset($_GET['search']) ? $_GET['search'] : '';
+if (!empty($newSearchQuery)) {
+    // Modify the SQL query to fetch data based on the search criteria
+    $sql_les = "SELECT bedrift_id, bedrift_navn, bedrift_logo_filepath FROM bedrifter_tb WHERE bedrift_navn LIKE '%$newSearchQuery%' OR bedrift_id LIKE '%$newSearchQuery%'";
+    $resultat_les = mysqli_query($conn, $sql_les);
+    $bedrifter = mysqli_fetch_all($resultat_les, MYSQLI_ASSOC);
+}
 ?>
 
 <!DOCTYPE html>
@@ -82,6 +114,34 @@ $bedrifter = mysqli_fetch_all($resultat_les, MYSQLI_ASSOC);
         }
 
 
+        /* Search bar style */
+
+        .search-container {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .search-container input[type="text"] {
+            width: 300px;
+            height: 30px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .search-container button {
+            height: 40px;
+            padding: 5px 15px;
+            background-color: #3E92CC;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .search-container button:hover {
+            background-color: #357ea8;
+        }
     </style>
 </head>
 
@@ -94,16 +154,16 @@ $bedrifter = mysqli_fetch_all($resultat_les, MYSQLI_ASSOC);
                 <p>Vennligst les og godta Terms of Service før du benytter deg av tjenesten.</p>
                 <form id="accept-form" method="post">
                     Jeg har lest og godtatt <u><a href="terms_of_service.php"><u>Terms of Service</a> <input type="checkbox" id="accept-checkbox"><br><br><br>
-                    <button class="terms-btn" type="submit" id="accept-button" name="accept_terms" disabled>Accept</button>
+                        <button class="terms-btn" type="submit" id="accept-button" name="accept_terms" disabled>Accept</button>
                 </form>
             </div>
         </div>
     <?php endif; ?>
 
-
     <!-- Rest of your HTML content -->
-    <a href="CRUD/alle_ansatte.php"><button class="alle-view-btn" type="button" href="alle_ansatte">Alle ansatte</button></a>
-    <a href="CRUD/alle_bedrifter.php"><button class="alle-view-btn" type="button" href="alle_bedrifter">Alle bedrifter</button></a>
+    <a href="CRUD/alle_ansatte.php"><button class="alle-view-btn" type="button">Alle ansatte</button></a>
+    <a href="CRUD/alle_bedrifter.php"><button class="alle-view-btn" type="button">Alle bedrifter</button></a>
+    <a href="Innlogging/logout.php"><button class="alle-view-btn" type="button">Logg ut</button></a>
 
     <div class="logo-main-con">
         <img class="logo-main" src="images/logo_no_slogan.png">
@@ -115,7 +175,17 @@ $bedrifter = mysqli_fetch_all($resultat_les, MYSQLI_ASSOC);
         </div>
     </div>
     <main>
-    <div class="slider">
+
+        <!-- #region  -->
+        <div class="search-container">
+            <form action="index.php" method="get">
+                <input type="text" id="bedrift-search" name="search" placeholder="Search by bedrift name...🔍" value="<?php echo htmlspecialchars($newSearchQuery); ?>">
+                <button type="submit">Search</button>
+            </form>
+
+        </div>
+
+        <div class="slider">
             <div class="slide">
                 <?php foreach ($bedrifter as $bedrift) : ?>
                     <div class="bedrift">
@@ -124,9 +194,9 @@ $bedrifter = mysqli_fetch_all($resultat_les, MYSQLI_ASSOC);
                             $bedrift_id = $bedrift['bedrift_id'];
                             $bedrift_navn = $bedrift['bedrift_navn'];
                             $logo_src = $bedrift["bedrift_logo_filepath"];
-                             if (empty($logo_src) || !file_exists($logo_src)) {
+                            if (empty($logo_src) || !file_exists($logo_src)) {
                                 $logo_src = "Images/no-image.png";
-                             }
+                            }
                             ?>
                             <img class="logo" src="<?php echo $logo_src; ?>" alt="Logo">
                             <p class="bedrift-navn"><?php echo $bedrift['bedrift_navn']; ?></p>
@@ -135,29 +205,9 @@ $bedrifter = mysqli_fetch_all($resultat_les, MYSQLI_ASSOC);
                 <?php endforeach; ?>
             </div>
         </div>
-    <?php
-    if(isset($_GET['deletion']) && $_GET['deletion'] == 'true') {
-    ?>
-    <div class="popup-overlay" id="deletealert">
-        <div class="popup-content">
-            <p>Slettet suksessfullt!</p>
-        </div>
-    </div>
-
-    <script>
-        window.onload = function() {
-            setTimeout(function() {
-                var deleteAlert = document.getElementById('deletealert');
-                if (deleteAlert) {
-                    deleteAlert.style.display = 'none';
-                }
-            }, 2000);
-        };
-    </script>
-
-    <?php }?>
     </main>
-    <script src="JavaScript/script.js?v=1.0"></script>
+
+    <script src="JavaScript/script.js?=v1.0"></script>
     <script>
         // JavaScript function to handle accepting terms
         function acceptTerms() {
@@ -175,7 +225,6 @@ $bedrifter = mysqli_fetch_all($resultat_les, MYSQLI_ASSOC);
             // Enable/disable the accept button based on checkbox state
             document.getElementById("accept-button").disabled = !this.checked;
         });
-
     </script>
 </body>
 

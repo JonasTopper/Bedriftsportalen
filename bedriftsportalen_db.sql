@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 05. Apr, 2024 11:16 AM
+-- Generation Time: 08. Apr, 2024 10:14 AM
 -- Tjener-versjon: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -56,7 +56,7 @@ INSERT INTO `ansatte_tb` (`ansatte_id`, `ansatte_etternavn`, `ansatte_fornavn`, 
 CREATE TABLE `bedrifter_innlogging_tb` (
   `bedrifter_id` bigint(20) UNSIGNED NOT NULL,
   `bedrifter_brukernavn` varchar(45) NOT NULL,
-  `bedrifter_passord` varchar(18) NOT NULL,
+  `bedrifter_passord` varchar(255) NOT NULL,
   `bedrifter_is_admin` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
