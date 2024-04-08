@@ -34,6 +34,7 @@ if (!$result) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,7 +43,7 @@ if (!$result) {
     <title>Se Alle Bedrifter</title>
     <style>
         #search {
-            width:300px;
+            width: 300px;
         }
 
         .kunde-yes {
@@ -54,10 +55,11 @@ if (!$result) {
         }
     </style>
 </head>
+
 <body>
 
     <a href="../"><button type="button" class="btn">Hjem </button></a>
-    
+
     <div class="logo-alle_ansatte-con">
         <img class="logo-alle_ansatte" src="../images/logo_no_slogan.png">
     </div>
@@ -65,11 +67,11 @@ if (!$result) {
     <h1>View All Bedrifter</h1>
 
     <div class="ansatte-search-box">
-    <form action="alle_bedrifter.php" method="GET">
-        <input type="text" id="search" name="search" placeholder="Search...🔍">
-        <button type="submit" class="btn">Search</button>
-        <a href="alle_ansatte.php" ><button class="reset-btn">Reset</button></a>
-    </form>
+        <form action="alle_bedrifter.php" method="GET">
+            <input type="text" id="search" name="search" placeholder="Search...🔍">
+            <button type="submit" class="btn">Search</button>
+            <a href="alle_ansatte.php"><button class="reset-btn">Reset</button></a>
+        </form>
     </div>
 
     <table class="all-view-table">
@@ -88,7 +90,7 @@ if (!$result) {
         </thead>
         <tbody>
             <?php while ($row = mysqli_fetch_assoc($result)) : ?>
-                <?php $kundeClass = $row['bedrift_er_kunde'] == 1 ? 'kunde-yes' : 'kunde-no'; ?> 
+                <?php $kundeClass = $row['bedrift_er_kunde'] == 1 ? 'kunde-yes' : 'kunde-no'; ?>
                 <tr class="<?php echo $kundeClass; ?>">
                     <td><?php echo $row['bedrift_id']; ?></td>
                     <td><a href="Read.php?bedrift_id=<?php echo $row['bedrift_id']; ?>"><?php echo $row['bedrift_navn']; ?> </a></td>
@@ -101,7 +103,8 @@ if (!$result) {
                     <td><?php echo $row['bedrift_er_kunde'] == 1 ? 'Yes' : 'No'; ?></td>
                 </tr>
         </tbody>
-        <?php endwhile; ?>
+    <?php endwhile; ?>
     </table>
 </body>
+
 </html>

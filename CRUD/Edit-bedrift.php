@@ -2,7 +2,7 @@
 include 'connect.php';
 
 // Check if form is submitted
-if(isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {
     // Get the bedrift_id from the form
     $id = $_POST['bedrift_id'];
 
@@ -24,12 +24,12 @@ if(isset($_POST['submit'])) {
     // Check if the update was successful
     if ($result_update) {
         if (isset($_FILES["logo"]) && $_FILES["logo"]["error"] == UPLOAD_ERR_OK) {
-            $bedrift_name = $navn; 
+            $bedrift_name = $navn;
             $upload_dir = "../images/";
             $logo_name = "logo_" . strtolower(str_replace(" ", "_", $bedrift_name));
             $file_extension = pathinfo($_FILES["logo"]["name"], PATHINFO_EXTENSION);
             $upload_path = $upload_dir . $logo_name . "." . $file_extension;
-            
+
             if (move_uploaded_file($_FILES["logo"]["tmp_name"], $upload_path)) {
                 echo "Logo uploaded successfully.";
             } else {
@@ -46,14 +46,14 @@ if(isset($_POST['submit'])) {
 }
 
 // If form is not submitted or update fails, fetch current data for display
-if(isset($_GET['bedrift_id'])) {
+if (isset($_GET['bedrift_id'])) {
     $id = $_GET['bedrift_id'];
     $sql_bedrifter = "SELECT * FROM bedrifter_tb WHERE bedrift_id = $id";
     $result = mysqli_query($conn, $sql_bedrifter);
 
     if ($result) {
         $row = mysqli_fetch_assoc($result);
-        
+
         $navn = $row['bedrift_navn'];
         $adresse = $row['bedrift_adresse'];
         $post_nr = $row['bedrift_post_nr'];
@@ -72,6 +72,7 @@ mysqli_close($conn);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -80,60 +81,62 @@ mysqli_close($conn);
     <title>Bedriftsportalen</title>
     <style>
         #search {
-            width:500px;
+            width: 500px;
         }
     </style>
 </head>
+
 <body>
 
-<main>
-    <form method="POST" action="" enctype="multipart/form-data">
-        <input type="hidden" name="bedrift_id" value="<?php echo $id ?>">
+    <main>
+        <form method="POST" action="" enctype="multipart/form-data">
+            <input type="hidden" name="bedrift_id" value="<?php echo $id ?>">
 
-        <div class="edit-input-container">
-        <label for="navn">Navn:</label>
-        <input type="text" id="search" name="bedrift_navn" value="<?php echo $navn ?>"><br>
-        </div>
+            <div class="edit-input-container">
+                <label for="navn">Navn:</label>
+                <input type="text" id="search" name="bedrift_navn" value="<?php echo $navn ?>"><br>
+            </div>
 
-        <div class="edit-input-container">
-        <label for="adresse">Adresse:</label>
-        <input type="text" id="search" name="bedrift_adresse" value="<?php echo $adresse ?>"><br>
-        </div>
+            <div class="edit-input-container">
+                <label for="adresse">Adresse:</label>
+                <input type="text" id="search" name="bedrift_adresse" value="<?php echo $adresse ?>"><br>
+            </div>
 
-        <div class="edit-input-container">        
-        <label for="post_nr">Postnummer:</label>
-        <input type="text" id="search" name="bedrift_post_nr" value="<?php echo $post_nr ?>"><br>
-        </div>
+            <div class="edit-input-container">
+                <label for="post_nr">Postnummer:</label>
+                <input type="text" id="search" name="bedrift_post_nr" value="<?php echo $post_nr ?>"><br>
+            </div>
 
-        <div class="edit-input-container">
-        <label for="post_sted">Poststed:</label>
-        <input type="text" id="search" name="bedrift_post_sted" value="<?php echo $post_sted ?>"><br>
-        </div>
+            <div class="edit-input-container">
+                <label for="post_sted">Poststed:</label>
+                <input type="text" id="search" name="bedrift_post_sted" value="<?php echo $post_sted ?>"><br>
+            </div>
 
-        <div class="edit-input-container">
-        <label for="org_form">Org-form:</label>
-        <input type="text" id="search" name="bedrift_org_form" value="<?php echo $org_form ?>"><br>
-        </div>
+            <div class="edit-input-container">
+                <label for="org_form">Org-form:</label>
+                <input type="text" id="search" name="bedrift_org_form" value="<?php echo $org_form ?>"><br>
+            </div>
 
-        <div class="edit-input-container">
-        <label for="org_nr">Org-nummer:</label>
-        <input type="text" id="search" name="bedrift_org_nr" value="<?php echo $org_nr ?>"><br>
-        </div>
+            <div class="edit-input-container">
+                <label for="org_nr">Org-nummer:</label>
+                <input type="text" id="search" name="bedrift_org_nr" value="<?php echo $org_nr ?>"><br>
+            </div>
 
-        <div class="edit-input-container">
-        <label for="logo">Logo</label>
-        <input type="file" name="logo"><br>
-        </div>
+            <div class="edit-input-container">
+                <label for="logo">Logo</label>
+                <input type="file" name="logo"><br>
+            </div>
 
-        <input type="button" name="exit" value="Tilbake" onclick=goBack() class="back-btn">
+            <input type="button" name="exit" value="Tilbake" onclick=goBack() class="back-btn">
 
-        <input class="btn" type="submit" name="submit" value="Oppdater">
-    </form>
-</main>
+            <input class="btn" type="submit" name="submit" value="Oppdater">
+        </form>
+    </main>
     <script>
         function goBack() {
-        window.history.back();
-    }
+            window.history.back();
+        }
     </script>
 </body>
+
 </html>

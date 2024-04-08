@@ -1,4 +1,5 @@
 <?php
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -8,7 +9,7 @@ require 'PHPmailer/src/SMTP.php';
 
 require 'Innlogging/verify.php';
 
-if(isset($_POST["send"])) {
+if (isset($_POST["send"])) {
     $mail = new PHPMailer(true);
 
     $mail->isSMTP();
@@ -44,7 +45,7 @@ if(isset($_POST["send"])) {
 
     if ($mail->send()) {
         header("Location: verification.php");
-        exit(); 
+        exit();
     } else {
         echo "Email could not be sent. Mailer Error: " . $mail->ErrorInfo;
     }

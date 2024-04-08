@@ -1,13 +1,14 @@
 <?php
 include 'connect.php';
 
-function CreateSQLRow($conn, $fornavn, $etternavn, $stilling, $kontakt_person, $tlf_nr, $epost, $bedrifts_id) {
+function CreateSQLRow($conn, $fornavn, $etternavn, $stilling, $kontakt_person, $tlf_nr, $epost, $bedrifts_id)
+{
     $sql = "INSERT INTO ansatte_tb (ansatte_fornavn, ansatte_etternavn, ansatte_stilling, ansatte_kontakt_person, ansatte_tlf_nr, ansatte_epost, ansatte_bedrifts_id) 
     VALUES ('$fornavn', '$etternavn', '$stilling', '$kontakt_person', '$tlf_nr', '$epost', '$bedrifts_id')";
 
     $run_query = mysqli_query($conn, $sql);
 
-    if($run_query) {
+    if ($run_query) {
         header("Location: Read.php?bedrift_id=$bedrifts_id"); //redirect
         exit();
     } else {
@@ -30,6 +31,7 @@ if (isset($_POST['submit'])) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,6 +39,7 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-pwCHXNHXDBp4Zh3fCkGpMeWzHjwUC1n1br5x3IyVBFzbJRsN/l2M+SWdgZfjqxiS" crossorigin="anonymous">
     <title>Bedriftsportalen</title>
 </head>
+
 <body>
     <h1> Opprett Ansatte </h1>
     <main>
@@ -58,9 +61,9 @@ if (isset($_POST['submit'])) {
                     <tr>
                         <th>Kontaktperson</th>
                         <td>
-                        <select name="kontakt_person" class="input-field" required>
-                        <option value="1">Ja</option>
-                        <option value="0">Nei</option>
+                            <select name="kontakt_person" class="input-field" required>
+                                <option value="1">Ja</option>
+                                <option value="0">Nei</option>
                         </td>
                     </tr>
                     <tr>
@@ -78,17 +81,18 @@ if (isset($_POST['submit'])) {
                 </thead>
             </table>
             <div class="submit-btn-container">
-            <a onclick=goBack()><button type="button" class="back-btn-create-bedrift">Exit</button></a>
+                <a onclick=goBack()><button type="button" class="back-btn-create-bedrift">Exit</button></a>
                 <input type="submit" name="submit" class="submit-btn">
             </div>
         </form>
     </main>
     <script src="../JavaScript/post.js?v1.0"></script>
 </body>
+
 </html>
- 
+
 <script>
-        function goBack() {
+    function goBack() {
         window.history.back();
     }
 </script>

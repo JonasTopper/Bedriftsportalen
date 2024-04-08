@@ -11,11 +11,8 @@ $conn = mysqli_connect($host, $brukernavn, $passord, $database);
 
 // Sjekk Forbindelse
 
-if(!$conn)
-  {
-    die('Feil med forbindelsen'. mysqli_connect_error());
-  }
-else
-  {
- //   echo "Databasen er tilkoblet";
-  }
+if (!$conn) {
+  die('Feil med forbindelsen' . mysqli_connect_error());
+} else {
+  //   echo "Databasen er tilkoblet";
+}
