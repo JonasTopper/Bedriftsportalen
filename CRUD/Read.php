@@ -1,13 +1,30 @@
 <?php 
-
 include 'connect.php';
 
 // Dersom bedrift_id finnes 
 if (isset($_GET['bedrift_id'])) {
     // Oppretter variabel for bedrift_id => Bruker GET
     $id = $_GET['bedrift_id'];
-    // Opretter variabel for SELECT setning => Hvor bedrift_id => Ønsket ID
     
+    // Query to count the number of employees for the given 'bedrift_id'
+    $sql_count_ansatte = "SELECT COUNT(*) AS total_ansatte FROM ansatte_tb WHERE ansatte_bedrifts_id = $id";
+    
+    // Execute the query
+    $result_count_ansatte = mysqli_query($conn, $sql_count_ansatte);
+    
+    // Check if the query was successful
+    if ($result_count_ansatte) {
+        // Fetch the result as an associative array
+        $row_count_ansatte = mysqli_fetch_assoc($result_count_ansatte);
+        
+        // Get the total number of employees
+        $ansattecount = $row_count_ansatte['total_ansatte'];
+    } else {
+        // If there's an error with the query, display the error message
+        die("Query failed: " . mysqli_error($conn));
+    }
+
+    // Opretter variabel for SELECT setning => Hvor bedrift_id => Ønsket ID
     $sql_edit = "SELECT * FROM bedrifter_tb 
               INNER JOIN ansatte_tb 
               ON bedrifter_tb.bedrift_id = ansatte_tb.ansatte_bedrifts_id
@@ -23,7 +40,23 @@ if (isset($_GET['bedrift_id'])) {
     // Check if there are any rows returned by the query
     if (mysqli_num_rows($result_edit) > 0) {
         // Fetch the first row to display bedrift information
-        $first_row = mysqli_fetch_assoc($result_edit); ?>
+        $first_row = mysqli_fetch_assoc($result_edit); 
+
+        $ansatte = array();
+        
+        // Loop through the first row to extract 'ansatte_id' values
+        foreach($first_row as $key => $value) {
+            if ($key === 'ansatte_id') {
+                $ansatte[] = $value;
+            }
+        }
+
+        // Reset the array pointer
+        reset($ansatte);
+        
+        // Count the number of employees
+        $antall_ansatte = count($ansatte); ?>
+
         <!DOCTYPE html>
         <html lang="en">
         <head>
@@ -59,7 +92,7 @@ if (isset($_GET['bedrift_id'])) {
                             <div class="button-group">
                                 <a href="Edit-bedrift.php?bedrift_id=<?php echo $id ?>"><button class="edit-btn-table">Rediger</button></a>
                                 <a class="detaljer_kapp" href="Detailed-view-bedrift.php?bedrift_id=<?php echo $id ?>"><button class="details-btn-table">Detaljer</button></a>
-                                <button class="delete-btn-table" onclick="confirmDeleteBedrift('<?php echo htmlspecialchars($first_row['bedrift_navn'])?>', '<?php echo htmlspecialchars($first_row['bedrift_id'])?>')">X</button>
+                                <button class="delete-btn-table" onclick="confirmDeleteBedrift('<?php htmlspecialchars($first_row['bedrift_navn']) ?>', '<?php echo htmlspecialchars($first_row['bedrift_id']) ?>', '<?php echo $ansattecount ?>')">X</button>
                             </div>
                         </td>
                     </tr>
@@ -120,7 +153,7 @@ if (isset($_GET['bedrift_id'])) {
         $bedrift_query = "SELECT * FROM bedrifter_tb WHERE bedrift_id = $id";
         $bedrift_result = mysqli_query($conn, $bedrift_query);
         $bedrift_row = mysqli_fetch_assoc($bedrift_result);
-
+        $ansattecount = 0;
         ?>
         <!DOCTYPE html>
         <html lang="en">
@@ -156,7 +189,7 @@ if (isset($_GET['bedrift_id'])) {
                             <div class="button-group">
                                 <a href="Edit-bedrift.php?bedrift_id=<?php echo $id ?>"><button class="edit-btn-table">Rediger</button></a>
                                 <a class="detaljer_kapp" href="Detailed-view-bedrift.php?bedrift_id=<?php echo $id ?>"><button class="details-btn-table">Detaljer</button></a>
-                                <button class="delete-btn-table" onclick="confirmDeleteBedrift('<?php echo htmlspecialchars($bedrift_row['bedrift_navn'])?>', '<?php echo htmlspecialchars($bedrift_row['bedrift_id'])?>')">X</button>
+                                <button class="delete-btn-table" onclick="confirmDeleteBedrift('<?php echo htmlspecialchars($bedrift_row['bedrift_navn'])?>', '<?php echo htmlspecialchars($bedrift_row['bedrift_id'])?>', '<?php echo $ansattecount ?>')">X</button>
                             </div>
                         </td>
                     </tr>
@@ -165,7 +198,7 @@ if (isset($_GET['bedrift_id'])) {
             </table>
 
             <h1 class="header-ansatte">Ansatte</h1>
-            <p id="noansatte">No ansatte found at this bedrift.</p>
+            <p id="noansatte">Ingen ansatte funnet.</p>
             <table>
                 <tbody>
                     <tr>

@@ -1,5 +1,5 @@
-function confirmDeleteBedrift(bedriftnavn, id) {
-    var confirmation = confirm(`Vil du slette ${bedriftnavn} med ID ${id}?`);
+function confirmDeleteBedrift(bedriftnavn, id, ansattenummer) {
+    var confirmation = confirm(`Vil du slette ${bedriftnavn} med ID ${id} med ${ansattenummer} ansatte?`);
     if (confirmation) {
         window.location.href = `confirmdelete.php?bedriftid=${id}`;
     }
