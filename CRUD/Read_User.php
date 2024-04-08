@@ -35,6 +35,7 @@ if (isset($_GET['bedrift_id'])) {
             <title>Bedriftsportalen</title>
         </head>
         <body>
+
            <main>
             <h1 class="header-bedrift"><?php echo $first_row['bedrift_navn'] ?></h1>
             <table class="table">
