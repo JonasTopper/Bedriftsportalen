@@ -21,7 +21,7 @@ if (isset($_POST["send"])) {
     $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
     $mail->Username = "bedriftportalen@gmail.com";
-    $mail->Password = "ltst hviz inan potp"; // Password for SMTP authentication
+    $mail->Password = ""; // Password for SMTP authentication
     $mail->SMTPSecure = "ssl";
     $mail->Port = 465;
 
