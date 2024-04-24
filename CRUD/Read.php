@@ -33,7 +33,15 @@ if (isset($_GET['bedrift_id'])) {
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-pwCHXNHXDBp4Zh3fCkGpMeWzHjwUC1n1br5x3IyVBFzbJRsN/l2M+SWdgZfjqxiS" crossorigin="anonymous">
             <title> Bedriftsportalen </title>
         </head>
+        <style>
+            .kontakt_person_yes {
+                background-color: #3E92CC;
+            }
 
+            .kontakt_person_no {
+                background-color: #CC4B50;
+            }
+        </style>
         <body>
             <main>
                 <a href="../"><button type="button" class="btn">Hjem </button></a>
@@ -76,6 +84,7 @@ if (isset($_GET['bedrift_id'])) {
                             <th>Etternavn</th>
                             <th>E-post</th>
                             <th>Telefonnummer</th>
+                            <th>Kontaktperson</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -86,13 +95,15 @@ if (isset($_GET['bedrift_id'])) {
                         // Loop through each row fetched from the result set to display ansatte information
                         while ($row = mysqli_fetch_assoc($result_edit)) {
                             $ansatt_id = $row['ansatte_id'];
+                            $ansattClass = $row['ansatte_kontakt_person'] == 1 ? 'kontakt_person_yes' : 'kontakt_person_no';
                         ?>
-                            <tr>
+                            <tr class="<?php echo $ansattClass ?>">
                                 <td><?php echo $row['ansatte_id'] ?></td>
                                 <td><?php echo $row['ansatte_fornavn'] ?></td>
                                 <td><?php echo $row['ansatte_etternavn'] ?></td>
                                 <td><?php echo $row['ansatte_epost'] ?></td>
                                 <td><?php echo $row['ansatte_tlf_nr'] ?></td>
+                                <td><?php echo $row['ansatte_kontakt_person'] ? 'Yes' : 'No';?></td>
                                 <td>
                                     <div class="button-group">
                                         <a href="Edit-ansatt.php?ansatte_id=<?php echo $ansatt_id ?>"><button class="edit-btn-table">Rediger</button></a>
@@ -114,7 +125,6 @@ if (isset($_GET['bedrift_id'])) {
                 </table>
             </main>
         </body>
-
         </html>
     <?php
     } else {
